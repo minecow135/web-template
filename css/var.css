@@ -1,0 +1,57 @@
+* {
+    /* color */
+    --color_bg_background:      #838383;
+    --color_border:             #dee0e4;
+    --color_confirm:            #38b673;
+    --color_confirm_hover:      #32a367;
+
+    --color_txt_h_1:            #adadad;
+    --color_txt_h_2:            #555555;
+
+    --color_txt_p_1:            #adadad;
+    --color_txt_p_2:            #555555;
+    --color_txt_p_1:            #cacaca;
+
+    /* size */
+    
+    --size_tx_h1_1:             50px;
+    --size_tx_h1_2:             ;
+    --size_tx_h1_3:             25px;
+
+    --size_tx_h2_1:             40px;
+    --size_tx_h2_2:             30px;
+    --size_tx_h2_3:             ;
+
+    --size_tx_h3_1:             35px;
+    --size_tx_h3_2:             ;
+    --size_tx_h3_3:             ;
+
+    --size_tx_h4_1:             30px;
+    --size_tx_h4_2:             ;
+    --size_tx_h4_3:             ;
+
+    --size_tx_h5_1:             25px;
+    --size_tx_h5_2:             ;
+    --size_tx_h5_3:             ;
+
+    --size_tx_h6_1:             20px;
+    --size_tx_h6_2:             ;
+    --size_tx_h6_3:             ;
+
+    /* Header */
+    --size_text_header_h1:      25px;
+    --size_text_header:         17px;
+    --size_text_header_span:    12px;
+    
+    --size_item_span:           16px;
+
+    --place_item_span_top:      22px;
+    --place_item_span_right:    0px;
+    
+    --color_bg_header:          #353535;
+
+    /* box */
+    --color_bg_box:             #5e5d5d;
+    --color_bg_box_submit:      #4e4e4e;
+    --color_bg_box_submit_hover:#3b3b3b;
+}

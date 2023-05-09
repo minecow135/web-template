@@ -1,0 +1,64 @@
+* {
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	background-color: var(--color_bg_background);
+}
+
+body {
+	position: relative;
+	min-height: 100vh;
+	color: #555555;
+	margin: 0;
+	margin-bottom: 20px;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5 {
+	color: var(--color_txt_h_2);
+	margin: 0;
+}
+
+h1 {
+	font-size: var(--size_tx_h1_1);
+	padding: 30px;
+}
+
+h2 {
+	font-size: var(--size_tx_h2_1);
+}
+
+h3 {
+	font-size: var(--size_tx_h3_1);
+}
+
+h4 {
+	font-size: var(--size_tx_h4_1);
+}
+
+h5 {
+	font-size: var(--size_tx_h5_1);
+}
+
+h6 {
+	font-size: var(--size_tx_h6_1);
+}
+
+/* allign */
+.content-wrapper, .content-wrapper-center {
+	width: 80%;
+	margin: 0 auto;
+    display: flex;
+	flex-wrap: wrap;
+}
+.content-wrapper-center {
+    justify-content: center;
+}
