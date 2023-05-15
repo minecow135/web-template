@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
-    $sql = "SELECT id, username, password FROM users WHERE username = :username";
+    $sql = "SELECT * FROM users WHERE username = :username";
     $stmt = $pdo->prepare($sql);
 
     //Bind value.
@@ -26,21 +26,19 @@ if(isset($_POST['submit'])){
     
     //Fetch row.
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    print_r($user);
 
     $id = $user["id"];
     $username = $user["username"];
-
-    echo "<br><br>";
-    echo $id;
-    echo "<br>";
-    echo $username;
-
+    $enabled = $user["enabled"];
 
     //If $row is FALSE.
     if($user === false){
         echo '<script>alert("invalid username or password")</script>';
-    } else{
+    }
+    elseif ($enabled == false) {
+        echo '<script>alert("User is disabled")</script>';
+    }
+    else{
         //Compare and decrypt passwords.
         $validPassword = password_verify($passwordAttempt, $user['password']);
 

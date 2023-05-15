@@ -5,12 +5,12 @@
         $DATABASE_HOST = "172.21.20.52";
         $DATABASE_USER = "webTest";
         $DATABASE_PASS = "awdfthdwa";
-        $DATABASE_NAME = "webTemplateV2";
+        $DATABASE_NAME = "webTemplate";
         try {
-        	return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
+        	return new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASS);
         } catch (PDOException $exception) {
         	// If there is an error with the connection, stop the script and display the error.
-        	exit('Failed to connect to database!');
+        	exit("Failed to connect to database!");
         }
     }
 
@@ -18,8 +18,34 @@
     function headerr($title)
     {
         $namechoice = 2;
+        
+        $pdo = pdo_connect_mysql();
+        
+        $sql = "SELECT * FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id";
+        $stmt = $pdo->prepare($sql);
 
-        $permissions = ["test1", "test2", "test3", "test4"];
+        //Bind value.
+        //$stmt->bindValue(':username', $username);
+
+        //Execute.
+        $stmt->execute();
+        
+        //Fetch row.
+        $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        print_r($permissions);
+
+        echo "<br><br>";
+
+        foreach ($permissions as $i) {
+            print_r($i);
+            echo "<br><br>";
+            echo $i["permissionName"];
+            echo "<br><br>";
+        }
+
+
+        //$permissions = ["test1", "test2", "test3", "test4"];
 
         $namearr["1"] = "Template";
 
@@ -48,9 +74,9 @@
                             <nav>
                         ';
 
-        foreach ($permissions as $permission) {
+        /*foreach ($permissions as $permission) {
             echo "<a>$permission</a>";
-        }
+        }*/
         echo '
                     </nav>
                 </div>
@@ -61,20 +87,20 @@
 
     // Footer
     function template_footer() {
-    echo '
-            </main>
-            <footer>
-                <div class="content-wrapper">
-                    <!-- Footer -->
+        echo '
+                </main>
+                <footer>
+                    <div class="content-wrapper">
+                        <!-- Footer -->
 
-                    <a href="https://github.com/minecow135">mine_cow135</a>
+                        <a href="https://github.com/minecow135">mine_cow135</a>
 
-                    <!-- Footer -->
-                </div>
-            </footer>
-        </body>
-    </html>
-    ';
+                        <!-- Footer -->
+                    </div>
+                </footer>
+            </body>
+        </html>
+        ';
     }
 
 ?>

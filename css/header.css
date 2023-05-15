@@ -46,7 +46,7 @@ header nav {
 header nav a {
 	text-decoration: none;
 	color: inherit;
-	margin: 0 10px;
+	margin: 0 2px;
 	font-size: var(--size_text_header);
 
 }
