@@ -1,5 +1,5 @@
 <?php
-headerr('Home');
+headerr('Home', "default");
 ?>
 
 <div class="content-wrapper-center">

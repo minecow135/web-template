@@ -5,7 +5,12 @@ if (isset($_SESSION['loggedin'])) {
     exit;
 }
 
-headerr('sign in');
+headerr('sign in', "login");
+
+$test = ["a", "e", 9, 2];
+if (in_array(1, $test)) {
+    echo "a";
+}
 ?>
 
 <?php
@@ -14,7 +19,7 @@ if(isset($_POST['submit'])){
     //ensure fields are not empty
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
-
+    
     $sql = "SELECT * FROM users WHERE username = :username";
     $stmt = $pdo->prepare($sql);
 
@@ -35,7 +40,7 @@ if(isset($_POST['submit'])){
     if($user === false){
         echo '<script>alert("invalid username or password")</script>';
     }
-    elseif ($enabled == false) {
+    elseif ($enabled === false) {
         echo '<script>alert("User is disabled")</script>';
     }
     else{

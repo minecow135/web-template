@@ -15,46 +15,53 @@
     }
 
     // Header
-    function headerr($title)
+    function headerr($title, $permissionName)
     {
         $namechoice = 2;
+
+        $namearr["1"] = "Template";
+
+        $namearr["2"] = $_SERVER["HTTP_HOST"];
+        $name = $namearr["$namechoice"];
         
         $pdo = pdo_connect_mysql();
         
-        $sql = "SELECT * FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id";
+        $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) ORDER BY permission.placement";
         $stmt = $pdo->prepare($sql);
+        
+        $date = date("Y-m-d H:i:s");
+        //echo $date;
 
         //Bind value.
-        //$stmt->bindValue(':username', $username);
+        if ($_SESSION["id"]) {
+            $userId = $_SESSION["id"];
+        } 
+        else {
+            $userId = 0;
+        }
+        $stmt->bindValue(':userId', $userId);
+        $stmt->bindValue(':date', $date);
 
         //Execute.
         $stmt->execute();
         
         //Fetch row.
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        print_r($permissions);
 
-        echo "<br><br>";
+        /*if (array_search($title, array_column($permission, "page")) !== false) {
+            echo "a";
+        }*/
 
-        foreach ($permissions as $i) {
-            print_r($i);
-            echo "<br><br>";
-            echo $i["permissionName"];
-            echo "<br><br>";
-        }
+    if ( ! in_array($permissionName, array_column($permissions, 'permissionName')) || ! $permissionName == "default") {
+        echo 'value is in multidim array';
+    }
+    else {
+        echo 'value is not in multidim array';
 
-
-        //$permissions = ["test1", "test2", "test3", "test4"];
-
-        $namearr["1"] = "Template";
-
-        $namearr["2"] = $_SERVER["HTTP_HOST"];
-        $name = $namearr["$namechoice"];
+    }
 
         // Get the amount of items in the shopping cart
         $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-        $permission["Gallery"] = true;
         echo '
         <!DOCTYPE html>
         <html lang="en">
@@ -73,10 +80,13 @@
                             </a>
                             <nav>
                         ';
-
-        /*foreach ($permissions as $permission) {
-            echo "<a>$permission</a>";
-        }*/
+                        foreach ($permissions as $i) {
+                            if ($i["header"] == true) {
+                                ?>
+                                <a href="index.php?page=<?=$i['page']?>"><?=$i['permissionName']?></a>
+                                <?php
+                            }
+                        }
         echo '
                     </nav>
                 </div>

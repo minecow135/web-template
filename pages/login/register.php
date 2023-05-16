@@ -5,7 +5,7 @@ if (isset($_SESSION['loggedin'])) {
     exit;
 }
 
-headerr('Register');
+headerr('Register', "register");
 ?>
 
 <?php
