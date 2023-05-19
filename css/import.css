@@ -4,10 +4,7 @@
 @import 'header.css';
 
 @import 'box.css';
-
-@import 'crud.css';
-@import 'img.css';
-@import 'shop.css';
+@import 'table.css';
 
 @import 'https://use.fontawesome.com/releases/v5.7.1/css/all.css';
 @import 'https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i';
