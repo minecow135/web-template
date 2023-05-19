@@ -48,6 +48,8 @@
         //Fetch row.
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $_SESSION["permissions"] = $permissions;
+
     if (false === ((in_array($permissionName, array_column($permissions, 'permissionName')))) && $permissionName != "default") {
         header('Location: index.php');
     }
