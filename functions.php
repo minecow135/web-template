@@ -17,8 +17,8 @@
     // Header
     function headerr($title, $permissionName)
     {
+        // chose name. 1 = custom, 2 = domain
         $namechoice = 2;
-
         $namearr["1"] = "Template";
 
         $namearr["2"] = $_SERVER["HTTP_HOST"];
