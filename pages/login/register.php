@@ -97,3 +97,5 @@ if(isset($_POST['submit'])) {
         </form>
       </div>
 </div>
+
+<?= template_footer() ?>
