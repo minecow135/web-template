@@ -52,12 +52,8 @@
             echo "a";
         }*/
 
-    if ( ! in_array($permissionName, array_column($permissions, 'permissionName')) || ! $permissionName == "default") {
-        echo 'value is in multidim array';
-    }
-    else {
-        echo 'value is not in multidim array';
-
+    if (false === ((in_array($permissionName, array_column($permissions, 'permissionName')))) && $permissionName != "default") {
+        header('Location: index.php');
     }
 
         // Get the amount of items in the shopping cart
