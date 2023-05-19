@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 15, 2023 at 01:28 PM
+-- Generation Time: May 16, 2023 at 01:29 PM
 -- Server version: 8.0.33-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -41,8 +41,9 @@ CREATE TABLE `permission` (
 --
 
 INSERT INTO `permission` (`id`, `permissionName`, `page`, `dropdown`, `placement`, `permissionDescription`) VALUES
-(1, 'login', 'login/login', '', 0, NULL),
-(2, 'register', 'login/register', '', 0, NULL);
+(1, 'login', 'login/login', '', 998, NULL),
+(2, 'register', 'login/register', '', 999, NULL),
+(3, 'logout', 'login/logout', '', 1000, NULL);
 
 -- --------------------------------------------------------
 
@@ -75,17 +76,20 @@ CREATE TABLE `userPermission` (
   `siteId` int NOT NULL,
   `permissionId` int NOT NULL,
   `header` tinyint(1) NOT NULL DEFAULT '0',
-  `dateGiven` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `DateEnd` datetime DEFAULT NULL
+  `dateStart` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateEnd` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `userPermission`
 --
 
-INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`, `dateGiven`, `DateEnd`) VALUES
+INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`, `dateStart`, `dateEnd`) VALUES
 (1, 1, 1, 1, 1, '2023-05-15 10:19:36', NULL),
-(3, 1, 1, 2, 1, '2023-05-15 12:18:06', NULL);
+(3, 1, 1, 2, 1, '2023-05-15 12:18:06', NULL),
+(4, 0, 1, 1, 1, '2023-05-16 07:29:23', '2023-10-27 09:28:54'),
+(7, 1, 1, 3, 1, '2023-05-16 08:52:23', NULL),
+(8, 1, 1, 3, 1, '2023-04-02 11:45:15', '2023-05-08 11:45:15');
 
 -- --------------------------------------------------------
 
@@ -149,7 +153,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sites`
@@ -161,7 +165,7 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
