@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 16, 2023 at 01:29 PM
--- Server version: 8.0.33-0ubuntu0.22.04.1
--- PHP Version: 8.1.2-1ubuntu2.11
+-- Generation Time: May 19, 2023 at 09:12 PM
+-- Server version: 8.0.33-0ubuntu0.23.04.2
+-- PHP Version: 8.1.12-1ubuntu4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,6 +44,47 @@ INSERT INTO `permission` (`id`, `permissionName`, `page`, `dropdown`, `placement
 (1, 'login', 'login/login', '', 998, NULL),
 (2, 'register', 'login/register', '', 999, NULL),
 (3, 'logout', 'login/logout', '', 1000, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registerCodes`
+--
+
+CREATE TABLE `registerCodes` (
+  `id` int NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `start` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `registerCodes`
+--
+
+INSERT INTO `registerCodes` (`id`, `code`, `start`, `end`) VALUES
+(1, 'awd', '2023-05-19 20:43:43', '2023-05-25 20:43:34'),
+(2, 'awdawdawdw', '2023-05-19 20:53:03', '2023-05-26 20:52:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `description` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `name`, `active`, `description`) VALUES
+(1, 'registerCode', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +130,8 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (3, 1, 1, 2, 1, '2023-05-15 12:18:06', NULL),
 (4, 0, 1, 1, 1, '2023-05-16 07:29:23', '2023-10-27 09:28:54'),
 (7, 1, 1, 3, 1, '2023-05-16 08:52:23', NULL),
-(8, 1, 1, 3, 1, '2023-04-02 11:45:15', '2023-05-08 11:45:15');
+(8, 1, 1, 3, 1, '2023-04-02 11:45:15', '2023-05-08 11:45:15'),
+(9, 0, 1, 2, 1, '2023-05-19 20:08:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -125,6 +167,18 @@ ALTER TABLE `permission`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `registerCodes`
+--
+ALTER TABLE `registerCodes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sites`
 --
 ALTER TABLE `sites`
@@ -156,6 +210,18 @@ ALTER TABLE `permission`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `registerCodes`
+--
+ALTER TABLE `registerCodes`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `sites`
 --
 ALTER TABLE `sites`
@@ -165,7 +231,7 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
