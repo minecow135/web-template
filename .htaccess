@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^login$ index.php?page=login/login [NC]
+RewriteRule ^register$ index.php?page=login/register [NC]
