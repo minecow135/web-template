@@ -1,5 +1,5 @@
 <?php
-$DATABASE_HOST = "HOST";
-$DATABASE_USER = "USER";
-$DATABASE_PASS = "PASS";
-$DATABASE_NAME = "DB";
+$DATABASE_HOST = "localhost";
+$DATABASE_USER = "webTest";
+$DATABASE_PASS = "awdfthdwa";
+$DATABASE_NAME = "webTemplate";
