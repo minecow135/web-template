@@ -2,10 +2,7 @@
 
     // connect to database PDO
     function pdo_connect_mysql() {
-        $DATABASE_HOST = "172.21.20.52";
-        $DATABASE_USER = "webTest";
-        $DATABASE_PASS = "awdfthdwa";
-        $DATABASE_NAME = "webTemplate";
+        require "db.php";
         try {
         	return new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASS);
         } catch (PDOException $exception) {
@@ -47,10 +44,6 @@
         
         //Fetch row.
         $permissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        /*if (array_search($title, array_column($permission, "page")) !== false) {
-            echo "a";
-        }*/
 
     if (false === ((in_array($permissionName, array_column($permissions, 'permissionName')))) && $permissionName != "default") {
         header('Location: index.php');
