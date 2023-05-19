@@ -11,8 +11,6 @@ $sql = "SELECT registerCodes.id, registerCodes.code, registerCodes.createdBy, us
 
         //Fetch row.
         $code = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        print_r($_SESSION["permissions"]);
 ?>
 
 <div class="content-wrapper-center">
