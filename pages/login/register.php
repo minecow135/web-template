@@ -3,14 +3,9 @@ headerr('Register', "register");
 ?>
 
 <?php
-$sql = "SELECT id, name, active FROM settings WHERE name = 'registerCode'";
-$stmt = $pdo->prepare($sql);
+$permissionName = "register.code";
 
-//Execute.
-$stmt->execute();
-
-//Fetch row.
-$settings = $stmt->fetch(PDO::FETCH_ASSOC);
+$useCode = in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'));
 
 if(isset($_POST['submit'])) {
     try {
@@ -63,7 +58,7 @@ if(isset($_POST['submit'])) {
         if($row['num'] > 0) {
             echo '<script>alert("Username already exists")</script>';
         }
-        else if ($settings["active"] && $codeUses["num"] >= $code["totalUses"]) {
+        else if ($useCode && $codeUses["num"] >= $code["totalUses"]) {
             echo '<script>alert("Wrong code")</script>';
         }
         else {
@@ -75,7 +70,7 @@ if(isset($_POST['submit'])) {
 
             if($stmt->execute()){
                 echo '<script>alert("New account created.")</script>';
-                if ($settings["active"]) {
+                if ($useCode) {
                     // check Id of user
                     $sql = "SELECT id FROM users WHERE username = :username";
                     $stmt = $pdo->prepare($sql);
@@ -113,7 +108,7 @@ if(isset($_POST['submit'])) {
             <input required="required" type="text" name="username" placeholder="Username">
             <input required="required" type="email" name="email" placeholder="Email">
             <input required="required" type="password" name="password" placeholder="Password">
-            <?php if ($settings["active"]) { ?>
+            <?php if ($useCode) { ?>
                 <input required="required" type="text" name="code" placeholder="Code from admin">
             <?php
                 }

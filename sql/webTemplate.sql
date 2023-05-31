@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 31, 2023 at 02:35 PM
+-- Generation Time: May 31, 2023 at 03:15 PM
 -- Server version: 8.0.33-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -51,7 +51,8 @@ INSERT INTO `permission` (`id`, `permissionName`, `permissionCategory`, `page`, 
 (7, 'userAdm.update', 'login.adm', 'adm/users/update', 'adm', 120, NULL),
 (8, 'userAdm.delete', 'login.adm', 'adm/users/delete', 'adm', 130, NULL),
 (9, 'registerCodes', 'login.adm', 'adm/registerCodes/list', 'adm', 150, NULL),
-(10, 'registerCodes.all', 'login.adm', NULL, NULL, NULL, 'see codes by all users');
+(10, 'registerCodes.all', 'login.adm', NULL, NULL, NULL, 'see codes by all users'),
+(11, 'register.code', 'login', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,26 +124,6 @@ INSERT INTO `registerCodesUsed` (`id`, `codeId`, `userId`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
---
-
-CREATE TABLE `settings` (
-  `id` int NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `description` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `settings`
---
-
-INSERT INTO `settings` (`id`, `name`, `active`, `description`) VALUES
-(1, 'registerCode', 1, NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sites`
 --
 
@@ -184,7 +165,8 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (2, 0, 1, 2, 1, '2023-05-19 22:31:00', NULL),
 (3, 1, 1, 3, 1, '2023-05-19 22:34:23', NULL),
 (4, 1, 1, 9, 1, '2023-05-19 22:34:23', NULL),
-(6, 1, 1, 10, 0, '2023-05-20 18:30:21', NULL);
+(6, 1, 1, 10, 0, '2023-05-20 18:30:21', NULL),
+(7, 0, 1, 11, 0, '2023-05-31 15:07:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -237,12 +219,6 @@ ALTER TABLE `registerCodesUsed`
   ADD KEY `usedBy` (`userId`);
 
 --
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `sites`
 --
 ALTER TABLE `sites`
@@ -271,7 +247,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `registerCodes`
@@ -286,12 +262,6 @@ ALTER TABLE `registerCodesUsed`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `settings`
---
-ALTER TABLE `settings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `sites`
 --
 ALTER TABLE `sites`
@@ -301,7 +271,7 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
