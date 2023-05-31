@@ -38,10 +38,10 @@ if(isset($_POST['submit'])){
 
     //If $row is FALSE.
     if($user === false){
-        echo '<script>alert("invalid username or password")</script>';
+        echo '<script>alert("Invalid username or password")</script>';
     }
     elseif ($enabled === false) {
-        echo '<script>alert("User is disabled")</script>';
+        echo '<script>alert("Invalid username or password")</script>';
     }
     else{
         //Compare and decrypt passwords.
