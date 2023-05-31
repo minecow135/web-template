@@ -1,10 +1,4 @@
 <?php
-// If the user is not logged in redirect to the login page...
-if (isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
-    exit;
-}
-
 headerr('Register', "register");
 ?>
 
@@ -16,7 +10,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
 //Fetch row.
-$settings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if(isset($_POST['submit'])) {
     try {
@@ -37,7 +31,7 @@ if(isset($_POST['submit'])) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        $sql = "SELECT COUNT(code) AS num FROM registerCodes WHERE code = :code AND start < :date AND end > :date";
+        $sql = "SELECT id, disabled, totalUses FROM registerCodes WHERE code = :code AND start < :date AND end > :date";
         $stmt = $pdo->prepare($sql);
 
         $date = date("Y-m-d H:i:s");
@@ -52,10 +46,24 @@ if(isset($_POST['submit'])) {
         //Fetch row.
         $code = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $sql = "SELECT count(id) AS num FROM registerCodesUsed WHERE codeId = :codeId";
+        $stmt = $pdo->prepare($sql);
+
+        $date = date("Y-m-d H:i:s");
+
+        //Bind value.
+        $stmt->bindValue(':codeId', $code["id"]);
+
+        //Execute.
+        $stmt->execute();
+
+        //Fetch row.
+        $codeUses = $stmt->fetch(PDO::FETCH_ASSOC);
+
         if($row['num'] > 0) {
             echo '<script>alert("Username already exists")</script>';
         }
-        else if ($settings[0]["active"] && $code['num'] < 1) {
+        else if ($settings["active"] && $codeUses["num"] >= $code["totalUses"]) {
             echo '<script>alert("Wrong code")</script>';
         }
         else {
@@ -67,6 +75,23 @@ if(isset($_POST['submit'])) {
 
             if($stmt->execute()){
                 echo '<script>alert("New account created.")</script>';
+                if ($settings["active"]) {
+                    // check Id of user
+                    $sql = "SELECT id FROM users WHERE username = :username";
+                    $stmt = $pdo->prepare($sql);
+
+                    $stmt->bindValue(':username', $user);
+                    $stmt->execute();
+                    $userId = $stmt->fetch(PDO::FETCH_ASSOC);
+                    
+                    $stmt = $pdo->prepare("INSERT INTO registerCodesUsed (codeId, userId)
+                    VALUES (:codeId, :userId)");
+                    $stmt->bindParam(':codeId', $code["id"]);
+                    $stmt->bindParam(':userId', $userId["id"]);
+        
+                    $stmt->execute();
+                }
+
                 //redirect to another page
                 header("index.php");
             }
@@ -88,7 +113,7 @@ if(isset($_POST['submit'])) {
             <input required="required" type="text" name="username" placeholder="Username">
             <input required="required" type="email" name="email" placeholder="Email">
             <input required="required" type="password" name="password" placeholder="Password">
-            <?php if ($settings[0]["active"]) { ?>
+            <?php if ($settings["active"]) { ?>
                 <input required="required" type="text" name="code" placeholder="Code from admin">
             <?php
                 }
