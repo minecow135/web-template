@@ -9,7 +9,7 @@ $d=strtotime("+15 min");
 $date15 = date("Y-m-d H:i:s", $d);
 
 if (isset($_POST["disable"])) {
-    $stmt = $pdo->prepare("UPDATE registerCodes SET usesLeft = 0 WHERE id = :id");
+    $stmt = $pdo->prepare("UPDATE registerCodes SET totalUses = 0 WHERE id = :id");
         $stmt->bindParam(':id', $_POST["disable"]);
 
         if($stmt->execute()){
@@ -20,11 +20,11 @@ if (isset($_POST["disable"])) {
 $code = uniqid();
 
 if ($_POST["uses"]) {
-    $stmt = $pdo->prepare("INSERT INTO registerCodes (code, createdBy, usesLeft, start, end)
-        VALUES (:code, :createdBy, :usesLeft, :start, :end)");
+    $stmt = $pdo->prepare("INSERT INTO registerCodes (code, createdBy, totalUses, start, end)
+        VALUES (:code, :createdBy, :totalUses, :start, :end)");
         $stmt->bindParam(':code', $code);
         $stmt->bindParam(':createdBy', $_SESSION["id"]);
-        $stmt->bindParam(':usesLeft', $_POST["uses"]);
+        $stmt->bindParam(':totalUses', $_POST["uses"]);
         $stmt->bindParam(':start', $_POST["start"]);
         $stmt->bindParam(':end', $_POST["end"]);
 
@@ -33,7 +33,7 @@ if ($_POST["uses"]) {
         }
 }
 
-$sql = "SELECT registerCodes.id, registerCodes.code, registerCodes.createdBy, users.username, registerCodes.usesLeft, registerCodes.start, registerCodes.end FROM registerCodes LEFT JOIN users ON registerCodes.createdBy = users.id ORDER BY `registerCodes`.`start` DESC";
+$sql = "SELECT registerCodes.id, registerCodes.code, registerCodes.createdBy, users.username, registerCodes.totalUses, registerCodes.start, registerCodes.end FROM registerCodes LEFT JOIN users ON registerCodes.createdBy = users.id ORDER BY `registerCodes`.`start` DESC";
     $stmt = $pdo->prepare($sql);
 
     //Execute.
@@ -75,7 +75,7 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
             <thead>
                 <tr>
                     <td>Code</td>
-                    <td>Uses left</td>
+                    <td>Total uses</td>
                     <td>Valid from</td>
                     <td>Valid to</td>
                     <?php
@@ -91,11 +91,11 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
             </thead>
         <?php
         foreach ($code as $i) {
-            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && 0 < $i["usesLeft"] && $date >= $i["start"] && $date <= $i["end"]) {
+            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && 0 < $i["totalUses"] && $date >= $i["start"] && $date <= $i["end"]) {
                 ?>
                 <tr>
                     <td><?= $i["code"] ?></td>
-                    <td><?= $i["usesLeft"] ?></td>
+                    <td><?= $i["totalUses"] ?></td>
                     <td><?= $i["start"] ?></td>
                     <td><?= $i["end"] ?></td>
                     <?php
@@ -119,7 +119,7 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
         <thead>
             <tr>
                 <td>Code</td>
-                <td>Uses left</td>
+                <td>Total uses</td>
                 <td>Valid from</td>
                 <td>Valid to</td>
                 <?php
@@ -134,11 +134,11 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
         </thead>
     <?php
         foreach ($code as $i) {
-            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && (0 < $i["usesLeft"] && $date >= $i["start"] && $date >= $i["end"] ) || 1 > $i["usesLeft"]) {
+            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && (0 < $i["totalUses"] && $date >= $i["start"] && $date >= $i["end"] ) || 1 > $i["totalUses"]) {
                 ?>
                 <tr>
                     <td><?= $i["code"] ?></td>
-                    <td><?= $i["usesLeft"] ?></td>
+                    <td><?= $i["totalUses"] ?></td>
                     <td><?= $i["start"] ?></td>
                     <td><?= $i["end"] ?></td>
                     <?php

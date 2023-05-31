@@ -3,7 +3,7 @@ headerr('Codes used by', "registerCodes");
 ?>
 
 <?php
-   $sql = "SELECT registerCodes.id, registerCodes.code, registerCodes.createdBy, users.username, registerCodes.usesLeft, registerCodes.start, registerCodes.end FROM registerCodes LEFT JOIN users ON registerCodes.createdBy = users.id WHERE registerCodes.id = :id ORDER BY `registerCodes`.`start` DESC";
+   $sql = "SELECT registerCodes.id, registerCodes.code, registerCodes.createdBy, users.username, registerCodes.totalUses, registerCodes.start, registerCodes.end FROM registerCodes LEFT JOIN users ON registerCodes.createdBy = users.id WHERE registerCodes.id = :id ORDER BY `registerCodes`.`start` DESC";
    $stmt = $pdo->prepare($sql);
 
    $stmt->bindParam(':id', $_GET["id"]);
@@ -49,8 +49,8 @@ headerr('Codes used by', "registerCodes");
                 <td><?= $code["username"] ?></td>
             </tr>
             <tr>
-                <td>Uses left</td>
-                <td><?= $code["usesLeft"] ?></td>
+                <td>Total uses</td>
+                <td><?= $code["totalUses"] ?></td>
             </tr>
             <tr>
                 <td>Start</td>
