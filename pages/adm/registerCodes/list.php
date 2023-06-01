@@ -69,7 +69,33 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
             </table>
         </form>
     </div>
-    <h3>Active codes</h3>
+    <?php
+        foreach ($code as $i) {
+            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && 0 < $i["totalUses"] && $date >= $i["start"] && $date <= $i["end"]) {
+                $active[] = $i;
+            }
+            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && ((0 < $i["totalUses"] && $date >= $i["start"] && $date >= $i["end"] ) || 1 > $i["totalUses"])) {
+                $used[] = $i;
+            }
+        }
+    ?>
+    </table>
+
+<?php
+    $num_on_page = 5;
+    if (!empty($active)) {
+        $active_g = count($active);
+        echo "a";
+        
+        $active_p = isset($_GET['active']) && is_numeric($_GET['active']) ? $_GET['active'] : 1;
+        
+        $array_start = ($active_p - 1) * $num_on_page;
+        
+        $array_part = array_slice($active, $array_start, $num_on_page);
+    }
+?>
+
+<h3>Active codes</h3>
     <form action="" method="post">
         <table>
             <thead>
@@ -90,7 +116,8 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
                 </tr>
             </thead>
         <?php
-        foreach ($code as $i) {
+        print_r($array_part);
+        foreach ($array_part as $i) {
             if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && 0 < $i["totalUses"] && $date >= $i["start"] && $date <= $i["end"]) {
                 ?>
                 <tr>
@@ -114,10 +141,56 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
         ?>
         </table>
     </form>
-    <h3>Outdated or used codes</h3>
+
+    <div>
+    <?php if (ceil($active_g / $num_on_page) > 0) { ?>
+        <ul class="pagination">
+            <?php if ($active_p > 1): ?>
+                <li class="prev"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p-1 ?>">Prev</a></li>
+            <?php endif; ?>
+
+            <?php if ($active_p > 3): ?>
+                <li class="start"><a href="index.php?page=adm/registerCodes/list&active=1">1</a></li>
+                <li class="dots">...</li>
+            <?php endif; ?>
+
+            <?php if ($active_p-2 > 0): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p-2 ?>&used=<?= $_GET["used"] ?>"><?php echo $active_p-2 ?></a></li><?php endif; ?>
+            <?php if ($active_p-1 > 0): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p-1 ?>&used=<?= $_GET["used"] ?>"><?php echo $active_p-1 ?></a></li><?php endif; ?>
+
+            <li class="currentpage"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p ?>&used=<?= $_GET["used"] ?>"><?php echo $active_p ?></a></li>
+
+            <?php if ($active_p+1 < ceil($active_g / $num_on_page)+1): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p+1 ?>&used=<?= $_GET["used"] ?>"><?php echo $active_p+1 ?></a></li><?php endif; ?>
+            <?php if ($active_p+2 < ceil($active_g / $num_on_page)+1): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p+2 ?>&used=<?= $_GET["used"] ?>"><?php echo $active_p+2 ?></a></li><?php endif; ?>
+
+            <?php if ($active_p < ceil($active_g / $num_on_page)-2): ?>
+                <li class="dots">...</li>
+                <li class="end"><a href="index.php?page=adm/registerCodes/list&active=<?php echo ceil($active_g / $num_on_page) ?>&used=<?= $_GET["used"] ?>"><?php echo ceil($active_g / $num_on_page) ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($active_p < ceil($active_g / $num_on_page)): ?>
+                <li class="next"><a href="index.php?page=adm/registerCodes/list&active=<?php echo $active_p+1 ?>&used=<?= $_GET["used"] ?>">Next</a></li>
+            <?php endif; ?>
+        </ul>
+    <?php } ?>
+</div>
+
+    <?php
+    if (!empty($used)) {
+        $used_g = count($used);
+        
+        $used_p = isset($_GET['used']) && is_numeric($_GET['used']) ? $_GET['used'] : 1;
+        
+        $array_start = ($used_p - 1) * $num_on_page;
+        
+        $array_part = array_slice($used, $array_start, $num_on_page);
+    }
+?>
+
+<h3>Outdated or used codes</h3>
     <table>
         <thead>
             <tr>
+                <td>Id</td>
                 <td>Code</td>
                 <td>Total uses</td>
                 <td>Valid from</td>
@@ -133,10 +206,11 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
             </tr>
         </thead>
     <?php
-        foreach ($code as $i) {
-            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && (0 < $i["totalUses"] && $date >= $i["start"] && $date >= $i["end"] ) || 1 > $i["totalUses"]) {
+        foreach ($array_part as $i) {
+            if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && ((0 < $i["totalUses"] && $date >= $i["start"] && $date >= $i["end"] ) || 1 > $i["totalUses"])) {
                 ?>
                 <tr>
+                    <td><?= $i["id"] ?></td>
                     <td><?= $i["code"] ?></td>
                     <td><?= $i["totalUses"] ?></td>
                     <td><?= $i["start"] ?></td>
@@ -145,28 +219,47 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
                 if ($allcodes) {
                     ?>
                     <td><?= $i["username"] ?></td>
-                    <td><a href="index.php?page=adm/registerCodes/used&id=<?= $i["id"] ?>">view info</a></td>
                     <?php
                 }
                     ?>
+                    <td><a href="index.php?page=adm/registerCodes/used&id=<?= $i["id"] ?>">view info</a></td>
                 </tr>
                 <?php
             }
         }
     ?>
     </table>
+<div>
+    <?php if (ceil($used_g / $num_on_page) > 0): ?>
+        <ul class="pagination">
+            <?php if ($used_p > 1): ?>
+                <li class="prev"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p-1 ?>">Prev</a></li>
+            <?php endif; ?>
+
+            <?php if ($used_p > 3): ?>
+                <li class="start"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=1">1</a></li>
+                <li class="dots">...</li>
+            <?php endif; ?>
+
+            <?php if ($used_p-2 > 0): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p-2 ?>"><?php echo $used_p-2 ?></a></li><?php endif; ?>
+            <?php if ($used_p-1 > 0): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p-1 ?>"><?php echo $used_p-1 ?></a></li><?php endif; ?>
+
+            <li class="currentpage"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p ?>"><?php echo $used_p ?></a></li>
+
+            <?php if ($used_p+1 < ceil($used_g / $num_on_page)+1): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p+1 ?>"><?php echo $used_p+1 ?></a></li><?php endif; ?>
+            <?php if ($used_p+2 < ceil($used_g / $num_on_page)+1): ?><li class="page"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p+2 ?>"><?php echo $used_p+2 ?></a></li><?php endif; ?>
+
+            <?php if ($used_p < ceil($used_g / $num_on_page)-2): ?>
+                <li class="dots">...</li>
+                <li class="end"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo ceil($used_g / $num_on_page) ?>"><?php echo ceil($used_g / $num_on_page) ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($used_p < ceil($used_g / $num_on_page)): ?>
+                <li class="next"><a href="index.php?page=adm/registerCodes/list&active=<?= $_GET["active"] ?>&used=<?php echo $used_p+1 ?>">Next</a></li>
+            <?php endif; ?>
+        </ul>
+    <?php endif; ?>
 </div>
-
-<?php
-    $page = 2;
-    $num_on_page = 5;
-
-    $array_start = ($page - 1) * $num_on_page;
-
-    $array_part = array_slice($code, $array_start, $num_on_page);
-    foreach($array_part as $b) {
-        echo "<br>" . $b["id"];
-    }
-?>
+</div>
 
 <?= template_footer() ?>
