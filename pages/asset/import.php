@@ -34,13 +34,15 @@ headerr('Import', "default");
         }
 
             $data = $data;            
-              $place_holder = '(' . implode(',', array_fill(0, count($data[0]), '?')) . ')';
-              $place_hoders = implode(',', array_fill(0, count($data), $place_holder));
+                $place_holder = '(' . implode(',', array_fill(0, count($data[0]), '?')) . ')';
+                $place_hoders = implode(',', array_fill(0, count($data), $place_holder));
               
-              $st = $pdo->prepare('INSERT INTO asset_items (name, category, code, siteId) VALUES' . $place_hoders);
+                $st = $pdo->prepare('INSERT INTO asset_items (name, category, code, siteId) VALUES' . $place_hoders);
               
-              $flat = call_user_func_array('array_merge', array_map('array_values', $data));
-              $st->execute( $flat );
+                $flat = call_user_func_array('array_merge', array_map('array_values', $data));
+                if ($st->execute( $flat )) {
+                    echo '<script>alert("New item added.")</script>';
+                }
               
               header("location: index.php?page=asset/import");
               exit;
@@ -55,12 +57,26 @@ headerr('Import', "default");
     <form action="" method="post">
         <table>
             <tr>
-                <td><input type="text" name="category" placeholder="Category"></td>
-                <td><input type="text" name="name" placeholder="Name"></td>
-                <td><input type="number" name="count" placeholder="Count"></td>
-                <td><input type="text" name="code" placeholder="Code"></td>
-                <td><button type="submit" name="submit">Submit</button></td>
+                <td><label for="category">Category</label></td>
+                <td><input type="text" name="category" placeholder="Category" id="category"></td>
             </tr>
+            <tr>
+                <td><label for="name"></label>Name</td>
+                <td><input type="text" name="name" placeholder="Name" id="name"></td>
+            </tr>
+            <tr>
+                <td><label for="count"></label>Count</td>
+                <td><input type="number" name="count" placeholder="Count" id="count" min=1></td>
+            </tr>
+            <tr>
+                <td><label for="code"></label>Code</td>
+                <td><input type="text" name="code" placeholder="Code" id="code"></td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="submit">Submit</button></td>
+                <td></td>
+            </tr>
+
         </table>
     </form>
     
