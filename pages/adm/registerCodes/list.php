@@ -85,7 +85,6 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
     $num_on_page = 5;
     if (!empty($active)) {
         $active_g = count($active);
-        echo "a";
         
         $active_p = isset($_GET['active']) && is_numeric($_GET['active']) ? $_GET['active'] : 1;
         
@@ -116,7 +115,6 @@ $allcodes = in_array("registerCodes.all", array_column($_SESSION["permissions"],
                 </tr>
             </thead>
         <?php
-        print_r($array_part);
         foreach ($array_part as $i) {
             if ((($i["createdBy"] == $_SESSION["id"]) || $allcodes) && 0 < $i["totalUses"] && $date >= $i["start"] && $date <= $i["end"]) {
                 ?>
