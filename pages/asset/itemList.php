@@ -3,8 +3,10 @@ headerr('Item list', "asset.itemList");
 ?>
 
 <?php
-    $sql = "SELECT id, name, category, code FROM asset_items";
+    $sql = "SELECT id, name, category, code FROM asset_items WHERE siteId = :siteId";
         $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         //Execute.
         $stmt->execute();
@@ -12,8 +14,10 @@ headerr('Item list', "asset.itemList");
         //Fetch row.
         $item = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT asset_borrowed.id, asset_borrowed.itemId, asset_borrowed.userId, asset_user.name FROM asset_borrowed LEFT JOIN asset_user ON asset_borrowed.userId = asset_user.id WHERE `dateBack` IS NULL";
+    $sql = "SELECT asset_borrowed.id, asset_borrowed.itemId, asset_borrowed.userId, asset_user.name FROM asset_borrowed LEFT JOIN asset_user ON asset_borrowed.userId = asset_user.id WHERE `dateBack` IS NULL AND asset_borrowed.siteId = :siteId";
         $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         //Execute.
         $stmt->execute();

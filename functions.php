@@ -17,6 +17,7 @@
     // Header
     function headerr($title, $permissionName)
     {
+        $_SESSION["siteId"] = 1;
         // chose name. 1 = custom, 2 = domain
         $namechoice = 2;
         $namearr["1"] = "Template";
@@ -26,7 +27,7 @@
 
         $pdo = pdo_connect_mysql();
 
-        $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) ORDER BY permission.placement";
+        $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND siteId = :siteId ORDER BY permission.placement";
         $stmt = $pdo->prepare($sql);
 
         $date = date("Y-m-d H:i:s");
@@ -41,6 +42,7 @@
         }
         $stmt->bindValue(':userId', $userId);
         $stmt->bindValue(':date', $date);
+        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         //Execute.
         $stmt->execute();

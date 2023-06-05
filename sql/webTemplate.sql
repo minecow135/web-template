@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 31, 2023 at 03:15 PM
+-- Generation Time: Jun 05, 2023 at 08:12 AM
 -- Server version: 8.0.33-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -20,6 +20,95 @@ SET time_zone = "+00:00";
 --
 -- Database: `webTemplate`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_borrowed`
+--
+
+CREATE TABLE `asset_borrowed` (
+  `id` int NOT NULL,
+  `itemId` int NOT NULL,
+  `userId` int NOT NULL,
+  `borrowedBy` int NOT NULL,
+  `dateStart` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateEnd` datetime NOT NULL,
+  `dateBack` datetime DEFAULT NULL,
+  `siteId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `asset_borrowed`
+--
+
+INSERT INTO `asset_borrowed` (`id`, `itemId`, `userId`, `borrowedBy`, `dateStart`, `dateEnd`, `dateBack`, `siteId`) VALUES
+(1, 1, 1, 1, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
+(2, 1, 1, 1, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
+(3, 1, 1, 1, '2023-06-01 14:20:17', '2023-07-01 02:20:17', '2023-06-01 15:14:50', 1),
+(4, 1, 4, 1, '2023-06-01 14:48:36', '2023-07-01 02:48:36', '2023-06-01 15:14:50', 1),
+(5, 1, 5, 1, '2023-06-01 14:53:00', '2023-07-01 02:53:00', '2023-06-01 15:14:50', 1),
+(6, 1, 1, 1, '2023-06-01 15:05:59', '2023-07-01 03:05:59', '2023-06-02 07:58:51', 1),
+(7, 1, 1, 1, '2023-06-02 07:58:55', '2023-07-02 07:58:55', '2023-06-02 08:14:15', 1),
+(8, 1, 1, 1, '2023-06-02 08:30:44', '2023-07-02 08:30:44', '2023-06-02 11:18:48', 1),
+(9, 2, 1, 1, '2023-06-02 11:08:41', '2023-07-02 11:08:41', '2023-06-02 11:20:18', 1),
+(10, 3, 12, 1, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
+(11, 3, 12, 1, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
+(12, 1, 13, 1, '2023-06-02 11:20:31', '2023-07-02 11:20:31', '2023-06-02 12:16:42', 1),
+(13, 1, 1, 1, '2023-06-02 12:21:54', '2023-07-02 12:21:54', '2023-06-05 08:04:47', 1),
+(14, 2, 1, 1, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_items`
+--
+
+CREATE TABLE `asset_items` (
+  `id` int NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `category` varchar(20) NOT NULL,
+  `code` varchar(30) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `siteId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `asset_items`
+--
+
+INSERT INTO `asset_items` (`id`, `name`, `category`, `code`, `date`, `siteId`) VALUES
+(1, 'usb-c til usb-a', 'Adaptere', '001', '2023-06-01 12:15:34', 1),
+(2, 'usb-c til usb-a', 'Adaptere', '002', '2023-06-01 12:15:34', 1),
+(3, 'usb-c til usb-a', 'Adaptere', '003', '2023-06-01 12:15:34', 1),
+(4, 'usb-c til usb-a', 'Adaptere', '004', '2023-06-01 12:15:34', 1),
+(5, 'usb-c til usb-a', 'Adaptere', '005', '2023-06-01 12:15:34', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_user`
+--
+
+CREATE TABLE `asset_user` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `internalId` int DEFAULT NULL,
+  `siteId` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `asset_user`
+--
+
+INSERT INTO `asset_user` (`id`, `name`, `mail`, `internalId`, `siteId`) VALUES
+(1, 'awd', '', 1, 1),
+(4, 'iosedu', '', NULL, 1),
+(5, 'rpgjdg', '', NULL, 1),
+(11, 'aaaaaaaaaaaaaa', NULL, NULL, 1),
+(12, 'awdawd', NULL, NULL, 1),
+(13, 'lkfdgsrekplåodgftrkolpgtdrffkgtrdse', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -52,7 +141,9 @@ INSERT INTO `permission` (`id`, `permissionName`, `permissionCategory`, `page`, 
 (8, 'userAdm.delete', 'login.adm', 'adm/users/delete', 'adm', 130, NULL),
 (9, 'registerCodes', 'login.adm', 'adm/registerCodes/list', 'adm', 150, NULL),
 (10, 'registerCodes.all', 'login.adm', NULL, NULL, NULL, 'see codes by all users'),
-(11, 'register.code', 'login', NULL, NULL, NULL, NULL);
+(11, 'register.code', 'login', NULL, NULL, NULL, NULL),
+(12, 'Asset', 'asset', 'asset/itemList', NULL, NULL, NULL),
+(13, 'asset.itemList', 'asset', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -96,7 +187,18 @@ INSERT INTO `registerCodes` (`id`, `code`, `createdBy`, `TotalUses`, `disabled`,
 (19, '6476ee4e8c06c', 1, 1, 0, '2023-05-31 08:50:50', '2023-05-31 09:05:50'),
 (20, '647702883b17c', 1, 1, 0, '2023-05-31 10:17:10', '2023-05-31 10:32:10'),
 (21, 'adw', 1, 0, 0, '2023-05-31 12:46:19', '2023-05-31 13:45:47'),
-(22, '6477320ad5daf', 1, 1, 0, '2023-05-31 13:39:51', '2023-05-31 13:54:51');
+(22, '6477320ad5daf', 1, 1, 0, '2023-05-31 13:39:51', '2023-05-31 13:54:51'),
+(23, '647847a1e6398', 4, 0, 0, '2023-06-01 09:23:59', '2023-06-01 09:38:59'),
+(24, '6478511830a6d', 1, 1, 0, '2023-06-01 10:01:30', '2023-06-01 10:16:30'),
+(25, '6478551ed86ba', 1, 1, 0, '2023-06-01 10:21:48', '2023-06-01 10:36:48'),
+(26, '64785530e0239', 1, 1, 0, '2023-06-01 10:21:48', '2023-06-01 10:36:48'),
+(27, '6478555da59de', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(28, '6478556659e12', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(29, '6478556d2ee4d', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(30, '6478556f85aba', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(31, '647855a1101be', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(32, '64785b29d30ca', 1, 0, 0, '2023-06-01 10:47:35', '2023-06-01 11:02:35'),
+(33, '64785ec321155', 1, 0, 0, '2023-06-01 11:02:53', '2023-06-01 11:17:53');
 
 -- --------------------------------------------------------
 
@@ -166,7 +268,13 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (3, 1, 1, 3, 1, '2023-05-19 22:34:23', NULL),
 (4, 1, 1, 9, 1, '2023-05-19 22:34:23', NULL),
 (6, 1, 1, 10, 0, '2023-05-20 18:30:21', NULL),
-(7, 0, 1, 11, 0, '2023-05-31 15:07:46', NULL);
+(7, 0, 1, 11, 0, '2023-05-31 15:07:46', NULL),
+(8, 4, 1, 3, 1, '2023-06-01 09:21:44', NULL),
+(9, 4, 1, 9, 1, '2023-06-01 09:21:44', NULL),
+(10, 5, 1, 3, 1, '2023-06-01 11:06:51', NULL),
+(11, 5, 1, 9, 1, '2023-06-01 11:06:51', NULL),
+(12, 1, 1, 12, 1, '2023-06-01 12:09:43', NULL),
+(13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -196,6 +304,28 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `date_time`, `enbled
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `asset_borrowed`
+--
+ALTER TABLE `asset_borrowed`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `assetItem` (`itemId`),
+  ADD KEY `assetUser` (`userId`),
+  ADD KEY `borrowedBy` (`borrowedBy`);
+
+--
+-- Indexes for table `asset_items`
+--
+ALTER TABLE `asset_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `asset_user`
+--
+ALTER TABLE `asset_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `assetInternalUser` (`internalId`);
 
 --
 -- Indexes for table `permission`
@@ -244,16 +374,34 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `asset_borrowed`
+--
+ALTER TABLE `asset_borrowed`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `asset_items`
+--
+ALTER TABLE `asset_items`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `asset_user`
+--
+ALTER TABLE `asset_user`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `registerCodes`
 --
 ALTER TABLE `registerCodes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `registerCodesUsed`
@@ -271,7 +419,7 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -282,6 +430,20 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `asset_borrowed`
+--
+ALTER TABLE `asset_borrowed`
+  ADD CONSTRAINT `assetItem` FOREIGN KEY (`itemId`) REFERENCES `asset_items` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `assetUser` FOREIGN KEY (`userId`) REFERENCES `asset_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `borrowedBy` FOREIGN KEY (`borrowedBy`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `asset_user`
+--
+ALTER TABLE `asset_user`
+  ADD CONSTRAINT `assetInternalUser` FOREIGN KEY (`internalId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `registerCodes`

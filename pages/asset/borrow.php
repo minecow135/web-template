@@ -9,10 +9,11 @@ headerr('Borrow', "asset.itemList");
     $dateMonth = date("Y-m-d h:i:s", $d);
     
     if (isset($_POST["out"])) {
-        $sql = "SELECT id FROM asset_items WHERE code = :code";
+        $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId";
             $stmt = $pdo->prepare($sql);
 
             $stmt->bindValue(':code', $_POST["code"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
             $stmt->execute();
@@ -20,10 +21,11 @@ headerr('Borrow', "asset.itemList");
             //Fetch row.
             $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT count(id) AS num FROM asset_user WHERE name = :name";
+        $sql = "SELECT count(id) AS num FROM asset_user WHERE name = :name AND siteId = :siteId";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':name', $_POST["name"]);
+        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         //Execute.
         $stmt->execute();
@@ -32,33 +34,35 @@ headerr('Borrow', "asset.itemList");
         $userNum = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($userNum["num"] < 1) {
-            $stmt = $pdo->prepare("INSERT INTO asset_user (name)
-            VALUES (:name)");
+            $stmt = $pdo->prepare("INSERT INTO asset_user (name, siteId)
+            VALUES (:name, :siteId)");
             
             $stmt->bindParam(':name', $_POST["name"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
             
             $stmt->execute();
         }
 
-        $sql = "SELECT id FROM asset_user WHERE name = :name";
+        $sql = "SELECT id FROM asset_user WHERE name = :name AND siteId = :siteId";
             $stmt = $pdo->prepare($sql);
 
             $stmt->bindValue(':name', $_POST["name"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
             $stmt->execute();
             
             //Fetch row.
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $stmt = $pdo->prepare("INSERT INTO asset_borrowed (itemId, userId, borrowedBy, dateStart, dateEnd)
-        VALUES (:itemId, :userId, :borrowedBy, :dateStart, :dateEnd)");
+        $stmt = $pdo->prepare("INSERT INTO asset_borrowed (itemId, userId, borrowedBy, dateStart, dateEnd, siteId)
+        VALUES (:itemId, :userId, :borrowedBy, :dateStart, :dateEnd, :siteId)");
         
         $stmt->bindParam(':itemId', $item["id"]);
         $stmt->bindParam(':userId', $user["id"]);
         $stmt->bindParam(':borrowedBy', $_SESSION["id"]);
         $stmt->bindParam(':dateStart', $_POST["start"]);
         $stmt->bindParam(':dateEnd', $_POST["end"]);
+        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         if($stmt->execute()){
             echo '<script>alert("New borrow registered.")</script>';
@@ -66,10 +70,11 @@ headerr('Borrow', "asset.itemList");
     }
 
     if (isset($_POST["in"])) {
-        $sql = "SELECT id FROM asset_items WHERE code = :code";
+        $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId";
             $stmt = $pdo->prepare($sql);
 
             $stmt->bindValue(':code', $_POST["code"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
             $stmt->execute();
@@ -77,10 +82,11 @@ headerr('Borrow', "asset.itemList");
             //Fetch row.
             $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt = $pdo->prepare("UPDATE `asset_borrowed` SET `dateBack` = :dateBack WHERE `itemId` = :itemId AND `dateBack` IS NULL; ");
+        $stmt = $pdo->prepare("UPDATE `asset_borrowed` SET `dateBack` = :dateBack WHERE `itemId` = :itemId AND `dateBack` IS NULL AND siteId = :siteId");
         
         $stmt->bindParam(':itemId', $item["id"]);
         $stmt->bindParam(':dateBack', $_POST["dateBack"]);
+        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         if($stmt->execute()){
             echo '<script>alert("New borrow registered.")</script>';
