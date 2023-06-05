@@ -24,6 +24,20 @@ headerr('Item list', "asset.itemList");
 
         //Fetch row.
         $borrow = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        if (isset($_GET["delete"])) {
+            $stmt = $pdo->prepare("DELETE FROM asset_items WHERE id = :id AND siteId = :siteId"); // AND siteId = :siteId
+        
+                $stmt->bindParam(':id', $_GET["delete"]);
+                $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+
+                if($stmt->execute()){
+                    echo '<script>alert("Item deleted.")</script>';
+                }
+            header("location: index.php?page=asset/itemList");
+            exit;
+        }
 ?>
 
 <div class="content-wrapper-center">
@@ -36,6 +50,7 @@ headerr('Item list', "asset.itemList");
                 <td>Name</td>
                 <td>Code</td>
                 <td>Borrowed by</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +67,7 @@ headerr('Item list', "asset.itemList");
                         <td><?= $i["name"] ?></td>
                         <td><?= $i["code"] ?></td>
                         <td><?= $borrow[$found_key]["name"] ?></td>
+                        <td><a href="index.php?page=asset/itemList&delete=<?= $i["id"] ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                     </tr>
             <?php
                 }
