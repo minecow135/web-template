@@ -27,7 +27,7 @@ headerr('Item list', "asset.itemList");
 
 
         if (isset($_GET["delete"])) {
-            $stmt = $pdo->prepare("DELETE FROM asset_items WHERE id = :id AND siteId = :siteId"); // AND siteId = :siteId
+            $stmt = $pdo->prepare("DELETE FROM asset_items WHERE id = :id AND siteId = :siteId");
         
                 $stmt->bindParam(':id', $_GET["delete"]);
                 $stmt->bindValue(':siteId', $_SESSION["siteId"]);
@@ -42,6 +42,11 @@ headerr('Item list', "asset.itemList");
 
 <div class="content-wrapper-center">
     <h1 class="head">Item list</h1>
+    <div>
+        <a href="index.php?page=asset/borrow"><h3>Register borrow</h3></a>
+        <a href="index.php?page=asset/import"><h3>Add items</h3>
+        </a>
+    </div>
     <table>
         <thead>
             <tr>
