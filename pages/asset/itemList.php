@@ -42,8 +42,16 @@ headerr('Item list', "asset.itemList");
 <div class="content-wrapper-center">
     <h1 class="head">Item list</h1>
     <div>
-        <a href="index.php?page=asset/borrow"><h3>Register borrow</h3></a>
-        <a href="index.php?page=asset/import"><h3>Add items</h3>
+        <?php
+            $permissionName = "asset.borrow";
+            if (true === ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName')))) || $permissionName == "default") {
+                echo '<a href="index.php?page=asset/borrow"><h3>Register borrow</h3></a>';
+            }
+            $permissionName = "asset.create";
+            if (true === ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName')))) || $permissionName == "default") {
+                echo '<a href="index.php?page=asset/import"><h3>Add items</h3>';
+            }
+        ?>
         </a>
     </div>
     <table>

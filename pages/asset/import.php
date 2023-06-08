@@ -1,5 +1,5 @@
 <?php
-headerr('Import', "default");
+headerr('Import', "asset.create");
 ?>
 
 <?php

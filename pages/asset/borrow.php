@@ -1,5 +1,5 @@
 <?php
-headerr('Borrow', "asset.itemList");
+headerr('Borrow', "asset.borrow");
 ?>
 
 <?php
