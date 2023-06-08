@@ -3,7 +3,7 @@ headerr('Item list', "asset.itemList");
 ?>
 
 <?php
-    $sql = "SELECT id, name, category, code FROM asset_items WHERE siteId = :siteId";
+    $sql = "SELECT id, name, category, code FROM asset_items WHERE siteId = :siteId AND removed = 0";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':siteId', $_SESSION["siteId"]);
@@ -26,7 +26,7 @@ headerr('Item list', "asset.itemList");
         $borrow = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (isset($_GET["delete"])) {
-            $stmt = $pdo->prepare("DELETE FROM asset_items WHERE id = :id AND siteId = :siteId");
+            $stmt = $pdo->prepare("UPDATE asset_items SET removed = 1 WHERE id = :id AND siteId = :siteId");
         
                 $stmt->bindParam(':id', $_GET["delete"]);
                 $stmt->bindValue(':siteId', $_SESSION["siteId"]);
