@@ -14,7 +14,7 @@ headerr('Item list', "asset.itemList");
         //Fetch row.
         $item = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT asset_borrowed.id, asset_borrowed.itemId, asset_borrowed.userId, asset_user.name FROM asset_borrowed LEFT JOIN asset_user ON asset_borrowed.userId = asset_user.id WHERE `dateBack` IS NULL AND asset_borrowed.siteId = :siteId";
+    $sql = "SELECT asset_borrowed.id, asset_borrowed.itemId, asset_borrowed.userId, asset_user.name, asset_user.mail, asset_borrowed.dateEnd FROM asset_borrowed LEFT JOIN asset_user ON asset_borrowed.userId = asset_user.id WHERE `dateBack` IS NULL AND asset_borrowed.siteId = :siteId";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':siteId', $_SESSION["siteId"]);
@@ -24,7 +24,6 @@ headerr('Item list', "asset.itemList");
 
         //Fetch row.
         $borrow = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
         if (isset($_GET["delete"])) {
             $stmt = $pdo->prepare("DELETE FROM asset_items WHERE id = :id AND siteId = :siteId");
@@ -55,6 +54,7 @@ headerr('Item list', "asset.itemList");
                 <td>Name</td>
                 <td>Code</td>
                 <td>Borrowed by</td>
+                <td>date end</td>
                 <td></td>
             </tr>
         </thead>
@@ -71,7 +71,8 @@ headerr('Item list', "asset.itemList");
                         <td><?= $i["category"] ?></td>
                         <td><?= $i["name"] ?></td>
                         <td><?= $i["code"] ?></td>
-                        <td><?= $borrow[$found_key]["name"] ?></td>
+                        <td><?= $borrow[$found_key]["mail"] ?></td>
+                        <td><?= $borrow[$found_key]["dateEnd"] ?></td>
                         <td><a href="index.php?page=asset/itemList&delete=<?= $i["id"] ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                     </tr>
             <?php

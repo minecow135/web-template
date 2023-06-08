@@ -21,10 +21,10 @@ headerr('Borrow', "asset.itemList");
             //Fetch row.
             $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT count(id) AS num FROM asset_user WHERE name = :name AND siteId = :siteId";
+        $sql = "SELECT count(id) AS num FROM asset_user WHERE mail = :mail AND siteId = :siteId";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':name', $_POST["name"]);
+        $stmt->bindValue(':mail', $_POST["email"]);
         $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
         //Execute.
@@ -34,19 +34,19 @@ headerr('Borrow', "asset.itemList");
         $userNum = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if ($userNum["num"] < 1) {
-            $stmt = $pdo->prepare("INSERT INTO asset_user (name, siteId)
-            VALUES (:name, :siteId)");
+            $stmt = $pdo->prepare("INSERT INTO asset_user (mail, siteId)
+            VALUES (:mail, :siteId)");
             
-            $stmt->bindParam(':name', $_POST["name"]);
+            $stmt->bindParam(':mail', $_POST["email"]);
             $stmt->bindValue(':siteId', $_SESSION["siteId"]);
             
             $stmt->execute();
         }
 
-        $sql = "SELECT id FROM asset_user WHERE name = :name AND siteId = :siteId";
+        $sql = "SELECT id FROM asset_user WHERE mail = :mail AND siteId = :siteId";
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindValue(':name', $_POST["name"]);
+            $stmt->bindValue(':mail', $_POST["email"]);
             $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
@@ -106,8 +106,8 @@ headerr('Borrow', "asset.itemList");
                 <td><input type="text" id="code" name="code" placeholder="Code"></td>
             </tr>
             <tr>
-                <td><label for="name">User</label></td>
-                <td><input type="text" id="name" name="name" placeholder="Name"></td>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" placeholder="Email"></td>
             </tr>
             <tr>
                 <td><label for="name">Start</label></td>
