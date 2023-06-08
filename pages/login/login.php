@@ -6,11 +6,6 @@ if (isset($_SESSION['loggedin'])) {
 }
 
 headerr('sign in', "login");
-
-$test = ["a", "e", 9, 2];
-if (in_array(1, $test)) {
-    echo "a";
-}
 ?>
 
 <?php
@@ -54,6 +49,36 @@ if(isset($_POST['submit'])){
             $_SESSION['loggedin'] = true;
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
+
+            if ($_POST["remember"]) {
+                
+                $selector = bin2hex(random_bytes(16));
+                $validator = bin2hex(random_bytes(32));
+                
+                $token = $selector . ':' . $validator;
+                
+                // set expiration date
+                $day = 30;
+                $expired_seconds = time() + 60 * 60 * 24 * $day;
+
+                // insert a token to the database
+                $hashed_validator = password_hash($validator, PASSWORD_DEFAULT);
+                $expiry = date('Y-m-d H:i:s', $expired_seconds);
+
+                $sql = 'INSERT INTO user_tokens(user_id, selector, hashed_validator, expiry)
+                    VALUES(:user_id, :selector, :hashed_validator, :expiry)';
+
+                    $statement = $pdo->prepare($sql);
+                    $statement->bindValue(':user_id', $id);
+                    $statement->bindValue(':selector', $selector);
+                    $statement->bindValue(':hashed_validator', $hashed_validator);
+                    $statement->bindValue(':expiry', $expiry);
+
+                    if ($statement->execute()) {
+                        setcookie('remember_me', $token, $expired_seconds);
+                    }
+            }
+            
             header('Location: index.php');
             exit;
 
@@ -71,6 +96,11 @@ if(isset($_POST['submit'])){
         <form action="" method="post">                          
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
+            <label class="switch">
+                <input type="checkbox" name="remember">
+                <span class="slider round"></span>
+            </label>
+            <label for="remember">Remember me</label>
             <button name="submit" type="submit">sign in</button>
         </form>
     </div>

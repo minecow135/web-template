@@ -27,11 +27,43 @@
 
         $pdo = pdo_connect_mysql();
 
+        $token = filter_input(INPUT_COOKIE, 'remember_me', FILTER_SANITIZE_STRING);
+        if ($token) {
+
+            $parts = explode(':', $token);
+
+            $selector = $parts[0];
+            $validator = $parts[1];
+            
+            $sql = 'SELECT user_tokens.id, user_tokens.selector, user_tokens.hashed_validator, user_tokens.user_id, user_tokens.expiry, users.username
+                FROM user_tokens LEFT JOIN users ON user_tokens.user_id = users.id
+                WHERE user_tokens.selector = :selector AND
+                    user_tokens.expiry >= now()
+                LIMIT 1';
+
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(':selector', $selector);
+
+            $statement->execute();
+
+            $tokens = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if (password_verify($validator, $tokens['hashed_validator'])) {
+                if ($token) {
+                    if (session_regenerate_id()) {
+                        // set username & id in the session
+                        $_SESSION['username'] = $tokens['username'];
+                        $_SESSION['id'] = $tokens['user_id'];
+                        $_SESSION['loggedin'] = true;
+                    }
+                }
+            }
+        }
+
         $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND siteId = :siteId ORDER BY permission.placement";
         $stmt = $pdo->prepare($sql);
 
         $date = date("Y-m-d H:i:s");
-        //echo $date;
 
         //Bind value.
         if ($_SESSION["id"]) {
