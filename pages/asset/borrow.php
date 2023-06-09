@@ -87,7 +87,7 @@ headerr('Borrow', "asset.borrow");
     }
 
     if (isset($_POST["in"])) {
-        $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId";
+        $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId AND removed = 0";
             $stmt = $pdo->prepare($sql);
 
             $stmt->bindValue(':code', $_POST["code"]);
@@ -99,14 +99,31 @@ headerr('Borrow', "asset.borrow");
             //Fetch row.
             $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt = $pdo->prepare("UPDATE `asset_borrowed` SET `dateBack` = :dateBack WHERE `itemId` = :itemId AND `dateBack` IS NULL AND siteId = :siteId");
-        
-        $stmt->bindParam(':itemId', $item["id"]);
-        $stmt->bindParam(':dateBack', $_POST["dateBack"]);
-        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+        $sql = "SELECT count(id) AS num FROM asset_borrowed WHERE `itemId` = :itemId AND `dateBack` IS NULL AND siteId = :siteId";
+            $stmt = $pdo->prepare($sql);
 
-        if($stmt->execute()){
-            echo '<script>alert("New borrow registered.")</script>';
+            $stmt->bindValue(':itemId', $item["id"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+
+            //Execute.
+            $stmt->execute();
+
+            //Fetch row.
+            $borrowCount = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($borrowCount["num"] > 0) {        
+            $stmt = $pdo->prepare("UPDATE `asset_borrowed` SET `dateBack` = :dateBack WHERE `itemId` = :itemId AND `dateBack` IS NULL AND siteId = :siteId");
+            
+            $stmt->bindParam(':itemId', $item["id"]);
+            $stmt->bindParam(':dateBack', $_POST["dateBack"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+
+            if($stmt->execute()){
+                echo '<script>alert("Item submitted.")</script>';
+            }
+        }
+        else {
+            echo '<script>alert("Borrow not registerd.")</script>';
         }
     }
 ?>
