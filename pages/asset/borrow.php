@@ -136,10 +136,6 @@ headerr('Borrow', "asset.borrow");
         <h2>Out</h2>
         <table>
             <tr>
-                <td><label for="code">Item code</label></td>
-                <td><input type="text" id="code" name="code" placeholder="Code"></td>
-            </tr>
-            <tr>
                 <td><label for="email">Email</label></td>
                 <td><input type="email" id="email" name="email" placeholder="Email"></td>
             </tr>
@@ -150,6 +146,10 @@ headerr('Borrow', "asset.borrow");
             <tr>
                 <td><label for="name">End</label></td>
                 <td><input type="datetime-local" id="end" name="end" placeholder="End" value="<?= $dateMonth ?>"></td>
+            </tr>
+            <tr>
+                <td><label for="code">Item code</label></td>
+                <td><input type="text" id="code" name="code" placeholder="Code"></td>
             </tr>
             <tr>
                 <td></td>
