@@ -9,7 +9,7 @@ headerr('Borrow', "asset.borrow");
     $dateMonth = date("Y-m-d h:i:s", $d);
     
     if (isset($_POST["out"])) {
-        $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId";
+        $sql = "SELECT count(id) AS num FROM asset_items WHERE code = :code AND siteId = :siteId AND removed = 0";
             $stmt = $pdo->prepare($sql);
 
             $stmt->bindValue(':code', $_POST["code"]);
@@ -19,31 +19,22 @@ headerr('Borrow', "asset.borrow");
             $stmt->execute();
 
             //Fetch row.
-            $item = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $sql = "SELECT count(id) AS num FROM asset_user WHERE mail = :mail AND siteId = :siteId";
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindValue(':mail', $_POST["email"]);
-        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
-
-        //Execute.
-        $stmt->execute();
+            $itemNum = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        //Fetch row.
-        $userNum = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($userNum["num"] < 1) {
-            $stmt = $pdo->prepare("INSERT INTO asset_user (mail, siteId)
-            VALUES (:mail, :siteId)");
-            
-            $stmt->bindParam(':mail', $_POST["email"]);
-            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
-            
-            $stmt->execute();
-        }
+        if ($itemNum["num"] > 0) {
+            $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId AND removed = 0";
+                $stmt = $pdo->prepare($sql);
 
-        $sql = "SELECT id FROM asset_user WHERE mail = :mail AND siteId = :siteId";
+                $stmt->bindValue(':code', $_POST["code"]);
+                $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+
+                //Execute.
+                $stmt->execute();
+
+                //Fetch row.
+                $item = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $sql = "SELECT count(id) AS num FROM asset_user WHERE mail = :mail AND siteId = :siteId";
             $stmt = $pdo->prepare($sql);
 
             $stmt->bindValue(':mail', $_POST["email"]);
@@ -53,19 +44,45 @@ headerr('Borrow', "asset.borrow");
             $stmt->execute();
             
             //Fetch row.
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        $stmt = $pdo->prepare("INSERT INTO asset_borrowed (itemId, userId, borrowedBy, dateStart, dateEnd, siteId)
-        VALUES (:itemId, :userId, :borrowedBy, :dateStart, :dateEnd, :siteId)");
-        
-        $stmt->bindParam(':itemId', $item["id"]);
-        $stmt->bindParam(':userId', $user["id"]);
-        $stmt->bindParam(':borrowedBy', $_SESSION["id"]);
-        $stmt->bindParam(':dateStart', $_POST["start"]);
-        $stmt->bindParam(':dateEnd', $_POST["end"]);
-        $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+            $userNum = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($userNum["num"] < 1) {
+                $stmt = $pdo->prepare("INSERT INTO asset_user (mail, siteId)
+                VALUES (:mail, :siteId)");
+                
+                $stmt->bindParam(':mail', $_POST["email"]);
+                $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+                
+                $stmt->execute();
+            }
 
-        if($stmt->execute()){
-            echo '<script>alert("New borrow registered.")</script>';
+            $sql = "SELECT id FROM asset_user WHERE mail = :mail AND siteId = :siteId";
+                $stmt = $pdo->prepare($sql);
+
+                $stmt->bindValue(':mail', $_POST["email"]);
+                $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+
+                //Execute.
+                $stmt->execute();
+                
+                //Fetch row.
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt = $pdo->prepare("INSERT INTO asset_borrowed (itemId, userId, borrowedBy, dateStart, dateEnd, siteId)
+            VALUES (:itemId, :userId, :borrowedBy, :dateStart, :dateEnd, :siteId)");
+            
+            $stmt->bindParam(':itemId', $item["id"]);
+            $stmt->bindParam(':userId', $user["id"]);
+            $stmt->bindParam(':borrowedBy', $_SESSION["id"]);
+            $stmt->bindParam(':dateStart', $_POST["start"]);
+            $stmt->bindParam(':dateEnd', $_POST["end"]);
+            $stmt->bindValue(':siteId', $_SESSION["siteId"]);
+
+            if($stmt->execute()){
+                echo '<script>alert("New borrow registered.")</script>';
+            }
+        }
+        else {
+            echo '<script>alert("Item not found")</script>';
         }
     }
 
