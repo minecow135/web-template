@@ -12,14 +12,14 @@ headerr('sign in', "login");
 
 if(isset($_POST['submit'])){  
     //ensure fields are not empty
-    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
+    $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
     $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
     
-    $sql = "SELECT * FROM users WHERE username = :username";
+    $sql = "SELECT * FROM users WHERE email = :email";
     $stmt = $pdo->prepare($sql);
 
     //Bind value.
-    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':email', $email);
 
     //Execute.
     $stmt->execute();
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $id = $user["id"];
-    $username = $user["username"];
+    $email = $user["email"];
     $enabled = $user["enabled"];
 
     //If $row is FALSE.
@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
             //Provide the user with a login session.
             $_SESSION['loggedin'] = true;
             $_SESSION["id"] = $id;
-            $_SESSION["username"] = $username;
+            $_SESSION["email"] = $email;
 
             if ($_POST["remember"]) {
                 
@@ -94,7 +94,7 @@ if(isset($_POST['submit'])){
     <div class="box">
         <h1>Log in</h1>
         <form action="" method="post">                          
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
             <label class="switch">
                 <input type="checkbox" name="remember">
