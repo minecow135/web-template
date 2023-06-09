@@ -26,8 +26,8 @@ headerr('Import', "asset.create");
         $value = $_POST["code"];
 
         for ($i=0; $i < $_POST["count"]; $i++) { 
-            $data[$i]["category"] = $_POST["category"];
             $data[$i]["name"] = $_POST["name"];
+            $data[$i]["category"] = $_POST["category"];
             $data[$i]["code"] = $value;
             $data[$i]["siteId"] = $_SESSION["siteId"];
             $value = incrementAlphanumeric($value);
