@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2023 at 08:12 AM
+-- Generation Time: Jun 12, 2023 at 02:00 PM
 -- Server version: 8.0.33-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -56,7 +56,16 @@ INSERT INTO `asset_borrowed` (`id`, `itemId`, `userId`, `borrowedBy`, `dateStart
 (11, 3, 12, 1, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
 (12, 1, 13, 1, '2023-06-02 11:20:31', '2023-07-02 11:20:31', '2023-06-02 12:16:42', 1),
 (13, 1, 1, 1, '2023-06-02 12:21:54', '2023-07-02 12:21:54', '2023-06-05 08:04:47', 1),
-(14, 2, 1, 1, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1);
+(14, 2, 1, 1, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1),
+(15, 1, 1, 1, '2023-06-08 08:35:24', '2023-07-08 08:35:24', '2023-06-08 10:06:49', 1),
+(16, 3, 1, 1, '2023-06-08 09:59:03', '2023-07-08 09:59:03', '2023-06-08 10:06:58', 1),
+(17, 1, 1, 1, '2023-06-09 09:55:33', '2023-07-09 09:55:33', '2023-06-09 10:13:50', 1),
+(18, 1, 1, 1, '2023-06-09 11:01:02', '2023-07-09 11:01:02', '2023-06-09 11:01:27', 1),
+(19, 1, 1, 1, '2023-06-09 11:04:19', '2023-07-09 11:04:19', '2023-06-09 11:04:29', 1),
+(20, 1, 1, 1, '2023-06-09 12:07:03', '2023-07-09 12:07:03', NULL, 1),
+(21, 1, 1, 1, '2023-06-12 08:03:58', '2023-07-12 08:03:58', NULL, 1),
+(22, 3, 5, 1, '2023-06-12 08:04:10', '2023-07-12 08:04:10', NULL, 1),
+(23, 3, 14, 1, '2023-06-12 08:38:37', '2023-07-12 08:38:37', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -70,19 +79,34 @@ CREATE TABLE `asset_items` (
   `category` varchar(20) NOT NULL,
   `code` varchar(30) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `siteId` int NOT NULL
+  `siteId` int NOT NULL,
+  `removed` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `asset_items`
 --
 
-INSERT INTO `asset_items` (`id`, `name`, `category`, `code`, `date`, `siteId`) VALUES
-(1, 'usb-c til usb-a', 'Adaptere', '001', '2023-06-01 12:15:34', 1),
-(2, 'usb-c til usb-a', 'Adaptere', '002', '2023-06-01 12:15:34', 1),
-(3, 'usb-c til usb-a', 'Adaptere', '003', '2023-06-01 12:15:34', 1),
-(4, 'usb-c til usb-a', 'Adaptere', '004', '2023-06-01 12:15:34', 1),
-(5, 'usb-c til usb-a', 'Adaptere', '005', '2023-06-01 12:15:34', 1);
+INSERT INTO `asset_items` (`id`, `name`, `category`, `code`, `date`, `siteId`, `removed`) VALUES
+(1, 'usb-c til usb-a', 'Adaptere', '001', '2023-06-01 12:15:34', 1, 0),
+(2, 'usb-c til usb-a', 'Adaptere', '002', '2023-06-01 12:15:34', 1, 0),
+(3, 'usb-c til usb-a', 'Adaptere', '003', '2023-06-01 12:15:34', 1, 0),
+(4, 'usb-c til usb-a', 'Adaptere', '004', '2023-06-01 12:15:34', 1, 0),
+(5, 'usb-c til usb-a', 'Adaptere', '005', '2023-06-01 12:15:34', 1, 0),
+(10, 'awd', 'awd', '9', '2023-06-05 10:56:14', 1, 0),
+(11, 'awd', 'awd', '10', '2023-06-05 11:01:31', 1, 0),
+(12, 'awd', 'awd', '11', '2023-06-05 11:01:31', 1, 0),
+(13, 'awd', 'awd', '12', '2023-06-05 11:01:31', 1, 0),
+(14, 'awd', 'awd', '13', '2023-06-05 11:01:31', 1, 0),
+(15, 'awd', 'awd', '14', '2023-06-05 11:01:31', 1, 0),
+(16, 'awd', 'awd', '10', '2023-06-05 11:03:28', 1, 0),
+(17, 'awd', 'awd', '11', '2023-06-05 11:03:28', 1, 0),
+(18, 'awd', 'awd', '12', '2023-06-05 11:03:28', 1, 0),
+(19, 'awd', 'awd', '13', '2023-06-05 11:03:28', 1, 0),
+(20, 'awd', 'awd', '14', '2023-06-05 11:03:28', 1, 0),
+(21, 'awd', 'awd', '10', '2023-06-05 11:06:25', 1, 0),
+(22, 'awd', 'awd', '11', '2023-06-05 11:06:25', 1, 1),
+(23, 'awd', 'awd', '12', '2023-06-05 11:06:25', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -92,8 +116,8 @@ INSERT INTO `asset_items` (`id`, `name`, `category`, `code`, `date`, `siteId`) V
 
 CREATE TABLE `asset_user` (
   `id` int NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `internalId` int DEFAULT NULL,
   `siteId` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -103,12 +127,13 @@ CREATE TABLE `asset_user` (
 --
 
 INSERT INTO `asset_user` (`id`, `name`, `mail`, `internalId`, `siteId`) VALUES
-(1, 'awd', '', 1, 1),
-(4, 'iosedu', '', NULL, 1),
-(5, 'rpgjdg', '', NULL, 1),
-(11, 'aaaaaaaaaaaaaa', NULL, NULL, 1),
-(12, 'awdawd', NULL, NULL, 1),
-(13, 'lkfdgsrekplåodgftrkolpgtdrffkgtrdse', NULL, NULL, 1);
+(1, 'awd', 'awd@awd.awd', 1, 1),
+(4, 'iosedu', 'awd1@awd.awd', NULL, 1),
+(5, 'rpgjdg', 'awd2@awd.awd', NULL, 1),
+(11, 'aaaaaaaaaaaaaa', 'awd3@awd.awd', NULL, 1),
+(12, 'awdawd', 'awd5@awd.awd', NULL, 1),
+(13, 'lkfdgsrekplåodgftrkolpgtdrffkgtrdse', 'awd6@awd.awd', NULL, 1),
+(14, NULL, '', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +168,9 @@ INSERT INTO `permission` (`id`, `permissionName`, `permissionCategory`, `page`, 
 (10, 'registerCodes.all', 'login.adm', NULL, NULL, NULL, 'see codes by all users'),
 (11, 'register.code', 'login', NULL, NULL, NULL, NULL),
 (12, 'Asset', 'asset', 'asset/itemList', NULL, NULL, NULL),
-(13, 'asset.itemList', 'asset', NULL, NULL, NULL, NULL);
+(13, 'asset.itemList', 'asset', NULL, NULL, NULL, NULL),
+(14, 'asset.borrow', 'asset', NULL, NULL, NULL, NULL),
+(15, 'asset.create', 'asset', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,7 +225,8 @@ INSERT INTO `registerCodes` (`id`, `code`, `createdBy`, `TotalUses`, `disabled`,
 (30, '6478556f85aba', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
 (31, '647855a1101be', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
 (32, '64785b29d30ca', 1, 0, 0, '2023-06-01 10:47:35', '2023-06-01 11:02:35'),
-(33, '64785ec321155', 1, 0, 0, '2023-06-01 11:02:53', '2023-06-01 11:17:53');
+(33, '64785ec321155', 1, 0, 0, '2023-06-01 11:02:53', '2023-06-01 11:17:53'),
+(34, '647d7d08bbeaa', 1, 1, 0, '2023-06-05 08:13:27', '2023-06-05 08:28:27');
 
 -- --------------------------------------------------------
 
@@ -232,15 +260,17 @@ INSERT INTO `registerCodesUsed` (`id`, `codeId`, `userId`, `time`) VALUES
 CREATE TABLE `sites` (
   `id` int NOT NULL,
   `siteName` varchar(20) NOT NULL,
-  `siteDescription` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `siteDescription` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `link` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `sites`
 --
 
-INSERT INTO `sites` (`id`, `siteName`, `siteDescription`) VALUES
-(1, 'default', NULL);
+INSERT INTO `sites` (`id`, `siteName`, `siteDescription`, `link`) VALUES
+(1, 'default', NULL, ''),
+(2, 'test', NULL, 'test');
 
 -- --------------------------------------------------------
 
@@ -274,7 +304,9 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (10, 5, 1, 3, 1, '2023-06-01 11:06:51', NULL),
 (11, 5, 1, 9, 1, '2023-06-01 11:06:51', NULL),
 (12, 1, 1, 12, 1, '2023-06-01 12:09:43', NULL),
-(13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL);
+(13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL),
+(14, 1, 1, 14, 0, '2023-06-08 11:39:29', NULL),
+(15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -300,6 +332,28 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `date_time`, `enbled
 (1, 'awd', 'awd@awd.awd', '$2y$12$bwop6jybCK8FD0iv1VTEMe/g0rIanb7mfrZaBjbTbBR5XBJQr4rCa', '2023-05-10 08:55:42', 1),
 (4, 'awdawdawd', 'awd@awd.awd', '$2y$12$r5PyvHux1X0K6nFJvm7U9ucUU/pOX9joPmd5hJiIFVWNFnlnaqDxK', '2023-05-31 10:19:50', 1),
 (5, 'awfegaegfswaef', 'awd@awd.awd', '$2y$12$02OxGptN5/k50wP2JuS/2.v91/I1jSG0g6VjRuQ04uXTVBXeHllqG', '2023-05-31 12:46:44', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_tokens`
+--
+
+CREATE TABLE `user_tokens` (
+  `id` int NOT NULL,
+  `selector` varchar(255) NOT NULL,
+  `hashed_validator` varchar(255) NOT NULL,
+  `user_id` int NOT NULL,
+  `expiry` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `user_tokens`
+--
+
+INSERT INTO `user_tokens` (`id`, `selector`, `hashed_validator`, `user_id`, `expiry`) VALUES
+(7, '62a2a0dac5fe36163ec911e312148d0b', '$2y$10$a5rrY9/3n1REA4bbWL33EeP0qgXugK/rf.lT.k8/WrI5iegt5LHJe', 1, '2023-07-08 12:52:03'),
+(9, 'f003273c30622e18b2315d5ec1e3e6c8', '$2y$10$EH/ysc1E5O89Xqwuk9UKVexpolEfUR1w78ZZ4XfRv6HghCgwSi6Me', 1, '2023-07-09 09:55:16');
 
 --
 -- Indexes for dumped tables
@@ -370,6 +424,13 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -377,31 +438,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `asset_borrowed`
 --
 ALTER TABLE `asset_borrowed`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `asset_items`
 --
 ALTER TABLE `asset_items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `asset_user`
 --
 ALTER TABLE `asset_user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `registerCodes`
 --
 ALTER TABLE `registerCodes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `registerCodesUsed`
@@ -413,19 +474,25 @@ ALTER TABLE `registerCodesUsed`
 -- AUTO_INCREMENT for table `sites`
 --
 ALTER TABLE `sites`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -465,6 +532,12 @@ ALTER TABLE `userPermission`
   ADD CONSTRAINT `permissionId` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `siteId` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -17,7 +17,6 @@
     // Header
     function headerr($title, $permissionName)
     {
-        $_SESSION["siteId"] = 1;
         // chose name. 1 = custom, 2 = domain
         $namechoice = 2;
         $namearr["1"] = "Template";
@@ -26,6 +25,26 @@
         $name = $namearr["$namechoice"];
 
         $pdo = pdo_connect_mysql();
+
+        $root = $_SERVER['WEB_ROOT'] = str_replace("index.php",'',$_SERVER['SCRIPT_NAME']);
+
+        $siteLink = str_replace("/index.php","",str_replace($root,'',$_SERVER['REDIRECT_URL']));
+
+        if (isset($siteLink) && $siteLink != "") {
+            $sql = 'SELECT id, siteName, link FROM sites WHERE link = :link';
+
+                $statement = $pdo->prepare($sql);
+                $statement->bindValue(':link', $siteLink);
+
+                $statement->execute();
+
+                $siteArr = $statement->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION["siteId"] = $siteArr["id"];
+        }
+        else {
+            $_SESSION["siteId"] = 1;
+        }
 
         $token = filter_input(INPUT_COOKIE, 'remember_me', FILTER_SANITIZE_STRING);
         if ($token) {
@@ -41,12 +60,12 @@
                     user_tokens.expiry >= now()
                 LIMIT 1';
 
-            $statement = $pdo->prepare($sql);
-            $statement->bindValue(':selector', $selector);
+                $statement = $pdo->prepare($sql);
+                $statement->bindValue(':selector', $selector);
 
-            $statement->execute();
+                $statement->execute();
 
-            $tokens = $statement->fetch(PDO::FETCH_ASSOC);
+                $tokens = $statement->fetch(PDO::FETCH_ASSOC);
 
             if (password_verify($validator, $tokens['hashed_validator'])) {
                 if ($token) {
@@ -96,7 +115,7 @@
             <head>
                 <meta charset="utf-8">
                 <title>' . $title . '</title>
-                <link href="css/import.css" rel="stylesheet" type="text/css">
+                <link href="' . $root . 'css/import.css" rel="stylesheet" type="text/css">
                 <link rel="shortcut icon" href="img/logo.png" />
             </head>
             <body>
