@@ -2,10 +2,7 @@
 
     // connect to database PDO
     function pdo_connect_mysql() {
-        $DATABASE_HOST = "localhost";
-        $DATABASE_USER = "webTest";
-        $DATABASE_PASS = "awdfthdwa";
-        $DATABASE_NAME = "webTemplate";
+        require "db.php";
         try {
         	return new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASS);
         } catch (PDOException $exception) {
