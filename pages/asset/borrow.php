@@ -8,7 +8,7 @@ headerr('Borrow', "asset.borrow");
     $d=strtotime("next month");
     $dateMonth = date("Y-m-d h:i:s", $d);
     
-    if (isset($_POST["out"])) {
+    if (isset($_POST["out"]) && $_POST["email"] != "" && $_POST["code"] != "") {
         $sql = "SELECT count(id) AS num FROM asset_items WHERE code = :code AND siteId = :siteId AND removed = 0";
             $stmt = $pdo->prepare($sql);
 
@@ -86,7 +86,7 @@ headerr('Borrow', "asset.borrow");
         }
     }
 
-    if (isset($_POST["in"])) {
+    if (isset($_POST["in"]) && $_POST["code"] != "") {
         $sql = "SELECT id FROM asset_items WHERE code = :code AND siteId = :siteId AND removed = 0";
             $stmt = $pdo->prepare($sql);
 
