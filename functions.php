@@ -27,7 +27,10 @@
         $root = $_SERVER['WEB_ROOT'] = str_replace("index.php",'',$_SERVER['SCRIPT_NAME']);
 
         if ($root == "/") {
-            $root = "";
+            $root2 = "";
+        }
+        else {
+            $root2 = $root;
         }
 
         $siteLink = str_replace($root,"",str_replace("/index.php",'',$_SERVER['REDIRECT_URL']));
