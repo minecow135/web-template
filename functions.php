@@ -26,7 +26,11 @@
 
         $root = $_SERVER['WEB_ROOT'] = str_replace("index.php",'',$_SERVER['SCRIPT_NAME']);
 
-        $siteLink = str_replace("/index.php","",str_replace($root,'',$_SERVER['REDIRECT_URL']));
+        if ($root == "/") {
+            $root = "";
+        }
+
+        $siteLink = str_replace($root,"",str_replace("/index.php",'',$_SERVER['REDIRECT_URL']));
 
         if (isset($siteLink) && $siteLink != "") {
             $sql = 'SELECT id, siteName, link FROM sites WHERE link = :link';
