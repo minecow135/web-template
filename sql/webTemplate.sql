@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2023 at 02:00 PM
+-- Generation Time: Jun 13, 2023 at 08:56 AM
 -- Server version: 8.0.33-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -269,7 +269,8 @@ CREATE TABLE `sites` (
 --
 
 INSERT INTO `sites` (`id`, `siteName`, `siteDescription`, `link`) VALUES
-(1, 'default', NULL, ''),
+(0, 'global', NULL, NULL),
+(1, 'default', NULL, NULL),
 (2, 'test', NULL, 'test');
 
 -- --------------------------------------------------------
@@ -474,7 +475,7 @@ ALTER TABLE `registerCodesUsed`
 -- AUTO_INCREMENT for table `sites`
 --
 ALTER TABLE `sites`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `userPermission`

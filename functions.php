@@ -7,7 +7,8 @@
         	return new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASS);
         } catch (PDOException $exception) {
         	// If there is an error with the connection, stop the script and display the error.
-        	exit("Failed to connect to database!");
+        	echo "Failed to connect to database!";
+            exit("Failed to connect to database!");
         }
     }
 
@@ -36,8 +37,12 @@
                 $statement->execute();
 
                 $siteArr = $statement->fetch(PDO::FETCH_ASSOC);
-
-            $_SESSION["siteId"] = $siteArr["id"];
+            if ($siteArr) {
+                $_SESSION["siteId"] = $siteArr["id"];
+            }
+            else {
+                $_SESSION["siteId"] = 1;
+            }
         }
         else {
             $_SESSION["siteId"] = 1;
@@ -76,7 +81,7 @@
             }
         }
 
-        $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND siteId = :siteId ORDER BY permission.placement";
+        $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND (siteId = :siteId OR siteId = 0) ORDER BY permission.placement";
         $stmt = $pdo->prepare($sql);
 
         $date = date("Y-m-d H:i:s");
