@@ -353,3 +353,4 @@ MigrationBackup/
 markdown-cheat-sheet.md
 package-lock.json
 db.php
+discordconfig.php

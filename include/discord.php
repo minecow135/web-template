@@ -98,10 +98,10 @@ function get_user($email = null)
 # Note : The bot has to be a member of the server with MANAGE_ROLES permission.
 #        The bot DOES NOT have to be online, just has to be a bot application and has to be a member of the server.
 #        This is the basic function which requires few parameters. [ 1: Guild ID,  2: Role ID ]
-function give_role($guildid, $roleid)
+function give_role($guildid, $roleid, $userid)
 {
     $data = json_encode(array("roles" => array("$roleid")));
-    $url = $GLOBALS['base_url'] . "/api/guilds/$guildid/members/" . $_SESSION['discord_user_id'] . "/roles/$roleid";
+    $url = $GLOBALS['base_url'] . "/api/guilds/$guildid/members/" . $userid . "/roles/$roleid";
     $headers = array('Content-Type: application/json', 'Authorization: Bot ' . $GLOBALS['bot_token']);
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
