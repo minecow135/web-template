@@ -172,6 +172,11 @@ if(isset($_POST['submit'])) {
             <?php
                 }
             ?>
+            <?php if ($useCode) { ?>
+                <a href=""><button name="submit">Continue with Discord</button></a>
+            <?php
+                }
+            ?>
             <button name="submit" type="submit">register</button>
         </form>
       </div>
