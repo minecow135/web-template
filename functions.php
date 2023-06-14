@@ -2,7 +2,7 @@
 
     // connect to database PDO
     function pdo_connect_mysql() {
-        require "db.php";
+        require "include/db.php";
         try {
         	return new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASS);
         } catch (PDOException $exception) {
@@ -15,6 +15,8 @@
     // Header
     function headerr($title, $permissionName)
     {
+        require "include/discord.php";
+        require "include/discordconfig.php";
         // chose name. 1 = custom, 2 = domain
         $namechoice = 2;
         $namearr["1"] = "Template";
