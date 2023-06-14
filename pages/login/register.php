@@ -18,10 +18,11 @@ if(isset($_POST['submit'])) {
         $pass = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 12));
 
         //Check if username exists
-        $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username";
+        $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username OR email = :email";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':username', $user);
+        $stmt->bindValue(':email', $email);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -56,7 +57,7 @@ if(isset($_POST['submit'])) {
         $codeUses = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($row['num'] > 0) {
-            echo '<script>alert("Username already exists")</script>';
+            echo '<script>alert("Username or email already exists")</script>';
         }
         else if ($useCode && $codeUses["num"] >= $code["totalUses"]) {
             echo '<script>alert("Wrong code")</script>';
@@ -85,6 +86,64 @@ if(isset($_POST['submit'])) {
                     $stmt->bindParam(':userId', $userId["id"]);
         
                     $stmt->execute();
+                }
+
+                $sql = "SELECT * FROM users WHERE username = :username";
+                    $stmt = $pdo->prepare($sql);
+
+                    //Bind value.
+                    $stmt->bindValue(':discordId', $_SESSION["discord_user_id"]);
+
+                    //Execute.
+                    $stmt->execute();
+                    
+                    //Fetch row.
+                    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $id = $user["id"];
+                $email = $user["email"];
+                $enabled = $user["enabled"];
+
+                //If $row is FALSE.
+                if($user === false){
+                    echo '<script>alert("Invalid username or password")</script>';
+                }
+                elseif ($enabled === false) {
+                    echo '<script>alert("Invalid username or password")</script>';
+                }
+                else {
+                    //Provide the user with a login session.
+                    $_SESSION['loggedin'] = true;
+                    $_SESSION["id"] = $id;
+                    $_SESSION["email"] = $email;
+
+                    if ($_POST["remember"]) {
+                        $selector = bin2hex(random_bytes(16));
+                        $validator = bin2hex(random_bytes(32));
+                    
+                        $token = $selector . ':' . $validator;
+                            
+                        // set expiration date
+                        $day = 30;
+                        $expired_seconds = time() + 60 * 60 * 24 * $day;
+
+                        // insert a token to the database
+                        $hashed_validator = password_hash($validator, PASSWORD_DEFAULT);
+                        $expiry = date('Y-m-d H:i:s', $expired_seconds);
+
+                        $sql = 'INSERT INTO user_tokens(user_id, selector, hashed_validator, expiry)
+                            VALUES(:user_id, :selector, :hashed_validator, :expiry)';
+
+                            $statement = $pdo->prepare($sql);
+                            $statement->bindValue(':user_id', $id);
+                            $statement->bindValue(':selector', $selector);
+                            $statement->bindValue(':hashed_validator', $hashed_validator);
+                            $statement->bindValue(':expiry', $expiry);
+
+                        if ($statement->execute()) {
+                            setcookie('remember_me', $token, $expired_seconds);
+                        }
+                    }
                 }
 
                 //redirect to another page
