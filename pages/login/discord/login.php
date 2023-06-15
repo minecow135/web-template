@@ -25,14 +25,31 @@ $sql = "SELECT count(id) AS num FROM users WHERE discordId = :discordId";
     //Fetch row.
     $discordNum = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($discordNum["num"] < 1) {    
-    $stmt = $pdo->prepare("INSERT INTO `users`(`username`, `email`, `discordId`) VALUES (:username, :email, :discordId)");
+if ($discordNum["num"] < 1) {
+    //Check if username exists
+    $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username OR email = :email";
+        $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':username', $_SESSION["discord_username"]);
         $stmt->bindValue(':email', $_SESSION["discord_email"]);
-        $stmt->bindValue(':discordId', $_SESSION["discord_user_id"]);
-
         $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($row['num'] > 0) {
+        echo '<script>alert("Username or email already exists")</script>';
+        header('Location: index.php?page=login/login');
+        exit;
+    }
+    else {
+        $stmt = $pdo->prepare("INSERT INTO `users`(`username`, `email`, `discordId`) VALUES (:username, :email, :discordId)");
+
+            $stmt->bindValue(':username', $_SESSION["discord_username"]);
+            $stmt->bindValue(':email', $_SESSION["discord_email"]);
+            $stmt->bindValue(':discordId', $_SESSION["discord_user_id"]);
+
+            $stmt->execute();
+    }
 }
 
 $sql = "SELECT * FROM users WHERE discordId = :discordId";
@@ -53,7 +70,7 @@ $enabled = $user["enabled"];
 
 //If $row is FALSE.
 if($user === false){
-    echo '<script>alert("error")</script>';
+    echo '<script>alert("Invalid user")</script>';
 }
 elseif ($enabled === false) {
     echo '<script>alert("User is disabled")</script>';
