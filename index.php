@@ -4,6 +4,9 @@ session_start();
 // Include functions
 include 'functions.php';
 
+require "include/discord.php";
+require "include/discordconfig.php";
+
 $pdo = pdo_connect_mysql();
 
 // connect to the database using PDO MySQL

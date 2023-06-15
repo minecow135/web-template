@@ -4,8 +4,10 @@ headerr('Register', "register");
 
 <?php
 $permissionName = "register.code";
-
 $useCode = in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'));
+
+$permissionName = "login.discord";
+$discord = in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'));
 
 if(isset($_POST['submit'])) {
     try {
@@ -159,6 +161,8 @@ if(isset($_POST['submit'])) {
     }
 }
 
+$auth_url = url($client_id, $redirect_url, $scopes);
+
 ?>
 <div class="content-wrapper-center">
     <div class="box">
@@ -172,13 +176,14 @@ if(isset($_POST['submit'])) {
             <?php
                 }
             ?>
-            <?php if ($useCode) { ?>
-                <a href=""><button name="submit">Continue with Discord</button></a>
-            <?php
-                }
-            ?>
+            
             <button name="submit" type="submit">register</button>
         </form>
+        <?php
+            if ($discord) {
+                echo "<a href='$auth_url'><button name='submit'>Continue with Discord</button></a>";
+                }
+            ?>
       </div>
 </div>
 

@@ -1,14 +1,9 @@
-<a href="http://localhost/web-template/index.php?page=login/discord/index">index</a>
 <?php
 /* Discord Oauth v.4.1
  * Demo Login Script
  * @author : MarkisDev
  * @copyright : https://markis.dev
  */
-
-# Including all the required scripts
-require "discord.php";
-require "config.php";
 
 # Initializing all the required values for the script to work
 init($redirect_url, $client_id, $secret_id, $bot_token);
@@ -58,10 +53,10 @@ $enabled = $user["enabled"];
 
 //If $row is FALSE.
 if($user === false){
-    echo '<script>alert("Invalid username or password")</script>';
+    echo '<script>alert("error")</script>';
 }
 elseif ($enabled === false) {
-    echo '<script>alert("Invalid username or password")</script>';
+    echo '<script>alert("User is disabled")</script>';
 }
 else {
     //Provide the user with a login session.
@@ -99,7 +94,7 @@ else {
 }
 
 # Redirecting to home page once all data has been fetched
-// header('Location: index.php?page=login/discord/index');
-// exit;
+header('Location: index.php');
+exit;
 
 ?>

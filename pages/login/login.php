@@ -10,6 +10,9 @@ headerr('sign in', "login");
 
 <?php
 
+$permissionName = "login.discord";
+$discord = in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'));
+
 if(isset($_POST['submit'])){  
     //ensure fields are not empty
     $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
@@ -89,6 +92,8 @@ if(isset($_POST['submit'])){
     }
 }
 
+$auth_url = url($client_id, $redirect_url, $scopes);
+
 ?>
 <div class="content-wrapper-center">
     <div class="box">
@@ -103,6 +108,11 @@ if(isset($_POST['submit'])){
             <label for="remember">Remember me</label>
             <button name="submit" type="submit">sign in</button>
         </form>
+        <?php
+            if ($discord) {
+                echo "<a href='$auth_url'><button name='submit'>Continue with Discord</button></a>";
+            }
+        ?>
     </div>
 </div>
 

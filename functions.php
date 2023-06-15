@@ -15,8 +15,6 @@
     // Header
     function headerr($title, $permissionName)
     {
-        require "include/discord.php";
-        require "include/discordconfig.php";
         // chose name. 1 = custom, 2 = domain
         $namechoice = 2;
         $namearr["1"] = "Template";

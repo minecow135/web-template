@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2023 at 08:56 AM
+-- Generation Time: Jun 15, 2023 at 09:42 AM
 -- Server version: 8.0.33-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -32,6 +32,7 @@ CREATE TABLE `asset_borrowed` (
   `itemId` int NOT NULL,
   `userId` int NOT NULL,
   `borrowedBy` int NOT NULL,
+  `comment` varchar(100) DEFAULT NULL,
   `dateStart` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateEnd` datetime NOT NULL,
   `dateBack` datetime DEFAULT NULL,
@@ -42,30 +43,30 @@ CREATE TABLE `asset_borrowed` (
 -- Dumping data for table `asset_borrowed`
 --
 
-INSERT INTO `asset_borrowed` (`id`, `itemId`, `userId`, `borrowedBy`, `dateStart`, `dateEnd`, `dateBack`, `siteId`) VALUES
-(1, 1, 1, 1, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
-(2, 1, 1, 1, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
-(3, 1, 1, 1, '2023-06-01 14:20:17', '2023-07-01 02:20:17', '2023-06-01 15:14:50', 1),
-(4, 1, 4, 1, '2023-06-01 14:48:36', '2023-07-01 02:48:36', '2023-06-01 15:14:50', 1),
-(5, 1, 5, 1, '2023-06-01 14:53:00', '2023-07-01 02:53:00', '2023-06-01 15:14:50', 1),
-(6, 1, 1, 1, '2023-06-01 15:05:59', '2023-07-01 03:05:59', '2023-06-02 07:58:51', 1),
-(7, 1, 1, 1, '2023-06-02 07:58:55', '2023-07-02 07:58:55', '2023-06-02 08:14:15', 1),
-(8, 1, 1, 1, '2023-06-02 08:30:44', '2023-07-02 08:30:44', '2023-06-02 11:18:48', 1),
-(9, 2, 1, 1, '2023-06-02 11:08:41', '2023-07-02 11:08:41', '2023-06-02 11:20:18', 1),
-(10, 3, 12, 1, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
-(11, 3, 12, 1, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
-(12, 1, 13, 1, '2023-06-02 11:20:31', '2023-07-02 11:20:31', '2023-06-02 12:16:42', 1),
-(13, 1, 1, 1, '2023-06-02 12:21:54', '2023-07-02 12:21:54', '2023-06-05 08:04:47', 1),
-(14, 2, 1, 1, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1),
-(15, 1, 1, 1, '2023-06-08 08:35:24', '2023-07-08 08:35:24', '2023-06-08 10:06:49', 1),
-(16, 3, 1, 1, '2023-06-08 09:59:03', '2023-07-08 09:59:03', '2023-06-08 10:06:58', 1),
-(17, 1, 1, 1, '2023-06-09 09:55:33', '2023-07-09 09:55:33', '2023-06-09 10:13:50', 1),
-(18, 1, 1, 1, '2023-06-09 11:01:02', '2023-07-09 11:01:02', '2023-06-09 11:01:27', 1),
-(19, 1, 1, 1, '2023-06-09 11:04:19', '2023-07-09 11:04:19', '2023-06-09 11:04:29', 1),
-(20, 1, 1, 1, '2023-06-09 12:07:03', '2023-07-09 12:07:03', NULL, 1),
-(21, 1, 1, 1, '2023-06-12 08:03:58', '2023-07-12 08:03:58', NULL, 1),
-(22, 3, 5, 1, '2023-06-12 08:04:10', '2023-07-12 08:04:10', NULL, 1),
-(23, 3, 14, 1, '2023-06-12 08:38:37', '2023-07-12 08:38:37', NULL, 1);
+INSERT INTO `asset_borrowed` (`id`, `itemId`, `userId`, `borrowedBy`, `comment`, `dateStart`, `dateEnd`, `dateBack`, `siteId`) VALUES
+(1, 1, 1, 1, NULL, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
+(2, 1, 1, 1, NULL, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
+(3, 1, 1, 1, NULL, '2023-06-01 14:20:17', '2023-07-01 02:20:17', '2023-06-01 15:14:50', 1),
+(4, 1, 4, 1, NULL, '2023-06-01 14:48:36', '2023-07-01 02:48:36', '2023-06-01 15:14:50', 1),
+(5, 1, 5, 1, NULL, '2023-06-01 14:53:00', '2023-07-01 02:53:00', '2023-06-01 15:14:50', 1),
+(6, 1, 1, 1, NULL, '2023-06-01 15:05:59', '2023-07-01 03:05:59', '2023-06-02 07:58:51', 1),
+(7, 1, 1, 1, NULL, '2023-06-02 07:58:55', '2023-07-02 07:58:55', '2023-06-02 08:14:15', 1),
+(8, 1, 1, 1, NULL, '2023-06-02 08:30:44', '2023-07-02 08:30:44', '2023-06-02 11:18:48', 1),
+(9, 2, 1, 1, NULL, '2023-06-02 11:08:41', '2023-07-02 11:08:41', '2023-06-02 11:20:18', 1),
+(10, 3, 12, 1, NULL, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
+(11, 3, 12, 1, NULL, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
+(12, 1, 13, 1, NULL, '2023-06-02 11:20:31', '2023-07-02 11:20:31', '2023-06-02 12:16:42', 1),
+(13, 1, 1, 1, NULL, '2023-06-02 12:21:54', '2023-07-02 12:21:54', '2023-06-05 08:04:47', 1),
+(14, 2, 1, 1, NULL, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1),
+(15, 1, 1, 1, NULL, '2023-06-08 08:35:24', '2023-07-08 08:35:24', '2023-06-08 10:06:49', 1),
+(16, 3, 1, 1, NULL, '2023-06-08 09:59:03', '2023-07-08 09:59:03', '2023-06-08 10:06:58', 1),
+(17, 1, 1, 1, NULL, '2023-06-09 09:55:33', '2023-07-09 09:55:33', '2023-06-09 10:13:50', 1),
+(18, 1, 1, 1, NULL, '2023-06-09 11:01:02', '2023-07-09 11:01:02', '2023-06-09 11:01:27', 1),
+(19, 1, 1, 1, NULL, '2023-06-09 11:04:19', '2023-07-09 11:04:19', '2023-06-09 11:04:29', 1),
+(20, 1, 1, 1, NULL, '2023-06-09 12:07:03', '2023-07-09 12:07:03', NULL, 1),
+(21, 1, 1, 1, NULL, '2023-06-12 08:03:58', '2023-07-12 08:03:58', NULL, 1),
+(22, 3, 5, 1, NULL, '2023-06-12 08:04:10', '2023-07-12 08:04:10', NULL, 1),
+(23, 3, 14, 1, NULL, '2023-06-12 08:38:37', '2023-07-12 08:38:37', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -294,12 +295,12 @@ CREATE TABLE `userPermission` (
 --
 
 INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`, `dateStart`, `dateEnd`) VALUES
-(1, 0, 1, 1, 1, '2023-05-19 22:31:00', NULL),
-(2, 0, 1, 2, 1, '2023-05-19 22:31:00', NULL),
-(3, 1, 1, 3, 1, '2023-05-19 22:34:23', NULL),
-(4, 1, 1, 9, 1, '2023-05-19 22:34:23', NULL),
-(6, 1, 1, 10, 0, '2023-05-20 18:30:21', NULL),
-(7, 0, 1, 11, 0, '2023-05-31 15:07:46', NULL),
+(1, 0, 0, 1, 1, '2023-05-19 22:31:00', NULL),
+(2, 0, 0, 2, 1, '2023-05-19 22:31:00', NULL),
+(3, 1, 0, 3, 1, '2023-05-19 22:34:23', NULL),
+(4, 1, 0, 9, 1, '2023-05-19 22:34:23', NULL),
+(6, 1, 0, 10, 0, '2023-05-20 18:30:21', NULL),
+(7, 0, 0, 11, 0, '2023-05-31 15:07:46', NULL),
 (8, 4, 1, 3, 1, '2023-06-01 09:21:44', NULL),
 (9, 4, 1, 9, 1, '2023-06-01 09:21:44', NULL),
 (10, 5, 1, 3, 1, '2023-06-01 11:06:51', NULL),
@@ -307,7 +308,8 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (12, 1, 1, 12, 1, '2023-06-01 12:09:43', NULL),
 (13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL),
 (14, 1, 1, 14, 0, '2023-06-08 11:39:29', NULL),
-(15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL);
+(15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL),
+(16, 7, 0, 3, 1, '2023-06-15 09:05:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -319,7 +321,8 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` text NOT NULL,
+  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `discordId` varchar(50) DEFAULT NULL,
   `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `enbled` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -328,11 +331,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `date_time`, `enbled`) VALUES
-(0, 'default', '', '', '2023-05-11 06:43:20', 0),
-(1, 'awd', 'awd@awd.awd', '$2y$12$bwop6jybCK8FD0iv1VTEMe/g0rIanb7mfrZaBjbTbBR5XBJQr4rCa', '2023-05-10 08:55:42', 1),
-(4, 'awdawdawd', 'awd@awd.awd', '$2y$12$r5PyvHux1X0K6nFJvm7U9ucUU/pOX9joPmd5hJiIFVWNFnlnaqDxK', '2023-05-31 10:19:50', 1),
-(5, 'awfegaegfswaef', 'awd@awd.awd', '$2y$12$02OxGptN5/k50wP2JuS/2.v91/I1jSG0g6VjRuQ04uXTVBXeHllqG', '2023-05-31 12:46:44', 1);
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `discordId`, `date_time`, `enbled`) VALUES
+(0, 'default', '', '', '0', '2023-05-11 06:43:20', 0),
+(1, 'awd', 'awd@awd.awd', '$2y$12$bwop6jybCK8FD0iv1VTEMe/g0rIanb7mfrZaBjbTbBR5XBJQr4rCa', '0', '2023-05-10 08:55:42', 1),
+(4, 'awdawdawd', 'awd@awd.awd', '$2y$12$r5PyvHux1X0K6nFJvm7U9ucUU/pOX9joPmd5hJiIFVWNFnlnaqDxK', '0', '2023-05-31 10:19:50', 1),
+(5, 'awfegaegfswaef', 'awd@awd.awd', '$2y$12$02OxGptN5/k50wP2JuS/2.v91/I1jSG0g6VjRuQ04uXTVBXeHllqG', '0', '2023-05-31 12:46:44', 1),
+(7, 'mine_cow135', 'krivig123@gmail.com', NULL, '170813552586653696', '2023-06-14 11:58:35', 1);
 
 -- --------------------------------------------------------
 
@@ -353,8 +357,7 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`id`, `selector`, `hashed_validator`, `user_id`, `expiry`) VALUES
-(7, '62a2a0dac5fe36163ec911e312148d0b', '$2y$10$a5rrY9/3n1REA4bbWL33EeP0qgXugK/rf.lT.k8/WrI5iegt5LHJe', 1, '2023-07-08 12:52:03'),
-(9, 'f003273c30622e18b2315d5ec1e3e6c8', '$2y$10$EH/ysc1E5O89Xqwuk9UKVexpolEfUR1w78ZZ4XfRv6HghCgwSi6Me', 1, '2023-07-09 09:55:16');
+(10, 'ac3c7947391f07eb64d96f385cc8af81', '$2y$10$oirX8SFuRq7puxQiCVnPkeVbbw0l7Sdi5O/m8xH/0daPx415a9Su.', 1, '2023-07-13 09:08:37');
 
 --
 -- Indexes for dumped tables
@@ -481,19 +484,19 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
