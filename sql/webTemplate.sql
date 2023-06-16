@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2023 at 09:42 AM
+-- Generation Time: Jun 16, 2023 at 01:17 PM
 -- Server version: 8.0.33-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.11
 
@@ -139,6 +139,82 @@ INSERT INTO `asset_user` (`id`, `name`, `mail`, `internalId`, `siteId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `group_groups`
+--
+
+CREATE TABLE `group_groups` (
+  `id` int NOT NULL,
+  `groupName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `group_groups`
+--
+
+INSERT INTO `group_groups` (`id`, `groupName`, `description`) VALUES
+(1, 'global.default', NULL),
+(2, 'global.loggedin', NULL),
+(3, 'global.all', NULL),
+(4, 'global.admin', NULL),
+(5, 'site.default', NULL),
+(6, 'site.loggedin', NULL),
+(7, 'site.all', NULL),
+(8, 'site.admin', NULL),
+(9, 'site.assetAdm', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_permissions`
+--
+
+CREATE TABLE `group_permissions` (
+  `id` int NOT NULL,
+  `groupId` int NOT NULL,
+  `permissionId` int NOT NULL,
+  `header` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `group_permissions`
+--
+
+INSERT INTO `group_permissions` (`id`, `groupId`, `permissionId`, `header`) VALUES
+(7, 9, 12, 1),
+(8, 9, 14, 0),
+(9, 9, 15, 0),
+(10, 9, 13, 0),
+(11, 1, 1, 1),
+(12, 1, 2, 0),
+(13, 2, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_userGroup`
+--
+
+CREATE TABLE `group_userGroup` (
+  `id` int NOT NULL,
+  `userId` int NOT NULL,
+  `groupId` int NOT NULL,
+  `siteId` int NOT NULL,
+  `dateStart` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateEnd` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `group_userGroup`
+--
+
+INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `siteId`, `dateStart`, `dateEnd`) VALUES
+(1, 7, 2, 0, '2023-06-15 12:26:06', NULL),
+(2, 7, 9, 1, '2023-06-16 08:08:20', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permission`
 --
 
@@ -171,7 +247,8 @@ INSERT INTO `permission` (`id`, `permissionName`, `permissionCategory`, `page`, 
 (12, 'Asset', 'asset', 'asset/itemList', NULL, NULL, NULL),
 (13, 'asset.itemList', 'asset', NULL, NULL, NULL, NULL),
 (14, 'asset.borrow', 'asset', NULL, NULL, NULL, NULL),
-(15, 'asset.create', 'asset', NULL, NULL, NULL, NULL);
+(15, 'asset.create', 'asset', NULL, NULL, NULL, NULL),
+(16, 'login.discord', 'login', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -309,7 +386,8 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL),
 (14, 1, 1, 14, 0, '2023-06-08 11:39:29', NULL),
 (15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL),
-(16, 7, 0, 3, 1, '2023-06-15 09:05:05', NULL);
+(16, 7, 0, 3, 1, '2023-06-15 09:05:05', NULL),
+(17, 0, 0, 16, 0, '2023-06-16 09:35:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -386,6 +464,29 @@ ALTER TABLE `asset_user`
   ADD KEY `assetInternalUser` (`internalId`);
 
 --
+-- Indexes for table `group_groups`
+--
+ALTER TABLE `group_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `group_permissions`
+--
+ALTER TABLE `group_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group` (`groupId`),
+  ADD KEY `groupPermission` (`permissionId`);
+
+--
+-- Indexes for table `group_userGroup`
+--
+ALTER TABLE `group_userGroup`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userGroup_group` (`groupId`),
+  ADD KEY `userGroup_site` (`siteId`),
+  ADD KEY `userGroup_user` (`userId`);
+
+--
 -- Indexes for table `permission`
 --
 ALTER TABLE `permission`
@@ -457,10 +558,28 @@ ALTER TABLE `asset_user`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `group_groups`
+--
+ALTER TABLE `group_groups`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `group_permissions`
+--
+ALTER TABLE `group_permissions`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `group_userGroup`
+--
+ALTER TABLE `group_userGroup`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `registerCodes`
@@ -484,7 +603,7 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -515,6 +634,21 @@ ALTER TABLE `asset_borrowed`
 --
 ALTER TABLE `asset_user`
   ADD CONSTRAINT `assetInternalUser` FOREIGN KEY (`internalId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `group_permissions`
+--
+ALTER TABLE `group_permissions`
+  ADD CONSTRAINT `group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `groupPermission` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `group_userGroup`
+--
+ALTER TABLE `group_userGroup`
+  ADD CONSTRAINT `userGroup_group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `userGroup_site` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `userGroup_user` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `registerCodes`
