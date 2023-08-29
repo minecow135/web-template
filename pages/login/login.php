@@ -101,11 +101,13 @@ $auth_url = url($client_id, $redirect_url, $scopes);
         <form action="" method="post">                          
             <input type="text" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
-            <label class="switch">
-                <input type="checkbox" name="remember">
-                <span class="slider round"></span>
-            </label>
-            <label for="remember">Remember me</label>
+            <div>
+                <label class="switch">
+                    <input type="checkbox" name="remember">
+                    <span class="slider round"></span>
+                </label>
+                <label for="remember">Remember me</label>
+            </div>
             <button name="submit" type="submit">sign in</button>
         </form>
         <?php
