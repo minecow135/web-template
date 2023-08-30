@@ -1,5 +1,5 @@
 <?php
-headerr('Permissions', "permissions");
+headerr('Permissions', "permissions.list");
 ?>
 
 <?php
@@ -64,7 +64,7 @@ headerr('Permissions', "permissions");
                             echo "<td>Yes</td>";
                         }
                         else {
-                            echo "<td>No</td>";
+                            echo "<td></td>";
 
                         }
                         // echo "<td>". $a['header'] . "</td>";
@@ -117,7 +117,7 @@ headerr('Permissions', "permissions");
                             echo "<td>Yes</td>";
                         }
                         else {
-                            echo "<td>No</td>";
+                            echo "<td></td>";
 
                         }
                     echo "</tr>";
