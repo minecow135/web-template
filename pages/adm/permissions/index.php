@@ -1,5 +1,5 @@
 <?php
-headerr('Permissions', "default");
+headerr('Permissions', "permissions");
 ?>
 
 <?php
