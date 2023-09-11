@@ -62,7 +62,7 @@ headerr('Item list', "asset.itemList");
                 <td>Name</td>
                 <td>Code</td>
                 <td>Borrowed by</td>
-                <td>date end</td>
+                <td>Date end</td>
                 <td></td>
             </tr>
         </thead>
