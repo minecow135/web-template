@@ -1,11 +1,11 @@
--- phpMyAdmin SQL Dump
+2-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2023 at 01:17 PM
--- Server version: 8.0.33-0ubuntu0.22.04.2
--- PHP Version: 8.1.2-1ubuntu2.11
+-- Generation Time: Sep 13, 2023 at 01:34 PM
+-- Server version: 8.0.34-0ubuntu0.22.04.1
+-- PHP Version: 8.1.2-1ubuntu2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -145,6 +145,7 @@ INSERT INTO `asset_user` (`id`, `name`, `mail`, `internalId`, `siteId`) VALUES
 CREATE TABLE `group_groups` (
   `id` int NOT NULL,
   `groupName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `site` int NOT NULL,
   `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -152,16 +153,16 @@ CREATE TABLE `group_groups` (
 -- Dumping data for table `group_groups`
 --
 
-INSERT INTO `group_groups` (`id`, `groupName`, `description`) VALUES
-(1, 'global.default', NULL),
-(2, 'global.loggedin', NULL),
-(3, 'global.all', NULL),
-(4, 'global.admin', NULL),
-(5, 'site.default', NULL),
-(6, 'site.loggedin', NULL),
-(7, 'site.all', NULL),
-(8, 'site.admin', NULL),
-(9, 'site.assetAdm', NULL);
+INSERT INTO `group_groups` (`id`, `groupName`, `site`, `description`) VALUES
+(1, 'global.default', 0, NULL),
+(2, 'global.loggedin', 0, NULL),
+(3, 'global.all', 0, NULL),
+(4, 'global.admin', 0, NULL),
+(5, 'site.default', 1, NULL),
+(6, 'site.loggedin', 1, NULL),
+(7, 'site.all', 1, NULL),
+(8, 'site.admin', 1, NULL),
+(9, 'site.assetAdm', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,7 +188,12 @@ INSERT INTO `group_permissions` (`id`, `groupId`, `permissionId`, `header`) VALU
 (10, 9, 13, 0),
 (11, 1, 1, 1),
 (12, 1, 2, 0),
-(13, 2, 3, 1);
+(13, 2, 3, 1),
+(14, 8, 17, 1),
+(17, 8, 18, 0),
+(18, 4, 19, 0),
+(19, 4, 20, 0),
+(20, 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +216,15 @@ CREATE TABLE `group_userGroup` (
 
 INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `siteId`, `dateStart`, `dateEnd`) VALUES
 (1, 7, 2, 0, '2023-06-15 12:26:06', NULL),
-(2, 7, 9, 1, '2023-06-16 08:08:20', NULL);
+(2, 7, 9, 1, '2023-06-16 08:08:20', NULL),
+(4, 1, 8, 1, '2023-08-30 08:51:33', NULL),
+(5, 1, 4, 0, '2023-08-30 15:05:12', NULL),
+(6, 1, 8, 2, '2023-08-30 15:13:51', NULL),
+(7, 1, 2, 0, '2023-08-31 11:28:07', NULL),
+(8, 1, 3, 0, '2023-08-31 11:29:22', NULL),
+(9, 1, 7, 2, '2023-09-01 09:21:47', NULL),
+(10, 1, 7, 2, '2023-09-01 09:21:47', NULL),
+(13, 4, 2, 0, '2023-09-13 11:21:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -244,11 +258,15 @@ INSERT INTO `permission` (`id`, `permissionName`, `permissionCategory`, `page`, 
 (9, 'registerCodes', 'login.adm', 'adm/registerCodes/list', 'adm', 150, NULL),
 (10, 'registerCodes.all', 'login.adm', NULL, NULL, NULL, 'see codes by all users'),
 (11, 'register.code', 'login', NULL, NULL, NULL, NULL),
-(12, 'Asset', 'asset', 'asset/itemList', NULL, NULL, NULL),
+(12, 'Asset', 'asset', 'asset/itemList', NULL, 90, NULL),
 (13, 'asset.itemList', 'asset', NULL, NULL, NULL, NULL),
 (14, 'asset.borrow', 'asset', NULL, NULL, NULL, NULL),
 (15, 'asset.create', 'asset', NULL, NULL, NULL, NULL),
-(16, 'login.discord', 'login', NULL, NULL, NULL, NULL);
+(16, 'login.discord', 'login', NULL, NULL, NULL, NULL),
+(17, 'permissions', 'permissions', 'adm/permissions/index', NULL, 170, NULL),
+(18, 'permissions.groups', 'permissions', NULL, NULL, NULL, NULL),
+(19, 'permissions.list.global', 'permissions', NULL, NULL, NULL, NULL),
+(20, 'permissions.list.all', 'permissions', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -377,7 +395,6 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (3, 1, 0, 3, 1, '2023-05-19 22:34:23', NULL),
 (4, 1, 0, 9, 1, '2023-05-19 22:34:23', NULL),
 (6, 1, 0, 10, 0, '2023-05-20 18:30:21', NULL),
-(7, 0, 0, 11, 0, '2023-05-31 15:07:46', NULL),
 (8, 4, 1, 3, 1, '2023-06-01 09:21:44', NULL),
 (9, 4, 1, 9, 1, '2023-06-01 09:21:44', NULL),
 (10, 5, 1, 3, 1, '2023-06-01 11:06:51', NULL),
@@ -387,7 +404,8 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (14, 1, 1, 14, 0, '2023-06-08 11:39:29', NULL),
 (15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL),
 (16, 7, 0, 3, 1, '2023-06-15 09:05:05', NULL),
-(17, 0, 0, 16, 0, '2023-06-16 09:35:40', NULL);
+(17, 0, 0, 16, 0, '2023-06-16 09:35:40', NULL),
+(19, 1, 2, 12, 1, '2023-08-30 12:48:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -435,7 +453,8 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`id`, `selector`, `hashed_validator`, `user_id`, `expiry`) VALUES
-(10, 'ac3c7947391f07eb64d96f385cc8af81', '$2y$10$oirX8SFuRq7puxQiCVnPkeVbbw0l7Sdi5O/m8xH/0daPx415a9Su.', 1, '2023-07-13 09:08:37');
+(10, 'ac3c7947391f07eb64d96f385cc8af81', '$2y$10$oirX8SFuRq7puxQiCVnPkeVbbw0l7Sdi5O/m8xH/0daPx415a9Su.', 1, '2023-07-13 09:08:37'),
+(11, '0889dcd957f02f804a98d32ef146da66', '$2y$10$eRlJKfVjaPfF0IYSEYt5Fec3r8Ra4I9TOtrvI0UM6k4o4bT6jEve2', 1, '2023-09-29 08:36:03');
 
 --
 -- Indexes for dumped tables
@@ -467,7 +486,8 @@ ALTER TABLE `asset_user`
 -- Indexes for table `group_groups`
 --
 ALTER TABLE `group_groups`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group_siteId` (`site`);
 
 --
 -- Indexes for table `group_permissions`
@@ -567,19 +587,19 @@ ALTER TABLE `group_groups`
 -- AUTO_INCREMENT for table `group_permissions`
 --
 ALTER TABLE `group_permissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `group_userGroup`
 --
 ALTER TABLE `group_userGroup`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `registerCodes`
@@ -603,7 +623,7 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -615,7 +635,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -634,6 +654,12 @@ ALTER TABLE `asset_borrowed`
 --
 ALTER TABLE `asset_user`
   ADD CONSTRAINT `assetInternalUser` FOREIGN KEY (`internalId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `group_groups`
+--
+ALTER TABLE `group_groups`
+  ADD CONSTRAINT `group_siteId` FOREIGN KEY (`site`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `group_permissions`
