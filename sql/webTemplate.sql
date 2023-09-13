@@ -1,9 +1,9 @@
-2-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2023 at 01:34 PM
+-- Generation Time: Sep 13, 2023 at 02:50 PM
 -- Server version: 8.0.34-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -145,7 +145,7 @@ INSERT INTO `asset_user` (`id`, `name`, `mail`, `internalId`, `siteId`) VALUES
 CREATE TABLE `group_groups` (
   `id` int NOT NULL,
   `groupName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `site` int NOT NULL,
+  `siteId` int NOT NULL,
   `description` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -153,7 +153,7 @@ CREATE TABLE `group_groups` (
 -- Dumping data for table `group_groups`
 --
 
-INSERT INTO `group_groups` (`id`, `groupName`, `site`, `description`) VALUES
+INSERT INTO `group_groups` (`id`, `groupName`, `siteId`, `description`) VALUES
 (1, 'global.default', 0, NULL),
 (2, 'global.loggedin', 0, NULL),
 (3, 'global.all', 0, NULL),
@@ -205,7 +205,6 @@ CREATE TABLE `group_userGroup` (
   `id` int NOT NULL,
   `userId` int NOT NULL,
   `groupId` int NOT NULL,
-  `siteId` int NOT NULL,
   `dateStart` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateEnd` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -214,17 +213,17 @@ CREATE TABLE `group_userGroup` (
 -- Dumping data for table `group_userGroup`
 --
 
-INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `siteId`, `dateStart`, `dateEnd`) VALUES
-(1, 7, 2, 0, '2023-06-15 12:26:06', NULL),
-(2, 7, 9, 1, '2023-06-16 08:08:20', NULL),
-(4, 1, 8, 1, '2023-08-30 08:51:33', NULL),
-(5, 1, 4, 0, '2023-08-30 15:05:12', NULL),
-(6, 1, 8, 2, '2023-08-30 15:13:51', NULL),
-(7, 1, 2, 0, '2023-08-31 11:28:07', NULL),
-(8, 1, 3, 0, '2023-08-31 11:29:22', NULL),
-(9, 1, 7, 2, '2023-09-01 09:21:47', NULL),
-(10, 1, 7, 2, '2023-09-01 09:21:47', NULL),
-(13, 4, 2, 0, '2023-09-13 11:21:57', NULL);
+INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `dateStart`, `dateEnd`) VALUES
+(1, 7, 2, '2023-06-15 12:26:06', NULL),
+(2, 7, 9, '2023-06-16 08:08:20', NULL),
+(4, 1, 8, '2023-08-30 08:51:33', NULL),
+(5, 1, 4, '2023-08-30 15:05:12', NULL),
+(6, 1, 8, '2023-08-30 15:13:51', NULL),
+(7, 1, 2, '2023-08-31 11:28:07', NULL),
+(8, 1, 3, '2023-08-31 11:29:22', NULL),
+(9, 1, 7, '2023-09-01 09:21:47', NULL),
+(10, 1, 7, '2023-09-01 09:21:47', NULL),
+(13, 4, 2, '2023-09-13 11:21:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -487,7 +486,7 @@ ALTER TABLE `asset_user`
 --
 ALTER TABLE `group_groups`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `group_siteId` (`site`);
+  ADD KEY `group_siteId` (`siteId`);
 
 --
 -- Indexes for table `group_permissions`
@@ -503,7 +502,6 @@ ALTER TABLE `group_permissions`
 ALTER TABLE `group_userGroup`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userGroup_group` (`groupId`),
-  ADD KEY `userGroup_site` (`siteId`),
   ADD KEY `userGroup_user` (`userId`);
 
 --
@@ -659,7 +657,7 @@ ALTER TABLE `asset_user`
 -- Constraints for table `group_groups`
 --
 ALTER TABLE `group_groups`
-  ADD CONSTRAINT `group_siteId` FOREIGN KEY (`site`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `group_siteId` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `group_permissions`
@@ -673,7 +671,6 @@ ALTER TABLE `group_permissions`
 --
 ALTER TABLE `group_userGroup`
   ADD CONSTRAINT `userGroup_group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `userGroup_site` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `userGroup_user` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --

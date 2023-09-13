@@ -63,14 +63,14 @@ headerr('Permissions', "permissions");
 
 
     if ($_POST["user"]) {
-        $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_userGroup.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_userGroup.siteId = sites.id WHERE users.id = :userId AND (group_userGroup.siteId = :siteId";
+        $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE users.id = :userId AND (group_groups.siteId = :siteId";
             
             if ($global) {
-                $sql .= " OR group_userGroup.siteId = '0'";
+                $sql .= " OR group_groups.siteId = '0'";
             }
 
             if ($all) {
-                $sql .= " OR group_userGroup.siteId LIKE '%'";
+                $sql .= " OR group_groups.siteId LIKE '%'";
             }
 
             $sql .= ")";
@@ -167,14 +167,6 @@ headerr('Permissions', "permissions");
                                 <input type="hidden" name="user" value="<?= $_POST["user"] ?>">
                             </td>
                             <td>
-                                <select name="site" id="">
-                                    <option value="" selected disabled hidden>Site</option>
-                                    <?php
-                                        foreach ($site as $s) {
-                                            echo "<option value=" . $s["id"] . ">" . $s["siteName"] . "</option>";
-                                        }
-                                    ?>
-                                </select>
                             </td>
                             <td>
                                 <select name="group" id="">

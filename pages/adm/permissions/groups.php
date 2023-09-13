@@ -42,13 +42,13 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
         //Fetch row.
         $site = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT group_groups.id, group_groups.groupName, sites.siteName FROM `group_groups` LEFT JOIN sites ON group_groups.site = sites.id WHERE (group_groups.site = :siteId";
+    $sql = "SELECT group_groups.id, group_groups.groupName, sites.siteName FROM `group_groups` LEFT JOIN sites ON group_groups.siteId = sites.id WHERE (group_groups.siteId = :siteId";
     if ($global) {
-        $sql .= " OR group_groups.site = '0'";
+        $sql .= " OR group_groups.siteId = '0'";
     }
 
     if ($all) {
-        $sql .= " OR group_groups.site LIKE '%'";
+        $sql .= " OR group_groups.siteId LIKE '%'";
     }
 
     $sql .= ")";
@@ -81,14 +81,14 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
 
 <?php
     if ($_POST["group"]) {
-        $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_userGroup.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_userGroup.siteId = sites.id WHERE group_groups.id = :groupId AND (group_userGroup.siteId = :siteId";
+        $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_groups.id = :groupId AND (group_groups.siteId = :siteId";
             
             if ($global) {
-                $sql .= " OR group_userGroup.siteId = '0'";
+                $sql .= " OR group_groups.siteId = '0'";
             }
 
             if ($all) {
-                $sql .= " OR group_userGroup.siteId LIKE '%'";
+                $sql .= " OR group_groups.siteId LIKE '%'";
             }
 
             $sql .= ")";
@@ -104,13 +104,13 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
                 //Fetch row.
                 $userGroup = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT group_permissions.id, group_permissions.groupId, group_permissions.permissionId, group_permissions.header, group_groups.groupName, group_groups.site, permission.permissionName, permission.page, permission.dropdown, permission.placement, sites.siteName FROM group_permissions LEFT JOIN group_groups ON group_permissions.groupId = group_groups.id LEFT JOIN permission ON group_permissions.permissionId = permission.id LEFT JOIN sites ON group_groups.site = sites.id WHERE group_groups.id = :groupId AND (group_groups.site = :siteId";
+        $sql = "SELECT group_permissions.id, group_permissions.groupId, group_permissions.permissionId, group_permissions.header, group_groups.groupName, group_groups.siteId, permission.permissionName, permission.page, permission.dropdown, permission.placement, sites.siteName FROM group_permissions LEFT JOIN group_groups ON group_permissions.groupId = group_groups.id LEFT JOIN permission ON group_permissions.permissionId = permission.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_groups.id = :groupId AND (group_groups.siteId = :siteId";
         if ($global) {
-            $sql .= " OR group_groups.site = '0'";
+            $sql .= " OR group_groups.siteId = '0'";
         }
 
         if ($all) {
-            $sql .= " OR group_groups.site LIKE '%'";
+            $sql .= " OR group_groups.siteId LIKE '%'";
         }
 
         $sql .= ")";
