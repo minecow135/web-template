@@ -247,14 +247,6 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
                                 <input type="hidden" name="group" value="<?= $_POST["group"] ?>">
                             </td>
                             <td>
-                                <select name="site" id="">
-                                    <option value="" selected disabled hidden>Site</option>
-                                    <?php
-                                        foreach ($site as $s) {
-                                            echo "<option value=" . $s["id"] . ">" . $s["siteName"] . "</option>";
-                                        }
-                                    ?>
-                                </select>
                             </td>
                             <td>
                                 <select name="user" id="">
@@ -291,11 +283,10 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
                 $end = $_POST["end"];
             }
         
-            $stmt = $pdo->prepare("INSERT INTO `group_userGroup`(`userId`, `groupId`, `siteId`, `dateStart`, `dateEnd`) VALUES (:userId, :groupId, :siteId, :dateStart, :dateEnd)");
+            $stmt = $pdo->prepare("INSERT INTO `group_userGroup`(`userId`, `groupId`,`dateStart`, `dateEnd`) VALUES (:userId, :groupId, :dateStart, :dateEnd)");
         
                 $stmt->bindValue(':userId', $_POST["user"]);
                 $stmt->bindValue(':groupId', $_POST["group"]);
-                $stmt->bindValue(':siteId', $_POST["site"]);
                 $stmt->bindValue(':dateStart', $_POST["start"]);
                 $stmt->bindValue(':dateEnd', $end);
         
