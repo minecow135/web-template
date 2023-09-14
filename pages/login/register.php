@@ -14,7 +14,9 @@ if(isset($_POST['submit'])) {
         $user = $_POST['username'];
         $email = $_POST['email'];
         $pass = $_POST['password'];
-        $codeInput = $_POST['code'];
+        if ($useCode) {
+            $codeInput = $_POST['code'];
+        }
 
         //encrypt password
         $pass = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 12));
@@ -28,35 +30,37 @@ if(isset($_POST['submit'])) {
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-        $sql = "SELECT id, disabled, totalUses FROM registerCodes WHERE code = :code AND start < :date AND end > :date";
-        $stmt = $pdo->prepare($sql);
-
-        $date = date("Y-m-d H:i:s");
-
-        //Bind value.
-        $stmt->bindValue(':code', $codeInput);
-        $stmt->bindValue(':date', $date);
-
-        //Execute.
-        $stmt->execute();
-
-        //Fetch row.
-        $code = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $sql = "SELECT count(id) AS num FROM registerCodesUsed WHERE codeId = :codeId";
-        $stmt = $pdo->prepare($sql);
-
-        $date = date("Y-m-d H:i:s");
-
-        //Bind value.
-        $stmt->bindValue(':codeId', $code["id"]);
-
-        //Execute.
-        $stmt->execute();
-
-        //Fetch row.
-        $codeUses = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($useCode) {
+            $sql = "SELECT id, disabled, totalUses FROM registerCodes WHERE code = :code AND start < :date AND end > :date";
+            
+            $stmt = $pdo->prepare($sql);
+            
+            $date = date("Y-m-d H:i:s");
+            
+            //Bind value.
+            $stmt->bindValue(':code', $codeInput);
+            $stmt->bindValue(':date', $date);
+            
+            //Execute.
+            $stmt->execute();
+            
+            //Fetch row.
+            $code = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            $sql = "SELECT count(id) AS num FROM registerCodesUsed WHERE codeId = :codeId";
+            $stmt = $pdo->prepare($sql);
+            
+            $date = date("Y-m-d H:i:s");
+            
+            //Bind value.
+            $stmt->bindValue(':codeId', $code["id"]);
+            
+            //Execute.
+            $stmt->execute();
+            
+            //Fetch row.
+            $codeUses = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
 
         if($row['num'] > 0) {
             echo '<script>alert("Username or email already exists")</script>';
@@ -89,22 +93,6 @@ if(isset($_POST['submit'])) {
         
                     $stmt->execute();
                 }
-
-                $sql = "SELECT * FROM users WHERE username = :username";
-                    $stmt = $pdo->prepare($sql);
-
-                    //Bind value.
-                    $stmt->bindValue(':discordId', $_SESSION["discord_user_id"]);
-
-                    //Execute.
-                    $stmt->execute();
-                    
-                    //Fetch row.
-                    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                $id = $user["id"];
-                $email = $user["email"];
-                $enabled = $user["enabled"];
 
                 //If $row is FALSE.
                 if($user === false){
@@ -149,15 +137,15 @@ if(isset($_POST['submit'])) {
                 }
 
                 //redirect to another page
-                header("index.php");
+                header("Location: index.php?page=login/login");
             }
             else {
                echo '<script>alert("An error occurred")</script>';
             }
         }
-    }catch(PDOException $e){
+    } catch(PDOException $e){
         $error = "Error: " . $e->getMessage();
-        echo '<script type="text/javascript">alert("'.$error.'");</script>';
+        echo '<script type="text/javascript">console.log("'.$error.'");</script>';
     }
 }
 
