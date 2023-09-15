@@ -148,15 +148,19 @@ headerr('Permissions', "permissions");
                 <tbody>
                     <?php
                         foreach ($userGroup as $a) {
-                            echo "<tr>";
-                                echo "<td>". $a['id'] . "</td>";
-                                echo "<td>". $a['username'] . "</td>";
-                                echo "<td>". $a['siteName'] . "</td>";
-                                echo "<td>". $a['groupName'] . "</td>";
-                                echo "<td>". $a['dateStart'] . "</td>";
-                                echo "<td>". $a['dateEnd'] . "</td>";
-                                echo "<td></td>";
-                            echo "</tr>";
+                    ?>
+                            <tr>
+                                <td><?= $a['id'] ?></td>
+                                <td><?= $a['username'] ?></td>
+                                <td><?= $a['siteName'] ?></td>
+                                <td><?= $a['groupName'] ?></td>
+                                <td><?= $a['dateStart'] ?></td>
+                                <td><?= $a['dateEnd'] ?></td>
+                                <td class="actions">
+                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                </td>
+                            </tr>
+                    <?php
                         }
                     ?>
                     <tr>
@@ -285,11 +289,10 @@ headerr('Permissions', "permissions");
                 $end = $_POST["end"];
             }
         
-            $stmt = $pdo->prepare("INSERT INTO `group_userGroup`(`userId`, `groupId`, `siteId`, `dateStart`, `dateEnd`) VALUES (:userId, :groupId, :siteId, :dateStart, :dateEnd)");
+            $stmt = $pdo->prepare("INSERT INTO `group_userGroup`(`userId`, `groupId`, `dateStart`, `dateEnd`) VALUES (:userId, :groupId, :dateStart, :dateEnd)");
         
                 $stmt->bindValue(':userId', $_POST["user"]);
                 $stmt->bindValue(':groupId', $_POST["group"]);
-                $stmt->bindValue(':siteId', $_POST["site"]);
                 $stmt->bindValue(':dateStart', $_POST["start"]);
                 $stmt->bindValue(':dateEnd', $end);
         
