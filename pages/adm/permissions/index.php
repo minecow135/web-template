@@ -225,7 +225,11 @@ headerr('Permissions', "permissions");
                                 else {
                                     echo "<td></td>";
                                 }
-                                echo "<td></td>";
+                    ?>
+                                <td class="actions">
+                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteUserPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                </td>
+                    <?php
                             echo "</tr>";
                         }
                     ?>
