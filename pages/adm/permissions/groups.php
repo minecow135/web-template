@@ -164,19 +164,29 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
                 <tbody>
                     <?php
                         foreach ($userPermissions as $a) {
-                            echo "<tr>";
-                                echo "<td>". $a['id'] . "</td>";
-                                echo "<td>". $a['siteName'] . "</td>";
-                                echo "<td>". $a['groupName'] . "</td>";
-                                echo "<td>". $a['permissionName'] . "</td>";
-                                if ($a['header'] == 1) {
-                                    echo "<td>Yes</td>";
-                                }
-                                else {
-                                    echo "<td></td>";
-                                }
-                                echo "<td></td>";
-                            echo "</tr>";
+                    ?>
+                            <tr>
+                                <td><?= $a['id'] ?></td>
+                                <td><?= $a['siteName'] ?></td>
+                                <td><?= $a['groupName'] ?></td>
+                                <td><?= $a['permissionName'] ?></td>
+                                <?php
+                                    if ($a['header'] == 1) {
+                                ?>
+                                    <td>Yes</td>
+                                <?php
+                                    }
+                                    else {
+                                ?>
+                                        <td></td>
+                                <?php
+                                    }
+                                ?>
+                                <td class="actions">
+                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                </td>
+                            </tr>
+                    <?php
                         }
                     ?>
                     <tr>
