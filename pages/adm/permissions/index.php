@@ -61,6 +61,14 @@ headerr('Permissions', "permissions");
     $permissionName = "permissions.list.all";
     $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
 
+    $permissionName = "permissions.delete.userPerm";
+    $deleteUserPerm = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+
+    $permissionName = "permissions.delete.groupPerm";
+    $deletegroupPerm = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+
+    $permissionName = "permissions.delete.groupUser";
+    $deleteGroupUser = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
 
     if ($_POST["user"]) {
         $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE users.id = :userId AND (group_groups.siteId = :siteId";
@@ -157,7 +165,13 @@ headerr('Permissions', "permissions");
                                 <td><?= $a['dateStart'] ?></td>
                                 <td><?= $a['dateEnd'] ?></td>
                                 <td class="actions">
+                                    <?php
+                                        if ($deleteGroupUser) {
+                                    ?>
                                     <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                     <?php
@@ -227,7 +241,13 @@ headerr('Permissions', "permissions");
                                 }
                     ?>
                                 <td class="actions">
+                                    <?php
+                                        if ($deleteUserPerm) {
+                                    ?>
                                     <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteUserPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                     <?php
                             echo "</tr>";

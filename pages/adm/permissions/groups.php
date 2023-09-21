@@ -3,11 +3,20 @@ headerr('Permissions', "permissions.groups");
 ?>
 
 <?php
-$permissionName = "permissions.list.global";
-$global = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+    $permissionName = "permissions.list.global";
+    $global = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+    
+    $permissionName = "permissions.list.all";
+    $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
 
-$permissionName = "permissions.list.all";
-$all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+    $permissionName = "permissions.delete.userPerm";
+    $deleteUserPerm = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+
+    $permissionName = "permissions.delete.groupPerm";
+    $deletegroupPerm = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+
+    $permissionName = "permissions.delete.groupUser";
+    $deleteGroupUser = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
 
     $sql = "SELECT id, username FROM `users`";
         $stmt = $pdo->prepare($sql);
@@ -183,7 +192,13 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
                                     }
                                 ?>
                                 <td class="actions">
+                                    <?php
+                                        if ($deleteGroupUser) {
+                                    ?>
                                     <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                     <?php
@@ -247,7 +262,13 @@ $all = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permi
                                 <td><?= $a['dateStart'] ?></td>
                                 <td><?= $a['dateEnd'] ?></td>
                                 <td class="actions">
+                                    <?php
+                                        if ($deleteGroupUser) {
+                                    ?>
                                     <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                     <?php

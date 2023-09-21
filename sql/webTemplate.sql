@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2023 at 02:50 PM
+-- Generation Time: Sep 21, 2023 at 08:54 AM
 -- Server version: 8.0.34-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -192,8 +192,7 @@ INSERT INTO `group_permissions` (`id`, `groupId`, `permissionId`, `header`) VALU
 (14, 8, 17, 1),
 (17, 8, 18, 0),
 (18, 4, 19, 0),
-(19, 4, 20, 0),
-(20, 2, 4, 1);
+(19, 4, 20, 0);
 
 -- --------------------------------------------------------
 
@@ -214,8 +213,6 @@ CREATE TABLE `group_userGroup` (
 --
 
 INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `dateStart`, `dateEnd`) VALUES
-(1, 7, 2, '2023-06-15 12:26:06', NULL),
-(2, 7, 9, '2023-06-16 08:08:20', NULL),
 (4, 1, 8, '2023-08-30 08:51:33', NULL),
 (5, 1, 4, '2023-08-30 15:05:12', NULL),
 (6, 1, 8, '2023-08-30 15:13:51', NULL),
@@ -223,7 +220,7 @@ INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `dateStart`, `dateEnd`
 (8, 1, 3, '2023-08-31 11:29:22', NULL),
 (9, 1, 7, '2023-09-01 09:21:47', NULL),
 (10, 1, 7, '2023-09-01 09:21:47', NULL),
-(13, 4, 2, '2023-09-13 11:21:57', NULL);
+(14, 1, 9, '2023-09-14 09:01:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -265,7 +262,10 @@ INSERT INTO `permission` (`id`, `permissionName`, `permissionCategory`, `page`, 
 (17, 'permissions', 'permissions', 'adm/permissions/index', NULL, 170, NULL),
 (18, 'permissions.groups', 'permissions', NULL, NULL, NULL, NULL),
 (19, 'permissions.list.global', 'permissions', NULL, NULL, NULL, NULL),
-(20, 'permissions.list.all', 'permissions', NULL, NULL, NULL, NULL);
+(20, 'permissions.list.all', 'permissions', NULL, NULL, NULL, NULL),
+(21, 'permissions.delete.userPerm', 'permissions', NULL, NULL, NULL, NULL),
+(22, 'permissions.delete.groupPerm', 'permissions', NULL, NULL, NULL, NULL),
+(23, 'permissions.delete.groupUser', 'permissions', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -402,9 +402,9 @@ INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`
 (13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL),
 (14, 1, 1, 14, 0, '2023-06-08 11:39:29', NULL),
 (15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL),
-(16, 7, 0, 3, 1, '2023-06-15 09:05:05', NULL),
 (17, 0, 0, 16, 0, '2023-06-16 09:35:40', NULL),
-(19, 1, 2, 12, 1, '2023-08-30 12:48:29', NULL);
+(19, 1, 2, 12, 1, '2023-08-30 12:48:29', NULL),
+(23, 7, 0, 3, 1, '2023-09-18 10:30:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -431,7 +431,18 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `discordId`, `date_t
 (1, 'awd', 'awd@awd.awd', '$2y$12$bwop6jybCK8FD0iv1VTEMe/g0rIanb7mfrZaBjbTbBR5XBJQr4rCa', '0', '2023-05-10 08:55:42', 1),
 (4, 'awdawdawd', 'awd@awd.awd', '$2y$12$r5PyvHux1X0K6nFJvm7U9ucUU/pOX9joPmd5hJiIFVWNFnlnaqDxK', '0', '2023-05-31 10:19:50', 1),
 (5, 'awfegaegfswaef', 'awd@awd.awd', '$2y$12$02OxGptN5/k50wP2JuS/2.v91/I1jSG0g6VjRuQ04uXTVBXeHllqG', '0', '2023-05-31 12:46:44', 1),
-(7, 'mine_cow135', 'krivig123@gmail.com', NULL, '170813552586653696', '2023-06-14 11:58:35', 1);
+(7, 'mine_cow135', 'krivig123@gmail.com', NULL, '170813552586653696', '2023-06-14 11:58:35', 1),
+(8, 'test', 'tedryhdr@awegfseg.awd', '$2y$12$U7MfhQf.LUNvIpWAyOMdkOhNMEMi.I8Xz4risuEZiswsjMTtP8b7S', NULL, '2023-09-14 11:45:05', 1),
+(9, 'awdawdawdawd', 'awdawdawdawd@awd', '$2y$12$48.q/x7j1cXraqVrhuieTOfyIRT5RVFwExKLHdZk18w.fVwsDRV5.', NULL, '2023-09-14 11:47:58', 1),
+(10, 'a', 'a@a', '$2y$12$1mTJLpjYKfCtHeuwhJUOMuzzePae/FxdqCn7zGrU4E67LRrZnjjwa', NULL, '2023-09-14 11:51:13', 1),
+(11, 'aa', 'aa@a', '$2y$12$n9.tliXpl3xsmKnMcMf5qOdtTB7PuGKQ0CPP2A3thrGdqSyOLYL3i', NULL, '2023-09-14 11:57:34', 1),
+(12, 'aaa', 'aaa@a', '$2y$12$0sL0LYTRezWuTs2LCQadBeqkcDyqNpx6Q7pfALWVlxeA0c6nlDIa.', NULL, '2023-09-14 12:01:44', 1),
+(13, 'aaaa', 'aaaa@a', '$2y$12$QRGGxtwtEWE8FsWN9vsSFePUcPQykw2vSQzyt7cnVtSJheWzqopzi', NULL, '2023-09-14 12:02:29', 1),
+(14, 'aaaaa', 'aaaaa@a', '$2y$12$XeLWSCeGsH31UlTYvLqLwe8NqSz2mON1uWWsA6Cx0BZttHhhLtHfS', NULL, '2023-09-14 12:08:03', 1),
+(15, 'aaaaaa', 'aaaaaa@a', '$2y$12$riWa2Mdams7FvxDKEWalCugCVB7ijBGHci6rXqwPgHjZ2QhWvKUcW', NULL, '2023-09-14 12:10:29', 1),
+(16, 'aaaaaaa', 'aaaaaaa@a', '$2y$12$3zCMbWpbHv1rNr9V24QVsOjAVgakmYygr9GDxITTFW5ecfnJe1RNG', NULL, '2023-09-14 12:15:38', 1),
+(17, 'aaaaaaaa', 'aaaaaaaa@a', '$2y$12$S9sT7E1riE/X1jnjl5O8Ru2F/4PSwt82YDw48VxC5u/EWBcihAKlu', NULL, '2023-09-14 12:16:59', 1),
+(18, 'aaaaaaaaa', 'aaaaaaaaa@a', '$2y$12$LwhqLQEI4SWu1NloBs0/v.uXbWQgOqR7nvwlBrKHJJArQheTI4ECy', NULL, '2023-09-14 12:18:24', 1);
 
 -- --------------------------------------------------------
 
@@ -591,13 +602,13 @@ ALTER TABLE `group_permissions`
 -- AUTO_INCREMENT for table `group_userGroup`
 --
 ALTER TABLE `group_userGroup`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `registerCodes`
@@ -621,13 +632,13 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_tokens`

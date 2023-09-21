@@ -1,5 +1,5 @@
 <?php
-    headerr('Delete permission', 'permissions');
+    headerr('Delete permission', 'permissions.delete.groupUser');
 ?>
 
 <?php
