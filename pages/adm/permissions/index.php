@@ -27,7 +27,7 @@ headerr('Permissions', "permissions");
         //Fetch row.
         $site = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT id, groupName FROM `group_groups`";
+    $sql = "SELECT group_groups.id, sites.siteName, group_groups.groupName FROM `group_groups` LEFT JOIN sites ON sites.id = group_groups.siteId";
         $stmt = $pdo->prepare($sql);
 
        // $stmt->bindValue(':code', $_POST["code"]);
@@ -191,7 +191,7 @@ headerr('Permissions', "permissions");
                                     <option value="" selected disabled hidden>Group</option>
                                     <?php
                                         foreach ($group as $g) {
-                                            echo "<option value=" . $g["id"] . ">" . $g["groupName"] . "</option>";
+                                            echo "<option value=" . $g["id"] . ">" . $g["siteName"]. ", " . $g["groupName"] . "</option>";
                                         }
                                     ?>
                                 </select>
