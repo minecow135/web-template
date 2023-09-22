@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 21, 2023 at 08:54 AM
+-- Generation Time: Sep 22, 2023 at 01:31 PM
 -- Server version: 8.0.34-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -44,29 +44,29 @@ CREATE TABLE `asset_borrowed` (
 --
 
 INSERT INTO `asset_borrowed` (`id`, `itemId`, `userId`, `borrowedBy`, `comment`, `dateStart`, `dateEnd`, `dateBack`, `siteId`) VALUES
-(1, 1, 1, 1, NULL, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
-(2, 1, 1, 1, NULL, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
-(3, 1, 1, 1, NULL, '2023-06-01 14:20:17', '2023-07-01 02:20:17', '2023-06-01 15:14:50', 1),
-(4, 1, 4, 1, NULL, '2023-06-01 14:48:36', '2023-07-01 02:48:36', '2023-06-01 15:14:50', 1),
-(5, 1, 5, 1, NULL, '2023-06-01 14:53:00', '2023-07-01 02:53:00', '2023-06-01 15:14:50', 1),
-(6, 1, 1, 1, NULL, '2023-06-01 15:05:59', '2023-07-01 03:05:59', '2023-06-02 07:58:51', 1),
-(7, 1, 1, 1, NULL, '2023-06-02 07:58:55', '2023-07-02 07:58:55', '2023-06-02 08:14:15', 1),
-(8, 1, 1, 1, NULL, '2023-06-02 08:30:44', '2023-07-02 08:30:44', '2023-06-02 11:18:48', 1),
-(9, 2, 1, 1, NULL, '2023-06-02 11:08:41', '2023-07-02 11:08:41', '2023-06-02 11:20:18', 1),
-(10, 3, 12, 1, NULL, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
-(11, 3, 12, 1, NULL, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
-(12, 1, 13, 1, NULL, '2023-06-02 11:20:31', '2023-07-02 11:20:31', '2023-06-02 12:16:42', 1),
-(13, 1, 1, 1, NULL, '2023-06-02 12:21:54', '2023-07-02 12:21:54', '2023-06-05 08:04:47', 1),
-(14, 2, 1, 1, NULL, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1),
-(15, 1, 1, 1, NULL, '2023-06-08 08:35:24', '2023-07-08 08:35:24', '2023-06-08 10:06:49', 1),
-(16, 3, 1, 1, NULL, '2023-06-08 09:59:03', '2023-07-08 09:59:03', '2023-06-08 10:06:58', 1),
-(17, 1, 1, 1, NULL, '2023-06-09 09:55:33', '2023-07-09 09:55:33', '2023-06-09 10:13:50', 1),
-(18, 1, 1, 1, NULL, '2023-06-09 11:01:02', '2023-07-09 11:01:02', '2023-06-09 11:01:27', 1),
-(19, 1, 1, 1, NULL, '2023-06-09 11:04:19', '2023-07-09 11:04:19', '2023-06-09 11:04:29', 1),
-(20, 1, 1, 1, NULL, '2023-06-09 12:07:03', '2023-07-09 12:07:03', NULL, 1),
-(21, 1, 1, 1, NULL, '2023-06-12 08:03:58', '2023-07-12 08:03:58', NULL, 1),
-(22, 3, 5, 1, NULL, '2023-06-12 08:04:10', '2023-07-12 08:04:10', NULL, 1),
-(23, 3, 14, 1, NULL, '2023-06-12 08:38:37', '2023-07-12 08:38:37', NULL, 1);
+(1, 1, 1, 2, NULL, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
+(2, 1, 1, 2, NULL, '2023-06-01 14:03:11', '2023-07-01 02:03:11', '2023-06-01 15:14:50', 1),
+(3, 1, 1, 2, NULL, '2023-06-01 14:20:17', '2023-07-01 02:20:17', '2023-06-01 15:14:50', 1),
+(4, 1, 4, 2, NULL, '2023-06-01 14:48:36', '2023-07-01 02:48:36', '2023-06-01 15:14:50', 1),
+(5, 1, 5, 2, NULL, '2023-06-01 14:53:00', '2023-07-01 02:53:00', '2023-06-01 15:14:50', 1),
+(6, 1, 1, 2, NULL, '2023-06-01 15:05:59', '2023-07-01 03:05:59', '2023-06-02 07:58:51', 1),
+(7, 1, 1, 2, NULL, '2023-06-02 07:58:55', '2023-07-02 07:58:55', '2023-06-02 08:14:15', 1),
+(8, 1, 1, 2, NULL, '2023-06-02 08:30:44', '2023-07-02 08:30:44', '2023-06-02 11:18:48', 1),
+(9, 2, 1, 2, NULL, '2023-06-02 11:08:41', '2023-07-02 11:08:41', '2023-06-02 11:20:18', 1),
+(10, 3, 12, 2, NULL, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
+(11, 3, 12, 2, NULL, '2023-06-02 11:08:53', '2023-07-02 11:08:53', '2023-06-02 11:20:23', 1),
+(12, 1, 13, 2, NULL, '2023-06-02 11:20:31', '2023-07-02 11:20:31', '2023-06-02 12:16:42', 1),
+(13, 1, 1, 2, NULL, '2023-06-02 12:21:54', '2023-07-02 12:21:54', '2023-06-05 08:04:47', 1),
+(14, 2, 1, 2, NULL, '2023-06-05 08:04:24', '2023-07-05 08:04:24', '2023-06-05 08:06:43', 1),
+(15, 1, 1, 2, NULL, '2023-06-08 08:35:24', '2023-07-08 08:35:24', '2023-06-08 10:06:49', 1),
+(16, 3, 1, 2, NULL, '2023-06-08 09:59:03', '2023-07-08 09:59:03', '2023-06-08 10:06:58', 1),
+(17, 1, 1, 2, NULL, '2023-06-09 09:55:33', '2023-07-09 09:55:33', '2023-06-09 10:13:50', 1),
+(18, 1, 1, 2, NULL, '2023-06-09 11:01:02', '2023-07-09 11:01:02', '2023-06-09 11:01:27', 1),
+(19, 1, 1, 2, NULL, '2023-06-09 11:04:19', '2023-07-09 11:04:19', '2023-06-09 11:04:29', 1),
+(20, 1, 1, 2, NULL, '2023-06-09 12:07:03', '2023-07-09 12:07:03', NULL, 1),
+(21, 1, 1, 2, NULL, '2023-06-12 08:03:58', '2023-07-12 08:03:58', NULL, 1),
+(22, 3, 5, 2, NULL, '2023-06-12 08:04:10', '2023-07-12 08:04:10', NULL, 1),
+(23, 3, 14, 2, NULL, '2023-06-12 08:38:37', '2023-07-12 08:38:37', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -128,7 +128,7 @@ CREATE TABLE `asset_user` (
 --
 
 INSERT INTO `asset_user` (`id`, `name`, `mail`, `internalId`, `siteId`) VALUES
-(1, 'awd', 'awd@awd.awd', 1, 1),
+(1, 'awd', 'awd@awd.awd', 2, 1),
 (4, 'iosedu', 'awd1@awd.awd', NULL, 1),
 (5, 'rpgjdg', 'awd2@awd.awd', NULL, 1),
 (11, 'aaaaaaaaaaaaaa', 'awd3@awd.awd', NULL, 1),
@@ -154,15 +154,15 @@ CREATE TABLE `group_groups` (
 --
 
 INSERT INTO `group_groups` (`id`, `groupName`, `siteId`, `description`) VALUES
-(1, 'global.default', 0, NULL),
-(2, 'global.loggedin', 0, NULL),
-(3, 'global.all', 0, NULL),
-(4, 'global.admin', 0, NULL),
-(5, 'site.default', 1, NULL),
-(6, 'site.loggedin', 1, NULL),
-(7, 'site.all', 1, NULL),
-(8, 'site.admin', 1, NULL),
-(9, 'site.assetAdm', 1, NULL);
+(1, 'global.default', 1, NULL),
+(2, 'global.loggedin', 1, NULL),
+(3, 'global.all', 1, NULL),
+(4, 'global.admin', 1, NULL),
+(5, 'site.default', 2, NULL),
+(6, 'site.loggedin', 2, NULL),
+(7, 'site.all', 2, NULL),
+(8, 'site.admin', 2, NULL),
+(9, 'site.assetAdm', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -192,7 +192,10 @@ INSERT INTO `group_permissions` (`id`, `groupId`, `permissionId`, `header`) VALU
 (14, 8, 17, 1),
 (17, 8, 18, 0),
 (18, 4, 19, 0),
-(19, 4, 20, 0);
+(19, 4, 20, 0),
+(21, 4, 21, 0),
+(22, 4, 22, 0),
+(23, 4, 23, 0);
 
 -- --------------------------------------------------------
 
@@ -213,14 +216,15 @@ CREATE TABLE `group_userGroup` (
 --
 
 INSERT INTO `group_userGroup` (`id`, `userId`, `groupId`, `dateStart`, `dateEnd`) VALUES
-(4, 1, 8, '2023-08-30 08:51:33', NULL),
-(5, 1, 4, '2023-08-30 15:05:12', NULL),
-(6, 1, 8, '2023-08-30 15:13:51', NULL),
-(7, 1, 2, '2023-08-31 11:28:07', NULL),
-(8, 1, 3, '2023-08-31 11:29:22', NULL),
-(9, 1, 7, '2023-09-01 09:21:47', NULL),
-(10, 1, 7, '2023-09-01 09:21:47', NULL),
-(14, 1, 9, '2023-09-14 09:01:28', NULL);
+(4, 2, 8, '2023-08-30 08:51:33', NULL),
+(5, 2, 4, '2023-08-30 15:05:12', NULL),
+(6, 2, 8, '2023-08-30 15:13:51', NULL),
+(7, 2, 2, '2023-08-31 11:28:07', NULL),
+(8, 2, 3, '2023-08-31 11:29:22', NULL),
+(9, 2, 7, '2023-09-01 09:21:47', NULL),
+(10, 2, 7, '2023-09-01 09:21:47', NULL),
+(14, 2, 9, '2023-09-14 09:01:28', NULL),
+(19, 8, 2, '2023-09-22 12:22:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -288,40 +292,39 @@ CREATE TABLE `registerCodes` (
 --
 
 INSERT INTO `registerCodes` (`id`, `code`, `createdBy`, `TotalUses`, `disabled`, `start`, `end`) VALUES
-(1, 'awd', 0, 0, 0, '2023-05-19 20:43:43', '2023-05-25 20:43:34'),
-(2, 'awdawdawdw', 0, 0, 0, '2023-05-19 20:53:03', '2023-05-26 20:52:41'),
-(3, 'awfessfw', 1, 7, 0, '2023-05-19 23:02:25', '2023-05-19 23:59:02'),
-(4, 'awgaseg', 1, 0, 0, '2023-05-24 12:30:54', '2023-05-24 12:45:54'),
-(5, '646de9f5cd6be', 1, 1, 0, '2023-05-24 12:41:57', '2023-05-24 12:56:57'),
-(6, '646dea07d4d64', 1, 6, 0, '2023-05-24 12:42:15', '2023-05-24 12:57:15'),
-(7, '646dea4d5a4ce', 1, 0, 0, '2023-05-24 12:43:25', '2023-05-24 12:58:25'),
-(8, '646dffe563da5', 1, 4, 0, '2023-05-24 14:15:33', '2023-05-24 14:30:33'),
-(9, '6470638e1d6a6', 1, 1, 0, '2023-05-26 09:45:15', '2023-05-26 10:00:15'),
-(10, '647078ef35bc4', 1, 1, 0, '2023-05-26 11:16:29', '2023-05-26 11:31:29'),
-(11, '64707f237e990', 1, 1, 0, '2023-05-26 11:16:29', '2023-05-26 11:31:29'),
-(12, '6470808346d9a', 1, 1, 0, '2023-05-26 11:48:48', '2023-05-26 12:03:48'),
-(13, '64709ba563a35', 1, 0, 0, '2023-05-26 13:44:34', '2023-05-26 13:59:34'),
-(14, '64709bb37bf4c', 1, 5, 0, '2023-05-26 13:44:37', '2023-05-26 13:59:37'),
-(15, '6476e82c1c7bf', 1, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
-(16, '6476e82c1c7bf', 1, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
-(17, '6476e9512f456', 1, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
-(18, '6476e9810651d', 1, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
-(19, '6476ee4e8c06c', 1, 1, 0, '2023-05-31 08:50:50', '2023-05-31 09:05:50'),
-(20, '647702883b17c', 1, 1, 0, '2023-05-31 10:17:10', '2023-05-31 10:32:10'),
-(21, 'adw', 1, 0, 0, '2023-05-31 12:46:19', '2023-05-31 13:45:47'),
-(22, '6477320ad5daf', 1, 1, 0, '2023-05-31 13:39:51', '2023-05-31 13:54:51'),
-(23, '647847a1e6398', 4, 0, 0, '2023-06-01 09:23:59', '2023-06-01 09:38:59'),
-(24, '6478511830a6d', 1, 1, 0, '2023-06-01 10:01:30', '2023-06-01 10:16:30'),
-(25, '6478551ed86ba', 1, 1, 0, '2023-06-01 10:21:48', '2023-06-01 10:36:48'),
-(26, '64785530e0239', 1, 1, 0, '2023-06-01 10:21:48', '2023-06-01 10:36:48'),
-(27, '6478555da59de', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
-(28, '6478556659e12', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
-(29, '6478556d2ee4d', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
-(30, '6478556f85aba', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
-(31, '647855a1101be', 1, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
-(32, '64785b29d30ca', 1, 0, 0, '2023-06-01 10:47:35', '2023-06-01 11:02:35'),
-(33, '64785ec321155', 1, 0, 0, '2023-06-01 11:02:53', '2023-06-01 11:17:53'),
-(34, '647d7d08bbeaa', 1, 1, 0, '2023-06-05 08:13:27', '2023-06-05 08:28:27');
+(1, 'awd', 1, 0, 0, '2023-05-19 20:43:43', '2023-05-25 20:43:34'),
+(2, 'awdawdawdw', 1, 0, 0, '2023-05-19 20:53:03', '2023-05-26 20:52:41'),
+(3, 'awfessfw', 2, 7, 0, '2023-05-19 23:02:25', '2023-05-19 23:59:02'),
+(4, 'awgaseg', 2, 0, 0, '2023-05-24 12:30:54', '2023-05-24 12:45:54'),
+(5, '646de9f5cd6be', 2, 1, 0, '2023-05-24 12:41:57', '2023-05-24 12:56:57'),
+(6, '646dea07d4d64', 2, 6, 0, '2023-05-24 12:42:15', '2023-05-24 12:57:15'),
+(7, '646dea4d5a4ce', 2, 0, 0, '2023-05-24 12:43:25', '2023-05-24 12:58:25'),
+(8, '646dffe563da5', 2, 4, 0, '2023-05-24 14:15:33', '2023-05-24 14:30:33'),
+(9, '6470638e1d6a6', 2, 1, 0, '2023-05-26 09:45:15', '2023-05-26 10:00:15'),
+(10, '647078ef35bc4', 2, 1, 0, '2023-05-26 11:16:29', '2023-05-26 11:31:29'),
+(11, '64707f237e990', 2, 1, 0, '2023-05-26 11:16:29', '2023-05-26 11:31:29'),
+(12, '6470808346d9a', 2, 1, 0, '2023-05-26 11:48:48', '2023-05-26 12:03:48'),
+(13, '64709ba563a35', 2, 0, 0, '2023-05-26 13:44:34', '2023-05-26 13:59:34'),
+(14, '64709bb37bf4c', 2, 5, 0, '2023-05-26 13:44:37', '2023-05-26 13:59:37'),
+(15, '6476e82c1c7bf', 2, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
+(16, '6476e82c1c7bf', 2, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
+(17, '6476e9512f456', 2, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
+(18, '6476e9810651d', 2, 1, 0, '2023-05-31 08:24:42', '2023-05-31 08:39:42'),
+(19, '6476ee4e8c06c', 2, 1, 0, '2023-05-31 08:50:50', '2023-05-31 09:05:50'),
+(20, '647702883b17c', 2, 1, 0, '2023-05-31 10:17:10', '2023-05-31 10:32:10'),
+(21, 'adw', 2, 0, 0, '2023-05-31 12:46:19', '2023-05-31 13:45:47'),
+(22, '6477320ad5daf', 2, 1, 0, '2023-05-31 13:39:51', '2023-05-31 13:54:51'),
+(24, '6478511830a6d', 2, 1, 0, '2023-06-01 10:01:30', '2023-06-01 10:16:30'),
+(25, '6478551ed86ba', 2, 1, 0, '2023-06-01 10:21:48', '2023-06-01 10:36:48'),
+(26, '64785530e0239', 2, 1, 0, '2023-06-01 10:21:48', '2023-06-01 10:36:48'),
+(27, '6478555da59de', 2, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(28, '6478556659e12', 2, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(29, '6478556d2ee4d', 2, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(30, '6478556f85aba', 2, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(31, '647855a1101be', 2, 1, 0, '2023-06-01 10:22:08', '2023-06-01 10:37:08'),
+(32, '64785b29d30ca', 2, 0, 0, '2023-06-01 10:47:35', '2023-06-01 11:02:35'),
+(33, '64785ec321155', 2, 0, 0, '2023-06-01 11:02:53', '2023-06-01 11:17:53'),
+(34, '647d7d08bbeaa', 2, 1, 0, '2023-06-05 08:13:27', '2023-06-05 08:28:27');
 
 -- --------------------------------------------------------
 
@@ -341,10 +344,10 @@ CREATE TABLE `registerCodesUsed` (
 --
 
 INSERT INTO `registerCodesUsed` (`id`, `codeId`, `userId`, `time`) VALUES
-(1, 12, 1, '2023-05-26 12:26:47'),
-(2, 20, 4, '2023-05-31 10:19:50'),
+(1, 12, 2, '2023-05-26 12:26:47'),
+(2, 20, 19, '2023-05-31 10:19:50'),
 (3, 21, 5, '2023-05-31 12:46:44'),
-(4, 21, 4, '2023-05-31 12:59:51');
+(4, 21, 19, '2023-05-31 12:59:51');
 
 -- --------------------------------------------------------
 
@@ -364,9 +367,9 @@ CREATE TABLE `sites` (
 --
 
 INSERT INTO `sites` (`id`, `siteName`, `siteDescription`, `link`) VALUES
-(0, 'global', NULL, NULL),
-(1, 'default', NULL, NULL),
-(2, 'test', NULL, 'test');
+(1, 'global', NULL, NULL),
+(2, 'default', NULL, NULL),
+(3, 'test', NULL, 'test');
 
 -- --------------------------------------------------------
 
@@ -389,22 +392,22 @@ CREATE TABLE `userPermission` (
 --
 
 INSERT INTO `userPermission` (`id`, `userId`, `siteId`, `permissionId`, `header`, `dateStart`, `dateEnd`) VALUES
-(1, 0, 0, 1, 1, '2023-05-19 22:31:00', NULL),
-(2, 0, 0, 2, 1, '2023-05-19 22:31:00', NULL),
-(3, 1, 0, 3, 1, '2023-05-19 22:34:23', NULL),
-(4, 1, 0, 9, 1, '2023-05-19 22:34:23', NULL),
-(6, 1, 0, 10, 0, '2023-05-20 18:30:21', NULL),
-(8, 4, 1, 3, 1, '2023-06-01 09:21:44', NULL),
-(9, 4, 1, 9, 1, '2023-06-01 09:21:44', NULL),
-(10, 5, 1, 3, 1, '2023-06-01 11:06:51', NULL),
-(11, 5, 1, 9, 1, '2023-06-01 11:06:51', NULL),
-(12, 1, 1, 12, 1, '2023-06-01 12:09:43', NULL),
-(13, 1, 1, 13, 0, '2023-06-01 12:09:43', NULL),
-(14, 1, 1, 14, 0, '2023-06-08 11:39:29', NULL),
-(15, 1, 1, 15, 0, '2023-06-08 11:39:29', NULL),
-(17, 0, 0, 16, 0, '2023-06-16 09:35:40', NULL),
-(19, 1, 2, 12, 1, '2023-08-30 12:48:29', NULL),
-(23, 7, 0, 3, 1, '2023-09-18 10:30:52', NULL);
+(1, 1, 1, 1, 1, '2023-05-19 22:31:00', NULL),
+(2, 1, 1, 2, 1, '2023-05-19 22:31:00', NULL),
+(3, 2, 1, 3, 1, '2023-05-19 22:34:23', NULL),
+(4, 2, 1, 9, 1, '2023-05-19 22:34:23', NULL),
+(6, 2, 1, 10, 0, '2023-05-20 18:30:21', NULL),
+(8, 19, 2, 3, 1, '2023-06-01 09:21:44', NULL),
+(9, 19, 2, 9, 1, '2023-06-01 09:21:44', NULL),
+(10, 5, 2, 3, 1, '2023-06-01 11:06:51', NULL),
+(11, 5, 2, 9, 1, '2023-06-01 11:06:51', NULL),
+(12, 2, 2, 12, 1, '2023-06-01 12:09:43', NULL),
+(13, 2, 2, 13, 0, '2023-06-01 12:09:43', NULL),
+(14, 2, 2, 14, 0, '2023-06-08 11:39:29', NULL),
+(15, 2, 2, 15, 0, '2023-06-08 11:39:29', NULL),
+(17, 1, 1, 16, 0, '2023-06-16 09:35:40', NULL),
+(19, 2, 3, 12, 1, '2023-08-30 12:48:29', NULL),
+(23, 7, 1, 3, 1, '2023-09-18 10:30:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -427,9 +430,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `discordId`, `date_time`, `enbled`) VALUES
-(0, 'default', '', '', '0', '2023-05-11 06:43:20', 0),
-(1, 'awd', 'awd@awd.awd', '$2y$12$bwop6jybCK8FD0iv1VTEMe/g0rIanb7mfrZaBjbTbBR5XBJQr4rCa', '0', '2023-05-10 08:55:42', 1),
-(4, 'awdawdawd', 'awd@awd.awd', '$2y$12$r5PyvHux1X0K6nFJvm7U9ucUU/pOX9joPmd5hJiIFVWNFnlnaqDxK', '0', '2023-05-31 10:19:50', 1),
+(1, 'default', '', '', '0', '2023-05-11 06:43:20', 0),
+(2, 'awd', 'awd@awd.awd', '$2y$12$bwop6jybCK8FD0iv1VTEMe/g0rIanb7mfrZaBjbTbBR5XBJQr4rCa', '0', '2023-05-10 08:55:42', 1),
 (5, 'awfegaegfswaef', 'awd@awd.awd', '$2y$12$02OxGptN5/k50wP2JuS/2.v91/I1jSG0g6VjRuQ04uXTVBXeHllqG', '0', '2023-05-31 12:46:44', 1),
 (7, 'mine_cow135', 'krivig123@gmail.com', NULL, '170813552586653696', '2023-06-14 11:58:35', 1),
 (8, 'test', 'tedryhdr@awegfseg.awd', '$2y$12$U7MfhQf.LUNvIpWAyOMdkOhNMEMi.I8Xz4risuEZiswsjMTtP8b7S', NULL, '2023-09-14 11:45:05', 1),
@@ -442,7 +444,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `discordId`, `date_t
 (15, 'aaaaaa', 'aaaaaa@a', '$2y$12$riWa2Mdams7FvxDKEWalCugCVB7ijBGHci6rXqwPgHjZ2QhWvKUcW', NULL, '2023-09-14 12:10:29', 1),
 (16, 'aaaaaaa', 'aaaaaaa@a', '$2y$12$3zCMbWpbHv1rNr9V24QVsOjAVgakmYygr9GDxITTFW5ecfnJe1RNG', NULL, '2023-09-14 12:15:38', 1),
 (17, 'aaaaaaaa', 'aaaaaaaa@a', '$2y$12$S9sT7E1riE/X1jnjl5O8Ru2F/4PSwt82YDw48VxC5u/EWBcihAKlu', NULL, '2023-09-14 12:16:59', 1),
-(18, 'aaaaaaaaa', 'aaaaaaaaa@a', '$2y$12$LwhqLQEI4SWu1NloBs0/v.uXbWQgOqR7nvwlBrKHJJArQheTI4ECy', NULL, '2023-09-14 12:18:24', 1);
+(18, 'aaaaaaaaa', 'aaaaaaaaa@a', '$2y$12$LwhqLQEI4SWu1NloBs0/v.uXbWQgOqR7nvwlBrKHJJArQheTI4ECy', NULL, '2023-09-14 12:18:24', 1),
+(19, 'awdawdawd', 'awd@awd.awd', '$2y$12$r5PyvHux1X0K6nFJvm7U9ucUU/pOX9joPmd5hJiIFVWNFnlnaqDxK', '0', '2023-05-31 10:19:50', 1);
 
 -- --------------------------------------------------------
 
@@ -463,8 +466,8 @@ CREATE TABLE `user_tokens` (
 --
 
 INSERT INTO `user_tokens` (`id`, `selector`, `hashed_validator`, `user_id`, `expiry`) VALUES
-(10, 'ac3c7947391f07eb64d96f385cc8af81', '$2y$10$oirX8SFuRq7puxQiCVnPkeVbbw0l7Sdi5O/m8xH/0daPx415a9Su.', 1, '2023-07-13 09:08:37'),
-(11, '0889dcd957f02f804a98d32ef146da66', '$2y$10$eRlJKfVjaPfF0IYSEYt5Fec3r8Ra4I9TOtrvI0UM6k4o4bT6jEve2', 1, '2023-09-29 08:36:03');
+(10, 'ac3c7947391f07eb64d96f385cc8af81', '$2y$10$oirX8SFuRq7puxQiCVnPkeVbbw0l7Sdi5O/m8xH/0daPx415a9Su.', 2, '2023-07-13 09:08:37'),
+(12, 'e8967efc3adadf758c6851ddfc8d1360', '$2y$10$x4udZxLYMkp9GDrquKBXD.1RuVkRemfoChZViPKXVVhXmCLmG5qTO', 2, '2023-10-22 13:22:33');
 
 --
 -- Indexes for dumped tables
@@ -596,13 +599,13 @@ ALTER TABLE `group_groups`
 -- AUTO_INCREMENT for table `group_permissions`
 --
 ALTER TABLE `group_permissions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `group_userGroup`
 --
 ALTER TABLE `group_userGroup`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `permission`
@@ -632,19 +635,19 @@ ALTER TABLE `sites`
 -- AUTO_INCREMENT for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -654,62 +657,62 @@ ALTER TABLE `user_tokens`
 -- Constraints for table `asset_borrowed`
 --
 ALTER TABLE `asset_borrowed`
-  ADD CONSTRAINT `assetItem` FOREIGN KEY (`itemId`) REFERENCES `asset_items` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `assetUser` FOREIGN KEY (`userId`) REFERENCES `asset_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `borrowedBy` FOREIGN KEY (`borrowedBy`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `assetItem` FOREIGN KEY (`itemId`) REFERENCES `asset_items` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `assetUser` FOREIGN KEY (`userId`) REFERENCES `asset_user` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `borrowedBy` FOREIGN KEY (`borrowedBy`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `asset_user`
 --
 ALTER TABLE `asset_user`
-  ADD CONSTRAINT `assetInternalUser` FOREIGN KEY (`internalId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `assetInternalUser` FOREIGN KEY (`internalId`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `group_groups`
 --
 ALTER TABLE `group_groups`
-  ADD CONSTRAINT `group_siteId` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `group_siteId` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `group_permissions`
 --
 ALTER TABLE `group_permissions`
-  ADD CONSTRAINT `group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `groupPermission` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groupPermission` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `group_userGroup`
 --
 ALTER TABLE `group_userGroup`
-  ADD CONSTRAINT `userGroup_group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `userGroup_user` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `userGroup_group` FOREIGN KEY (`groupId`) REFERENCES `group_groups` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `userGroup_user` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `registerCodes`
 --
 ALTER TABLE `registerCodes`
-  ADD CONSTRAINT `createdBy` FOREIGN KEY (`createdBy`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `createdBy` FOREIGN KEY (`createdBy`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `registerCodesUsed`
 --
 ALTER TABLE `registerCodesUsed`
-  ADD CONSTRAINT `code` FOREIGN KEY (`codeId`) REFERENCES `registerCodes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `usedBy` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `code` FOREIGN KEY (`codeId`) REFERENCES `registerCodes` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usedBy` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `userPermission`
 --
 ALTER TABLE `userPermission`
-  ADD CONSTRAINT `permissionId` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `siteId` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `permissionId` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `siteId` FOREIGN KEY (`siteId`) REFERENCES `sites` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_tokens`
 --
 ALTER TABLE `user_tokens`
-  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
