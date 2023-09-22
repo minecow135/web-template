@@ -41,11 +41,11 @@
                 $_SESSION["siteId"] = $siteArr["id"];
             }
             else {
-                $_SESSION["siteId"] = 1;
+                $_SESSION["siteId"] = 2;
             }
         }
         else {
-            $_SESSION["siteId"] = 1;
+            $_SESSION["siteId"] = 2;
         }
 
         $token = filter_input(INPUT_COOKIE, 'remember_me', FILTER_SANITIZE_STRING);
@@ -81,7 +81,7 @@
             }
         }
 
-        $sql = "(SELECT userPermission.userId, users.username, userPermission.permissionId, permission.permissionName, permission.page, permission.dropdown, permission.placement, userPermission.header, userPermission.siteId, sites.siteName FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND (siteId = :siteId OR siteId = 0)) UNION (SELECT group_userGroup.userId, users.username, group_permissions.permissionId, permission.permissionName, permission.page, permission.dropdown, permission.placement, group_permissions.header, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id INNER JOIN group_permissions ON group_userGroup.groupId = group_permissions.groupId LEFT JOIN permission ON group_permissions.permissionId = permission.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_userGroup.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND (siteId = :siteId OR siteId = 0)) ORDER BY `placement`";
+        $sql = "(SELECT userPermission.userId, users.username, userPermission.permissionId, permission.permissionName, permission.page, permission.dropdown, permission.placement, userPermission.header, userPermission.siteId, sites.siteName FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE userPermission.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND (siteId = :siteId OR siteId = 1)) UNION (SELECT group_userGroup.userId, users.username, group_permissions.permissionId, permission.permissionName, permission.page, permission.dropdown, permission.placement, group_permissions.header, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id INNER JOIN group_permissions ON group_userGroup.groupId = group_permissions.groupId LEFT JOIN permission ON group_permissions.permissionId = permission.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_userGroup.userId = :userId AND dateStart < :date AND (dateEnd > :date OR dateEnd IS NULL) AND (siteId = :siteId OR siteId = 1)) ORDER BY `placement`";
         $stmt = $pdo->prepare($sql);
 
         $date = date("Y-m-d H:i:s");
@@ -91,7 +91,7 @@
             $userId = $_SESSION["id"];
         }
         else {
-            $userId = 0;
+            $userId = 1;
         }
         $stmt->bindValue(':userId', $userId);
         $stmt->bindValue(':date', $date);

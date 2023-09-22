@@ -53,7 +53,7 @@ headerr('Permissions', "permissions");
 
     $sql = "SELECT group_groups.id, group_groups.groupName, sites.siteName FROM `group_groups` LEFT JOIN sites ON group_groups.siteId = sites.id WHERE (group_groups.siteId = :siteId";
     if ($global) {
-        $sql .= " OR group_groups.siteId = '0'";
+        $sql .= " OR group_groups.siteId = '1'";
     }
 
     if ($all) {
@@ -93,7 +93,7 @@ headerr('Permissions', "permissions");
         $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE users.id = :userId AND (group_groups.siteId = :siteId";
             
             if ($global) {
-                $sql .= " OR group_groups.siteId = '0'";
+                $sql .= " OR group_groups.siteId = '1'";
             }
 
             if ($all) {
@@ -115,7 +115,7 @@ headerr('Permissions', "permissions");
 
         $sql = "SELECT userPermission.id, userPermission.userId, userPermission.siteId, userPermission.permissionId, userPermission.header, userPermission.dateStart, userPermission.dateEnd, users.username, sites.siteName, permission.permissionName, permission.page, permission.dropdown, permission.placement FROM userPermission LEFT JOIN users ON userPermission.userId = users.id LEFT JOIN sites ON userPermission.siteId = sites.id LEFT JOIN permission ON userPermission.permissionId = permission.id WHERE users.id = :userId AND (userPermission.siteId = :siteId";
         if ($global) {
-            $sql .= " OR userPermission.siteId = '0'";
+            $sql .= " OR userPermission.siteId = '1'";
         }
 
         if ($all) {
@@ -140,7 +140,7 @@ headerr('Permissions', "permissions");
         $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_groups.id = :groupId AND (group_groups.siteId = :siteId";
             
             if ($global) {
-                $sql .= " OR group_groups.siteId = '0'";
+                $sql .= " OR group_groups.siteId = '1'";
             }
 
             if ($all) {
@@ -162,7 +162,7 @@ headerr('Permissions', "permissions");
 
         $sql = "SELECT group_permissions.id, group_permissions.groupId, group_permissions.permissionId, group_permissions.header, group_groups.groupName, group_groups.siteId, permission.permissionName, permission.page, permission.dropdown, permission.placement, sites.siteName FROM group_permissions LEFT JOIN group_groups ON group_permissions.groupId = group_groups.id LEFT JOIN permission ON group_permissions.permissionId = permission.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_groups.id = :groupId AND (group_groups.siteId = :siteId";
         if ($global) {
-            $sql .= " OR group_groups.siteId = '0'";
+            $sql .= " OR group_groups.siteId = '1'";
         }
 
         if ($all) {
@@ -553,7 +553,7 @@ headerr('Permissions', "permissions");
                     echo "<meta http-equiv='refresh' content='0'>";
                 }
         }
-        
+
         if (isset($_POST["userSubmit"])) {
             if (!isset($_POST["end"]) || $_POST["end"] == "") {
                 $end = null;
