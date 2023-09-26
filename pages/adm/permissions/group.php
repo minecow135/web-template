@@ -42,7 +42,7 @@ headerr('Permissions', "permissions.addGroup");
         //Fetch row.
         $site = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT group_groups.id, group_groups.groupName, sites.siteName FROM `group_groups` LEFT JOIN sites ON group_groups.siteId = sites.id WHERE (group_groups.siteId = :siteId";
+    $sql = "SELECT group_groups.id, group_groups.groupName, group_groups.description, sites.siteName FROM `group_groups` LEFT JOIN sites ON group_groups.siteId = sites.id WHERE (group_groups.siteId = :siteId";
     if ($global) {
         $sql .= " OR group_groups.siteId = '1'";
     }
@@ -120,7 +120,7 @@ headerr('Permissions', "permissions.addGroup");
                     </select>
                 </td>
                     <td>
-                        <input type="text" name="description" placeholder="Description">
+                        <input type="text" name="desc" placeholder="Description">
                     <td>
                         <button type="submit" name="newGroup" value="newGroup">Submit</button>
                     </td>
@@ -131,10 +131,18 @@ headerr('Permissions', "permissions.addGroup");
 
     <?php
         if ($_POST["newGroup"]) {
-            $stmt = $pdo->prepare("INSERT INTO `group_groups`(`groupName`, `siteId`) VALUES (:groupName, :siteId)");
+            if (isset($_POST["desc"]) && $_POST["desc"] != "") {
+                $desc = $_POST["desc"];
+            }
+            else {
+                $desc = null;
+            }
+
+            $stmt = $pdo->prepare("INSERT INTO `group_groups`(`groupName`, `siteId`, description) VALUES (:groupName, :siteId, :desc)");
         
                 $stmt->bindValue(':groupName', $_POST["groupName"]);
                 $stmt->bindValue(':siteId', $_POST["site"]);
+                $stmt->bindValue(':desc', $desc);
      
                 if($stmt->execute()){
                     echo '<script>alert("group added")</script>';
