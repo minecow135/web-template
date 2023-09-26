@@ -18,6 +18,11 @@ headerr('Permissions', "permissions");
     $permissionName = "permissions.delete.groupUser";
     $deleteGroupUser = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
 
+    if ($_POST["selectSubmit"]) {
+        $_SESSION["select"]["selectUser"] = $_POST["selectUser"];
+        $_SESSION["select"]["selectGroup"] = $_POST["selectGroup"];
+    }
+
     $sql = "SELECT id, username FROM `users`";
         $stmt = $pdo->prepare($sql);
 
@@ -89,7 +94,7 @@ headerr('Permissions', "permissions");
 ?>
 
 <?php
-    if ($_POST["user"]) {
+    if ($_SESSION["select"]["selectUser"]) {
         $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE users.id = :userId AND (group_groups.siteId = :siteId";
             
             if ($global) {
@@ -104,7 +109,7 @@ headerr('Permissions', "permissions");
 
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindValue(':userId', $_POST["user"]);
+            $stmt->bindValue(':userId', $_SESSION["select"]["selectUser"]);
             $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
@@ -126,7 +131,7 @@ headerr('Permissions', "permissions");
         
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindValue(':userId', $_POST["user"]);
+            $stmt->bindValue(':userId', $_SESSION["select"]["selectUser"]);
             $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
@@ -136,7 +141,7 @@ headerr('Permissions', "permissions");
             $userPermissions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    if ($_POST["group"]) {
+    if ($_SESSION["select"]["selectGroup"]) {
         $sql = "SELECT group_userGroup.id, group_userGroup.userId, users.username, group_userGroup.groupId, group_userGroup.dateStart, group_userGroup.dateEnd, group_groups.groupName, group_groups.siteId, sites.siteName FROM `group_userGroup` LEFT JOIN users ON group_userGroup.userId = users.id LEFT JOIN group_groups ON group_userGroup.groupId = group_groups.id LEFT JOIN sites ON group_groups.siteId = sites.id WHERE group_groups.id = :groupId AND (group_groups.siteId = :siteId";
             
             if ($global) {
@@ -151,7 +156,7 @@ headerr('Permissions', "permissions");
 
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindValue(':groupId', $_POST["group"]);
+            $stmt->bindValue(':groupId', $_SESSION["select"]["selectGroup"]);
             $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
@@ -173,7 +178,7 @@ headerr('Permissions', "permissions");
         
             $stmt = $pdo->prepare($sql);
 
-            $stmt->bindValue(':groupId', $_POST["group"]);
+            $stmt->bindValue(':groupId', $_SESSION["select"]["selectGroup"]);
             $stmt->bindValue(':siteId', $_SESSION["siteId"]);
 
             //Execute.
@@ -191,23 +196,23 @@ headerr('Permissions', "permissions");
     <div class="box">
         <form action="" method="post">
             <h4>Select user or group</h4>
-            <select name="user" id="">
-                <option value="" selected disabled hidden>User</option>
+            <select name="selectUser" id="">
+                <option value="" selected>Select user</option>
                 <?php
                     foreach ($user as $u) {
                         echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
                     }
                 ?>
             </select>
-            <select name="group" id="">
-                <option value="" selected disabled hidden>Group</option>
+            <select name="selectGroup" id="">
+                <option value="" selected>Select group</option>
                 <?php
                     foreach ($group as $g) {
                         echo "<option value=" . $g["id"] . ">" . $g["siteName"] . ", " . $g["groupName"] . "</option>";
                     }
                 ?>
             </select>
-            <input type="submit" value="Submit">
+            <button type="submit" name="selectSubmit" value="selectSubmit">Submit</button>
         </form>
     </div>
 </div>
@@ -256,8 +261,8 @@ headerr('Permissions', "permissions");
                         <form action="" method="post">
                             <td>Add new</td>
                             <td>
-                                <?= $_POST["user"] ?>
-                                <input type="hidden" name="user" value="<?= $_POST["user"] ?>">
+                                <?= $_SESSION["select"]["selectUser"] ?>
+                                <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
                             </td>
                             <td>
                             </td>
@@ -332,8 +337,8 @@ headerr('Permissions', "permissions");
                         <form action="" method="post">
                             <td>Add new</td>
                             <td>
-                                <?= $_POST["user"] ?>
-                                <input type="hidden" name="user" value="<?= $_POST["user"] ?>">
+                                <?= $_SESSION["select"]["selectUser"] ?>
+                                <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
                             </td>
                             <td>
                                 <select name="site" id="">
@@ -380,7 +385,7 @@ headerr('Permissions', "permissions");
             <?php
         }
 
-        if ($_POST["group"]) {
+        if ($_SESSION["select"]["selectGroup"]) {
             ?>
             <table>
                 <thead>
@@ -432,8 +437,8 @@ headerr('Permissions', "permissions");
                             <td>Add new</td>
                             <td></td>
                             <td>
-                                <?= $_POST["group"] ?>
-                                <input type="hidden" name="group" value="<?= $_POST["group"] ?>">
+                                <?= $_SESSION["select"]["selectGroup"] ?>
+                                <input type="hidden" name="group" value="<?= $_SESSION["select"]["selectGroup"] ?>">
                             </td>
                             <td>
                                 <select name="permission" id="">
@@ -501,8 +506,8 @@ headerr('Permissions', "permissions");
                         <form action="" method="post">
                             <td>Add new</td>
                             <td>
-                                <?= $_POST["group"] ?>
-                                <input type="hidden" name="group" value="<?= $_POST["group"] ?>">
+                                <?= $_SESSION["select"]["selectGroup"] ?>
+                                <input type="hidden" name="group" value="<?= $_SESSION["select"]["selectGroup"] ?>">
                             </td>
                             <td>
                             </td>
