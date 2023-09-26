@@ -18,6 +18,9 @@ headerr('Permissions', "permissions");
     $permissionName = "permissions.delete.groupUser";
     $deleteGroupUser = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
 
+    $permissionName = "permissions.addGroup";
+    $addGroup = ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName'))) && $permissionName != "default");
+
     if ($_POST["selectSubmit"]) {
         $_SESSION["select"]["selectUser"] = $_POST["selectUser"];
         $_SESSION["select"]["selectGroup"] = $_POST["selectGroup"];
@@ -210,6 +213,11 @@ headerr('Permissions', "permissions");
                     foreach ($group as $g) {
                         echo "<option value=" . $g["id"] . ">" . $g["siteName"] . ", " . $g["groupName"] . "</option>";
                     }
+                    if ($addGroup) {
+                ?>
+                        <option value="createNew">Create new</option>
+                <?php
+                    }
                 ?>
             </select>
             <button type="submit" name="selectSubmit" value="selectSubmit">Submit</button>
@@ -218,7 +226,12 @@ headerr('Permissions', "permissions");
 </div>
 <div class="content-wrapper-center">
     <?php
-        if ($_POST["user"]) {
+        if ($_POST["selectGroup"] == "createNew") {
+            unset($_SESSION["select"]["selectGroup"]);
+            unset($_POST["selectGroup"]);
+            header("Location: index.php?page=adm/permissions/group");
+        }
+        if ($_SESSION["select"]["selectUser"]) {
             ?>
             
             <table>
