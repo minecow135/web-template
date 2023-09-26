@@ -261,7 +261,7 @@ headerr('Permissions', "permissions");
                                     <?php
                                         if ($deleteGroupUser) {
                                     ?>
-                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                                     <?php
                                         }
                                     ?>
@@ -506,7 +506,7 @@ headerr('Permissions', "permissions");
                                     <?php
                                         if ($deleteGroupUser) {
                                     ?>
-                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                                     <?php
                                         }
                                     ?>
