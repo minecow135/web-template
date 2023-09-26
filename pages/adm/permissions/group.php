@@ -94,7 +94,7 @@ headerr('Permissions', "permissions.addGroup");
                             <?php
                                 if ($deleteGroupUser) {
                             ?>
-                            <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGoup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                            <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                             <?php
                                 }
                             ?>
