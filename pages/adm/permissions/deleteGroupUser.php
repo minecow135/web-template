@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
         <?php else : ?>
             <p>Are you sure you want to delete product #<?= $contact['id'] ?>?</p>
             <div class="yesno">
-                <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $contact['id'] ?>&confirm=yes">Yes</a>
+                <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $contact['id'] ?>&confirm=yes">Yes</a>
                 <a href="index.php?page=adm/<?= basename(__DIR__) ?>/index">No</a>
             </div>
         <?php endif; ?>
