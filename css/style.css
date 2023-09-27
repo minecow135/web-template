@@ -14,11 +14,16 @@ html {
 }
 
 body {
+	display: flex;
+    flex-direction: column;
 	position: relative;
 	min-height: 100vh;
 	color: #555555;
 	margin: 0;
-	margin-bottom: 20px;
+}
+
+main {
+	flex-grow: 1;
 }
 
 /* Headers */

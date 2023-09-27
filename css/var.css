@@ -51,6 +51,9 @@
     --color_bg_header:          #353535;
     --color_h_table:            #b6b6b6;
 
+    /* Header */
+    --color_bg_footer:          #686868;
+
     /* box */
     --color_bg_box:             #5e5d5d;
     --color_bg_box_submit:      #4e4e4e;

@@ -73,11 +73,11 @@ header nav a span {
 
 /* Footer */
 footer {
-	position: absolute;
 	bottom: 0;
-	border-top: 1px solid var(--color_border);
 	padding: 20px 0;
 	width: 100%;
+	margin-top: 20px;
+	background-color: var(--color_bg_footer);
 }
 
 footer p {
