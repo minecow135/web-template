@@ -69,8 +69,8 @@ headerr('Import', "asset.create");
                 <td><input type="number" name="count" placeholder="Count" id="count" min=1></td>
             </tr>
             <tr>
-                <td><label for="code"></label>Code</td>
-                <td><input type="text" name="code" placeholder="Code" id="code"></td>
+                <td><label for="addCode"></label>Code</td>
+                <td><input type="text" name="code" placeholder="Code" id="addCode"></td>
             </tr>
             <tr>
                 <td><button type="submit" name="submit">Submit</button></td>
@@ -80,6 +80,31 @@ headerr('Import', "asset.create");
         </table>
     </form>
     
+    <h3>Scan kode</h3>
+    <div id="reader" width="600px"></div>
+
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function onScanSuccess(decodedText, decodedResult) {
+            // handle the scanned code as you like, for example:
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+            document.getElementById("addCode").value = decodedText;
+        }
+        
+        function onScanFailure(error) {
+            // handle scan failure, usually better to ignore and keep scanning.
+            // for example:
+            // console.warn(`Code scan error = ${error}`);
+        }
+        
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader",
+            { fps: 10, qrbox: {width: 300, height: 300} },
+            /* verbose= */ false
+        );
+
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
 </div>
 
 
