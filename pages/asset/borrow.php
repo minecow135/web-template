@@ -136,19 +136,19 @@ headerr('Borrow', "asset.borrow");
         <h2>Out</h2>
         <table>
             <tr>
-                <td><label for="email">Email</label></td>
+                <td><label for="outEmail">Email</label></td>
                 <td><input type="email" id="outEmail" name="email" placeholder="Email"></td>
             </tr>
             <tr>
-                <td><label for="name">Start</label></td>
+                <td><label for="outStart">Start</label></td>
                 <td><input type="datetime-local" id="outStart" name="start" placeholder="Start" value="<?= $date ?>"></td>
             </tr>
             <tr>
-                <td><label for="name">End</label></td>
+                <td><label for="outEnd">End</label></td>
                 <td><input type="datetime-local" id="outEnd" name="end" placeholder="End" value="<?= $dateMonth ?>"></td>
             </tr>
             <tr>
-                <td><label for="code">Item code</label></td>
+                <td><label for="outCode">Item code</label></td>
                 <td><input type="text" id="outCode" name="code" placeholder="Code"></td>
             </tr>
             <tr>
@@ -161,7 +161,7 @@ headerr('Borrow', "asset.borrow");
         <h2>In</h2>
         <table>
             <tr>
-                <td><label for="code">Item code</label></td>
+                <td><label for="inCode">Item code</label></td>
                 <td><input type="text" id="inCode" name="code" placeholder="Code"></td>
             </tr>
             <tr>
