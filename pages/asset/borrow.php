@@ -137,19 +137,19 @@ headerr('Borrow', "asset.borrow");
         <table>
             <tr>
                 <td><label for="email">Email</label></td>
-                <td><input type="email" id="email" name="email" placeholder="Email"></td>
+                <td><input type="email" id="outEmail" name="email" placeholder="Email"></td>
             </tr>
             <tr>
                 <td><label for="name">Start</label></td>
-                <td><input type="datetime-local" id="start" name="start" placeholder="Start" value="<?= $date ?>"></td>
+                <td><input type="datetime-local" id="outStart" name="start" placeholder="Start" value="<?= $date ?>"></td>
             </tr>
             <tr>
                 <td><label for="name">End</label></td>
-                <td><input type="datetime-local" id="end" name="end" placeholder="End" value="<?= $dateMonth ?>"></td>
+                <td><input type="datetime-local" id="outEnd" name="end" placeholder="End" value="<?= $dateMonth ?>"></td>
             </tr>
             <tr>
                 <td><label for="code">Item code</label></td>
-                <td><input type="text" id="code" name="code" placeholder="Code"></td>
+                <td><input type="text" id="outCode" name="code" placeholder="Code"></td>
             </tr>
             <tr>
                 <td></td>
@@ -162,7 +162,7 @@ headerr('Borrow', "asset.borrow");
         <table>
             <tr>
                 <td><label for="code">Item code</label></td>
-                <td><input type="text" id="code" name="code" placeholder="Code"></td>
+                <td><input type="text" id="inCode" name="code" placeholder="Code"></td>
             </tr>
             <tr>
                 <td><label for="dateBack">Time</label></td>
@@ -174,6 +174,12 @@ headerr('Borrow', "asset.borrow");
             </tr>
         </table>
     </form>
+
+    <h3>Scan kode</h3>
+    <div id="reader" width="600px"></div>
+
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
+    <script src="include/js/scan.js" type="text/javascript"></script>
 </div>
 
 <?= template_footer() ?>
