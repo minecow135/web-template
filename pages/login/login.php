@@ -112,7 +112,7 @@ $auth_url = url($client_id, $redirect_url, $scopes);
             <?php
             if ($discord) {
             ?>
-                <a class=discordLogin href='$auth_url'>
+                <a class=discordLogin href='<?= $auth_url ?>'>
                     <div >
                         <i class='fab fa-discord'></i> Continue with Discord
                     </div>

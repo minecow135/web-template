@@ -152,8 +152,8 @@ if(isset($_POST['submit'])) {
 $auth_url = url($client_id, $redirect_url, $scopes);
 
 ?>
-<div class="content-wrapper-center">
-    <div class="box">
+<div class="content-wrapper center vCenter">
+    <div class="loginBox">
         <h1>Register</h1>
         <form action="" method="post">
             <input required="required" type="text" name="username" placeholder="Username">
@@ -169,8 +169,14 @@ $auth_url = url($client_id, $redirect_url, $scopes);
         </form>
         <?php
             if ($discord) {
-                echo "<a href='$auth_url'><button name='submit'>Continue with Discord</button></a>";
-                }
+                ?>
+                    <a class=discordLogin href='<?= $auth_url ?>'>
+                        <div >
+                            <i class='fab fa-discord'></i> Continue with Discord
+                        </div>
+                    </a>
+                    <?php
+            }
             ?>
       </div>
 </div>
