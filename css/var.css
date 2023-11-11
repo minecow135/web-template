@@ -42,11 +42,13 @@
     /* login text size */
     --size_txt_h_login:                 var(--size_txt_h1);
     --size_txt_p_login:                 var(--size_txt_p);
+    --size_txt_button_login:            var(--size_txt_p_login);
 
     /* login text color */
     --color_txt_h_login:                var(--color_txt_h_2);
     --color_txt_p_login:                var(--color_txt_p_1);
     --color_txt_login_input:            var(--color_txt_p_2);
+    --color_txt_button_login:           var(--color_txt_p_1);
 
     /* login color */
     --color_bg_login:                   #01518E;
@@ -100,6 +102,25 @@
     /* asset table border radius */
     --borderR_thead_assetList:          3px;
     --borderR_tbody_assetList:          20px;
+
+
+    /* asset borrow text color */
+    --color_txt_h_borrow:               var(--color_txt_h_login);
+    --color_txt_p_borrow:               var(--color_txt_p_login);
+    --color_txt_borrow_input:           var(--color_txt_login_input);
+    --color_txt_button_borrow:          var(--color_txt_p_1);
+    
+    /* asset borrow text size */
+    --size_txt_h_borrow:                var(--size_txt_h_login);
+    --size_txt_p_borrow:                var(--size_txt_p_login);
+    --size_txt_button_borrow:           var(--size_txt_p_login);
+
+    /* asset borrow color */
+    --color_bg_borrow:                  var(--color_bg_login);
+    --color_border_borrow:              var(--color_border_login);
+
+    --color_bg_borrow_input:            var(--color_bg_login_input);
+    --color_bg_borrow_submit:           var(--color_bg_login_submit);
 
 
 

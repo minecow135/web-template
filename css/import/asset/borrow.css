@@ -8,10 +8,13 @@
 .borrow form {
     min-width: 200px;
     width: 30vw;
-    height: fit-content;
+    height: auto;
   	background-color: var(--color_bg_borrow);
   	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
 
 .borrow h2 {
@@ -22,41 +25,48 @@
   	border-bottom: 1px solid var(--color_border_borrow);
 }
 
-
-.borrow form table {
-    width: 90%;
-    margin: auto;
-}
-
 .borrow .row {
     width: 90%;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.borrow .row label {
+    color: var(--color_txt_p_borrow);
+}
+
 .borrow form input[type="text"], .borrow form input[type="email"], .borrow form input[type="datetime-local"] {
     width: 60%;
-    border: 1px solid var(--color_border_login);
-    margin-bottom: 20px;
+    border: 1px solid var(--color_border_borrow);
+    margin-top: 20px;
     padding: 15px;
-    font-size: var(--size_txt_p_login);
+    font-size: var(--size_txt_p_borrow);
     border-radius: 25px;
-    background-color: var(--color_bg_login_input);
-    color: var(--color_txt_login_input);
+    background-color: var(--color_bg_borrow_input);
+    color: var(--color_txt_borrow_input);
 }
 
 .borrow form button {
     width: 90%;
     margin: 5%;
     padding: 15px;
-    background-color: var(--color_bg_login_submit);
+    background-color: var(--color_bg_borrow_submit);
     border: 0;
     cursor: pointer;
     font-weight: bold;
-    color: var(--color_txt_p_login);
+    color: var(--color_txt_button_borrow);
     transition: background-color 0.2s;
-    font-size: var(--size_txt_p_login);
+    font-size: var(--size_txt_button_borrow);
     border-radius: 25px;
+    align-self: flex-end;
+}
+
+.filler {
+    flex-grow: 1;
+}
+
+.qr {
+    width: 100%;
 }
