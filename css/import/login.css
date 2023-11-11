@@ -1,4 +1,5 @@
 .loginBox {
+    min-width: 200px;
     width: 50vw;
     height: fit-content;
   	background-color: var(--color_bg_login);
@@ -33,7 +34,7 @@
     color: var(--color_txt_login_input);
 }
 
-.loginBox form input[type="submit"], .loginBox form button {
+.loginBox form button {
     width: 90%;
     margin: 5%;
     margin-bottom: 0;
