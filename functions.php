@@ -122,7 +122,7 @@
             </head>
             <body>
                 <header>
-                    <div class="content-wrapper">
+                    <div class="head-wrapper">
                         <a href="index.php">
                             <img src="img/logo.png" height="70px" alt="">
                             <h1>' . $name . '</h1>
@@ -149,7 +149,7 @@
         echo '
                 </main>
                 <footer>
-                    <div class="content-wrapper">
+                    <div class="footer-wrapper">
                         <!-- Footer -->
 
                         <a href="https://github.com/minecow135">mine_cow135</a>

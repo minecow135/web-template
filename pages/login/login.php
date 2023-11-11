@@ -95,26 +95,32 @@ if(isset($_POST['submit'])){
 $auth_url = url($client_id, $redirect_url, $scopes);
 
 ?>
-<div class="content-wrapper-center">
-    <div class="box">
+<div class="content-wrapper center vCenter">
+    <div class="loginBox">
         <h1>Log in</h1>
         <form action="" method="post">                          
             <input type="text" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
-            <div>
+            <div class=rememberLogin>
                 <label class="switch">
-                    <input type="checkbox" name="remember">
+                    <input type="checkbox" name="remember" id="remember">
                     <span class="slider round"></span>
                 </label>
-                <label for="remember">Remember me</label>
+                <label class="rememberLabel" for="remember">Remember me</label>
             </div>
-            <button name="submit" type="submit">sign in</button>
-        </form>
-        <?php
+            <button name="submit" type="submit">Sign in</button>
+            <?php
             if ($discord) {
-                echo "<a href='$auth_url'><button name='submit'>Continue with Discord</button></a>";
+            ?>
+                <a class=discordLogin href='$auth_url'>
+                    <div >
+                        <i class='fab fa-discord'></i> Continue with Discord
+                    </div>
+                </a>
+                <?php
             }
         ?>
+        </form>
     </div>
 </div>
 

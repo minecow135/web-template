@@ -1,61 +1,66 @@
 * {
-    /* color */
-    --color_bg_background:      #838383;
-    --color_border:             #dee0e4;
-    --color_confirm:            #38b673;
-    --color_confirm_hover:      #32a367;
+    /* color site */
+    --color_bg_background:              #0077B6;
 
-    --color_txt_h_1:            #adadad;
-    --color_txt_h_2:            #555555;
-
-    --color_txt_p_1:            #adadad;
-    --color_txt_p_2:            #555555;
-    --color_txt_p_1:            #cacaca;
-
-    /* size */
+    /* content text size */
     
-    --size_tx_h1_1:             50px;
-    --size_tx_h1_2:             ;
-    --size_tx_h1_3:             25px;
+    --size_txt_h1:                      50px;
+    --size_txt_h2:                      40px;
+    --size_txt_h3:                      35px;
+    --size_txt_h4:                      30px;
+    --size_txt_h5:                      25px;
+    --size_txt_h6:                      20px;
 
-    --size_tx_h2_1:             40px;
-    --size_tx_h2_2:             30px;
-    --size_tx_h2_3:             ;
+    --size_txt_p:                       17px;
 
-    --size_tx_h3_1:             35px;
-    --size_tx_h3_2:             ;
-    --size_tx_h3_3:             ;
+    /* content text color */
 
-    --size_tx_h4_1:             30px;
-    --size_tx_h4_2:             ;
-    --size_tx_h4_3:             ;
+    --color_txt_h_1:                    #00B4D8;
+    --color_txt_h_2:                    #03045E;
 
-    --size_tx_h5_1:             25px;
-    --size_tx_h5_2:             ;
-    --size_tx_h5_3:             ;
+    --color_txt_p_1:                    var(--color_txt_h_1);
+    --color_txt_p_2:                    var(--color_txt_h_2);
 
-    --size_tx_h6_1:             20px;
-    --size_tx_h6_2:             ;
-    --size_tx_h6_3:             ;
+    /* header text size */
+    --size_txt_header_h1:               25px;
+    --size_txt_header:                  var(--size_txt_p);
 
-    /* Header */
-    --size_text_header_h1:      25px;
-    --size_text_header:         17px;
-    --size_text_header_span:    12px;
     
-    --size_item_span:           16px;
+    /* header color */
+    --color_bg_header:                  #03045E;
+    --color_txt_header:                 #0096C7;
 
-    --place_item_span_top:      22px;
-    --place_item_span_right:    0px;
+    /* footer color */
+    --color_bg_footer:                  #023e8a;
+    --color_txt-footer:                 #00b3d6;
     
-    --color_bg_header:          #353535;
-    --color_h_table:            #b6b6b6;
+    /* footer text size */
 
-    /* Header */
-    --color_bg_footer:          #686868;
+    --padding_footer_top:               20px;
+    --padding_footer_bottom:            var(--padding_footer_top);     
 
-    /* box */
-    --color_bg_box:             #5e5d5d;
-    --color_bg_box_submit:      #4e4e4e;
-    --color_bg_box_submit_hover:#3b3b3b;
+    /* login */
+    --color_bg_login:                   #01518E;
+    --color_border_login:               #0077B6;
+
+    --color_bg_login_input:             var(--color_bg_background);
+
+    --color_txt_h_login:                var(--color_txt_h_2);
+    --color_txt_p_login:                var(--color_txt_p_1);
+    --color_txt_login_input:            var(--color_txt_p_2);
+    
+    --color_bg_login_submit:            #03045E;
+    --color_bg_login_submit_hover:      #023E8A;
+
+    --color_bg_login_discord:           #424549;
+    --color_bg_login_discord_hover:     #424549;
+
+    --size_txt_h_login:                 var(--size_txt_h1);
+    --size_txt_p_login:                 var(--size_txt_p);
+
+    --color_slider_on_login:            #0099CC;
+    --color_slider_dot_login:           #03045E;
+
+
+
 }

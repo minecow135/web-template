@@ -1,7 +1,13 @@
 @import 'var.css';
 
-@import 'header.css';
-@import 'footer.css';
+@import 'import/style.css';
+
+@import 'import/header.css';
+@import 'import/footer.css';
+
+@import 'import/login.css';
+
+@import 'import/content.css';
 
 @import 'https://use.fontawesome.com/releases/v5.7.1/css/all.css';
 @import 'https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i';

@@ -1,0 +1,53 @@
+/* Header */
+header {
+	background-color: var(--color_bg_header);
+}
+
+header .head-wrapper {
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+}
+
+header .head-wrapper a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+}
+
+header .head-wrapper a h1 {
+	font-size: var(--size_txt_header_h1);
+	padding: 0;
+	color: inherit;
+}
+
+header img {
+	margin: 5px;
+}
+
+header {
+	color: var(--color_txt_header);
+}
+
+header a {
+	text-decoration: none;
+}
+
+header nav {
+	display: flex;
+	flex-grow: 1;
+	flex-basis: 0;
+	justify-content: flex-end;
+	align-items: center;
+	position: relative;
+}
+
+header nav a {
+	text-decoration: none;
+	color: inherit;
+	margin: 0 2px;
+	font-size: var(--size_txt_header);
+}
