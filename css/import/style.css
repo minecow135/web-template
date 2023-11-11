@@ -46,3 +46,7 @@ h5 {
 h6 {
 	font-size: var(--size_txt_h6);
 }
+
+main {
+	flex-grow: 1;
+}

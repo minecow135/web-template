@@ -1,16 +1,14 @@
 /* Footer */
 footer {
-	position: absolute;
-	bottom: 0;
 	width: 100%;
 	background-color: var(--color_bg_footer);
-
+	margin-top: 20px;
 }
 
 .footer-wrapper {
 	padding: var(--padding_footer_top) 0 var(--padding_footer_bottom) 0;
 	width: 80%;
-	margin: auto auto;
+	margin: auto;
 }
 
 footer .footer-wrapper p {
