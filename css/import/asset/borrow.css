@@ -63,10 +63,6 @@
     align-self: flex-end;
 }
 
-.filler {
-    flex-grow: 1;
-}
-
 .qr {
     width: 100%;
 }

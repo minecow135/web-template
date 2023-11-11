@@ -50,3 +50,7 @@ h6 {
 main {
 	flex-grow: 1;
 }
+
+.filler {
+    flex-grow: 1;
+}
