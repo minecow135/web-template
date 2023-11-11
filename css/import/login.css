@@ -43,9 +43,9 @@
     border: 0;
     cursor: pointer;
     font-weight: bold;
-    color: var(--color_txt_p_login);
+    color: var(--color_txt_button_login);
     transition: background-color 0.2s;
-    font-size: var(--size_txt_p_login);
+    font-size: var(--size_txt_button_login);
     border-radius: 25px;
 }
 
