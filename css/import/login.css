@@ -69,6 +69,7 @@
     font-size: var(--size_txt_p_login);
     display: flex;
     justify-content: center;
+    text-decoration: none;
 }
 
 .discordLogin:hover {

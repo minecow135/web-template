@@ -39,55 +39,57 @@ headerr('Item list', "asset.itemList");
         }
 ?>
 
-<div class="content-wrapper-center">
-    <h1 class="head">Item list</h1>
-    <div>
-        <?php
-            $permissionName = "asset.borrow";
-            if (true === ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName')))) || $permissionName == "default") {
-                echo '<a href="index.php?page=asset/borrow"><h3>Register borrow</h3></a>';
-            }
-            $permissionName = "asset.create";
-            if (true === ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName')))) || $permissionName == "default") {
-                echo '<a href="index.php?page=asset/import"><h3>Add items</h3>';
-            }
-        ?>
-        </a>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Category</td>
-                <td>Name</td>
-                <td>Code</td>
-                <td>Borrowed by</td>
-                <td>Date end</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
+<div class="content-wrapper">
+    <div class="center">
+        <h1 class="head">Item list</h1>
+        <div class="borrowButtons">
             <?php
-                foreach ($item as $i) {
-                    unset($found_key);
-                    if (in_array($i["id"],array_column($borrow, "itemId"))) {
-                        $found_key = array_search($i["id"],array_column($borrow, "itemId"));
-                    }
-            ?>
-                    <tr>
-                        <td><?= $i["id"] ?></td>
-                        <td><?= $i["category"] ?></td>
-                        <td><?= $i["name"] ?></td>
-                        <td><?= $i["code"] ?></td>
-                        <td><?= $borrow[$found_key]["mail"] ?></td>
-                        <td><?= $borrow[$found_key]["dateEnd"] ?></td>
-                        <td><a href="index.php?page=asset/itemList&delete=<?= $i["id"] ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
-                    </tr>
-            <?php
+                $permissionName = "asset.borrow";
+                if (true === ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName')))) || $permissionName == "default") {
+                    echo '<a href="index.php?page=asset/borrow">Register borrow</a>';
+                }
+                $permissionName = "asset.create";
+                if (true === ((in_array($permissionName, array_column($_SESSION["permissions"], 'permissionName')))) || $permissionName == "default") {
+                    echo '<a href="index.php?page=asset/import">Add items</a>';
                 }
             ?>
-        </tbody>
-    </table>
+
+        </div>
+        <table class="assetList">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Category</td>
+                    <td>Name</td>
+                    <td>Code</td>
+                    <td>Borrowed by</td>
+                    <td>Date end</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach ($item as $i) {
+                        unset($found_key);
+                        if (in_array($i["id"],array_column($borrow, "itemId"))) {
+                            $found_key = array_search($i["id"],array_column($borrow, "itemId"));
+                        }
+                ?>
+                        <tr>
+                            <td><?= $i["id"] ?></td>
+                            <td><?= $i["category"] ?></td>
+                            <td><?= $i["name"] ?></td>
+                            <td><?= $i["code"] ?></td>
+                            <td><?= $borrow[$found_key]["mail"] ?></td>
+                            <td><?= $borrow[$found_key]["dateEnd"] ?></td>
+                            <td><a href="index.php?page=asset/itemList&delete=<?= $i["id"] ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                        </tr>
+                <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?= template_footer() ?>

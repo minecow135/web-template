@@ -1,0 +1,95 @@
+.borrowButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.borrowButtons a {
+    width: 40%;
+    color: var(--color_txt_assetList_link);
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    background-color: var(--color_bg_assetList_link);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_button_assetList);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.borrowButtons a:hover {
+    background-color: var(--color_bg_assetList_link_hover);
+    color: var(--color_txt_assetList_link_hover);
+    transition: background-color 0.2s;
+}
+
+/* asset table */
+.assetList {
+    width: 100%;
+    border-spacing: 0 3px;
+}
+
+/* table head */
+.assetList thead td {
+    font-weight: bold;
+    color: var(--color_h_table_assetList);
+    padding: 10px;
+    background-color: var(--color_bg_thead_assetList);
+}
+
+.assetList td:first-child {
+    border-top-left-radius: var(--borderR_thead_assetList); 
+    border-bottom-left-radius: var(--borderR_thead_assetList);
+}
+
+.assetList thead td:last-child {
+    border-bottom-right-radius: var(--borderR_thead_assetList); 
+    border-top-right-radius: var(--borderR_thead_assetList); 
+}
+
+/* table body */
+.assetList tbody td {
+    padding: 10px;
+    color: var(--color_p_table_assetList);
+    background-color: var(--color_bg_tbody_assetList);
+}
+
+.assetList tbody td a {
+    color: var(--color_txt_assetList_delete);
+    padding: 5px 10px;
+    background-color: var(--color_bg_assetList_delete);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_p_assetList);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.assetList tbody td a:hover {
+    background-color: var(--color_bg_assetList_delete_hover);
+    color: var(--color_txt_assetList_delete_hover);
+    transition: background-color 0.2s;
+}
+
+.assetList tbody tr:hover td {
+    color: var(--color_p_table_assetList_hover);
+    background-color: var(--color_bg_tbody_assetList_hover);
+}
+
+.assetList tbody td:first-child {
+    border-top-left-radius: var(--borderR_tbody_assetList); 
+    border-bottom-left-radius: var(--borderR_tbody_assetList);
+}
+
+.assetList tbody td:last-child {
+    border-bottom-right-radius: var(--borderR_tbody_assetList); 
+    border-top-right-radius: var(--borderR_tbody_assetList); 
+}
