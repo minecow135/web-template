@@ -49,64 +49,60 @@ headerr('Import', "asset.create");
     }
 ?>
 
-<div class="content-wrapper-center">
-    <h1 class="head">Import</h1>
-</div>
-
-<div class="content-wrapper-center">
-    <form action="" method="post">
-        <table>
-            <tr>
-                <td><label for="category">Category</label></td>
-                <td><input type="text" name="category" placeholder="Category" id="category"></td>
-            </tr>
-            <tr>
-                <td><label for="name"></label>Name</td>
-                <td><input type="text" name="name" placeholder="Name" id="name"></td>
-            </tr>
-            <tr>
-                <td><label for="count"></label>Count</td>
-                <td><input type="number" name="count" placeholder="Count" id="count" min=1></td>
-            </tr>
-            <tr>
-                <td><label for="addCode"></label>Code</td>
-                <td><input type="text" name="code" placeholder="Code" id="addCode"></td>
-            </tr>
-            <tr>
-                <td><button type="submit" name="submit">Submit</button></td>
-                <td></td>
-            </tr>
-
-        </table>
-    </form>
-    
-    <h3>Scan kode</h3>
-    <div id="reader" width="600px"></div>
-
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function onScanSuccess(decodedText, decodedResult) {
-            // handle the scanned code as you like, for example:
-            console.log(`Code matched = ${decodedText}`, decodedResult);
-            document.getElementById("addCode").value = decodedText;
-        }
+<div class="content-wrapper">
+    <div class="center">
+        <h1 class="head">Import</h1>
+        <div class="import">
+            <form action="" method="post">
+                <div class="row">
+                    <label for="category">Category</label>
+                    <input type="text" name="category" placeholder="Category" id="category">
+                </div>
+                <div class="row">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" placeholder="Name" id="name">
+                </div>
+                <div class="row">
+                    <label for="count">Count</label>
+                    <input type="number" name="count" placeholder="Count" id="count" min=1>
+                </div>
+                <div class="row">
+                    <label for="addCode">Code</label>
+                    <input type="text" name="code" placeholder="Code" id="addCode">
+                </div>
+                <div class="row">
+                    <button type="submit" name="submit">Submit</button>
+                </div>
+                </tr>
+            </form>
+        </div>
         
-        function onScanFailure(error) {
-            // handle scan failure, usually better to ignore and keep scanning.
-            // for example:
-            // console.warn(`Code scan error = ${error}`);
-        }
-        
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader",
-            { fps: 10, qrbox: {width: 300, height: 300} },
-            /* verbose= */ false
-        );
+        <h3>Scan code</h3>
+        <div id="reader" width="600px"></div>
 
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    </script>
+        <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            function onScanSuccess(decodedText, decodedResult) {
+                // handle the scanned code as you like, for example:
+                console.log(`Code matched = ${decodedText}`, decodedResult);
+                document.getElementById("addCode").value = decodedText;
+            }
+            
+            function onScanFailure(error) {
+                // handle scan failure, usually better to ignore and keep scanning.
+                // for example:
+                // console.warn(`Code scan error = ${error}`);
+            }
+            
+            let html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader",
+                { fps: 10, qrbox: {width: 300, height: 300} },
+                /* verbose= */ false
+            );
+
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        </script>
+    </div>
 </div>
-
-
 
 <?= template_footer() ?>

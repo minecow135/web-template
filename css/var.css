@@ -123,6 +123,24 @@
     --color_bg_borrow_submit:           var(--color_bg_login_submit);
 
 
+    /* asset import text color */
+    --color_txt_h_import:               var(--color_txt_h_login);
+    --color_txt_p_import:               var(--color_txt_p_login);
+    --color_txt_import_input:           var(--color_txt_login_input);
+    --color_txt_button_import:          var(--color_txt_p_1);
+    
+
+    /* asset import text color */
+    --size_txt_h_import:                var(--size_txt_h_login);
+    --size_txt_p_import:                var(--size_txt_p_login);
+    --size_txt_button_import:           var(--size_txt_p_login);
+    
+    /* asset import text color */
+    --color_bg_import:                  var(--color_bg_login);
+    --color_border_import:              var(--color_border_login);
+
+    --color_bg_import_input:            var(--color_bg_login_input);
+    --color_bg_import_submit:           var(--color_bg_login_submit);
 
 
 }
