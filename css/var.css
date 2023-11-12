@@ -53,6 +53,7 @@
     /* login color */
     --color_bg_login:                   #01518E;
     --color_border_login:               #0077B6;
+    --color_border_input_login:         #0096C7;
 
     --color_bg_login_input:             var(--color_bg_background);
     
@@ -118,6 +119,7 @@
     /* asset borrow color */
     --color_bg_borrow:                  var(--color_bg_login);
     --color_border_borrow:              var(--color_border_login);
+    --color_border_input_borrow:        var(--color_border_input_login);
 
     --color_bg_borrow_input:            var(--color_bg_login_input);
     --color_bg_borrow_submit:           var(--color_bg_login_submit);
@@ -137,7 +139,7 @@
     
     /* asset import text color */
     --color_bg_import:                  var(--color_bg_login);
-    --color_border_import:              var(--color_border_login);
+    --color_border_input_import:        var(--color_border_input_login);
 
     --color_bg_import_input:            var(--color_bg_login_input);
     --color_bg_import_submit:           var(--color_bg_login_submit);
