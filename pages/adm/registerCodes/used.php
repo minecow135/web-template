@@ -26,63 +26,71 @@ headerr('Codes used by', "registerCodes");
    $uses = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 ?>
 
-<div class="content-wrapper-center">
-    <h1 class="head">Template</h1>
-    <table>
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Value</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Id</td>
-                <td><?= $code["id"] ?></td>
-            </tr>
-            <tr>
-                <td>Code</td>
-                <td><?= $code["code"] ?></td>
-            </tr>
-            <tr>
-                <td>Created by</td>
-                <td><?= $code["username"] ?></td>
-            </tr>
-            <tr>
-                <td>Total uses</td>
-                <td><?= $code["totalUses"] ?></td>
-            </tr>
-            <tr>
-                <td>Start</td>
-                <td><?= $code["start"] ?></td>
-            </tr>
-            <tr>
-                <td>End</td>
-                <td><?= $code["end"] ?></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-                <td>Used by</td>
-                <td>Time</td>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach ($uses as $i) {
-            ?>
-                    <tr>
-                        <td><?= $i["username"] ?></td>
-                        <td><?= $i["time"] ?></td>
-                    </tr>
-            <?php
-                }
-            ?>
-        </tbody>
-    </table>
+<div class="content-wrapper">
+    <div class="center">
+        <h1 class="head">Code info</h1>
+        <div class=used>
+            <div class="usedTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Value</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td><?= $code["id"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Code</td>
+                            <td><?= $code["code"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Created by</td>
+                            <td><?= $code["username"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Total uses</td>
+                            <td><?= $code["totalUses"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Start</td>
+                            <td><?= $code["start"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>End</td>
+                            <td><?= $code["end"] ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="usedTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Used by</td>
+                            <td>Time</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($uses as $i) {
+                        ?>
+                                <tr>
+                                    <td><?= $i["username"] ?></td>
+                                    <td><?= $i["time"] ?></td>
+                                </tr>
+                        <?php
+                            }
+                        ?>  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?= template_footer() ?>

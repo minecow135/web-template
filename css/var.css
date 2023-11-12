@@ -227,4 +227,24 @@
     --borderR_button_codepage:                      25px;
     
 
+    /* register codes used */
+    /* register codes used text color */
+    --color_txt_h_used:                           var(--color_txt_h_borrow);
+    --color_txt_p_used:                           var(--color_txt_p_borrow);
+    --color_txt_used_input:                       var(--color_txt_borrow_input);
+    --color_txt_button_used:                      var(--color_txt_button_borrow);
+    
+    /* register codes used text size */
+    --size_txt_h_used:                            var(--size_txt_h_borrow);
+    --size_txt_p_used:                            var(--size_txt_p_borrow);
+    --size_txt_button_used:                       var(--size_txt_button_borrow);
+
+    /* register codes used color */
+    --color_bg_used:                              var(--color_bg_borrow);
+    --color_border_used:                          var(--color_border_borrow);
+    --color_border_input_used:                    var(--color_border_input_borrow);
+
+    --color_bg_used_input:                        var(--color_bg_borrow_input);
+    --color_bg_used_submit:                       var(--color_bg_borrow_submit);
+
 }
