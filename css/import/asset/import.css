@@ -58,6 +58,7 @@
     font-weight: bold;
     color: var(--color_txt_button_import);
     transition: background-color 0.2s;
+    transition: color 0.2s;
     font-size: var(--size_txt_button_import);
     border-radius: 25px;
     align-self: flex-end;

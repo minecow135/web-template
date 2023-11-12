@@ -14,6 +14,7 @@
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s;
+    transition: color 0.2s;
     border-radius: 25px;
     font-size: var(--size_txt_button_assetList);
     display: flex;
@@ -25,6 +26,7 @@
     background-color: var(--color_bg_assetList_link_hover);
     color: var(--color_txt_assetList_link_hover);
     transition: background-color 0.2s;
+    transition: color 0.2s;
 }
 
 /* asset table */
@@ -66,6 +68,7 @@
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s;
+    transition: color 0.2s;
     border-radius: 25px;
     font-size: var(--size_txt_p_assetList);
     display: flex;
@@ -77,6 +80,7 @@
     background-color: var(--color_bg_assetList_delete_hover);
     color: var(--color_txt_assetList_delete_hover);
     transition: background-color 0.2s;
+    transition: color 0.2s;
 }
 
 .assetList tbody tr:hover td {
