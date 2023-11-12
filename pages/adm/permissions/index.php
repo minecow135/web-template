@@ -192,443 +192,441 @@ headerr('Permissions', "permissions");
     }
 ?>
 
-<div class="content-wrapper-center">
-    <h1 class="head">Permissions</h1>
-</div>
-<div class="content-wrapper-center">
-    <div class="box">
-        <form action="" method="post">
-            <h4>Select user or group</h4>
-            <select name="selectUser" id="">
-                <option value="" selected>Select user</option>
-                <?php
-                    foreach ($user as $u) {
-                        echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
-                    }
-                ?>
-            </select>
-            <select name="selectGroup" id="">
-                <option value="" selected>Select group</option>
-                <?php
-                    foreach ($group as $g) {
-                        echo "<option value=" . $g["id"] . ">" . $g["siteName"] . ", " . $g["groupName"] . "</option>";
-                    }
-                    if ($addGroup) {
-                ?>
-                        <option value="createNew">Create new</option>
-                <?php
-                    }
-                ?>
-            </select>
-            <button type="submit" name="selectSubmit" value="selectSubmit">Submit</button>
-        </form>
-    </div>
-</div>
-<div class="content-wrapper-center">
-    <?php
-        if ($_POST["selectGroup"] == "createNew") {
-            unset($_SESSION["select"]["selectGroup"]);
-            unset($_POST["selectGroup"]);
-            header("Location: index.php?page=adm/permissions/group");
-        }
-        if ($_SESSION["select"]["selectUser"]) {
-            ?>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Username</td>
-                        <td>Site</td>
-                        <td>Group name</td>
-                        <td>Start</td>
-                        <td>End</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
+<div class="content-wrapper">
+    <div class="center">
+        <h1 class="head">Permissions</h1>
+        <div class="permissionbox">
+            <h2>Select user or group</h2>
+            <form action="" method="post">
+                <select name="selectUser" id="">
+                    <option value="" selected>Select user</option>
                     <?php
-                        foreach ($userGroup as $a) {
+                        foreach ($user as $u) {
+                            echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
+                        }
                     ?>
-                            <tr>
-                                <td><?= $a['id'] ?></td>
-                                <td><?= $a['username'] ?></td>
-                                <td><?= $a['siteName'] ?></td>
-                                <td><?= $a['groupName'] ?></td>
-                                <td><?= $a['dateStart'] ?></td>
-                                <td><?= $a['dateEnd'] ?></td>
-                                <td class="actions">
-                                    <?php
-                                        if ($deleteGroupUser) {
-                                    ?>
-                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                                    <?php
-                                        }
-                                    ?>
-                                </td>
-                            </tr>
+                </select>
+                <select name="selectGroup" id="">
+                    <option value="" selected>Select group</option>
+                    <?php
+                        foreach ($group as $g) {
+                            echo "<option value=" . $g["id"] . ">" . $g["siteName"] . ", " . $g["groupName"] . "</option>";
+                        }
+                        if ($addGroup) {
+                    ?>
+                            <option class="createnew" value="createNew">Create new</option>
                     <?php
                         }
                     ?>
-                    <tr>
-                        <form action="" method="post">
-                            <td>Add new</td>
-                            <td>
-                                <?= $_SESSION["select"]["selectUser"] ?>
-                                <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <select name="group" id="">
-                                    <option value="" selected disabled hidden>Group</option>
-                                    <?php
-                                        foreach ($group as $g) {
-                                            echo "<option value=" . $g["id"] . ">" . $g["siteName"]. ", " . $g["groupName"] . "</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="datetime-local" name="start" id="start" value="<?= $date ?>">
-                            </td>
-                            <td>
-                                <input type="datetime-local" name="end" id="start">
-                            </td>
-                            <td>
-                                <button type="submit" name="usergroupSubmit">Submit</button>
-                            </td>
-                        </form>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table>
-                <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Username</td>
-                        <td>Site</td>
-                        <td>Permission</td>
-                        <td>Start</td>
-                        <td>End</td>
-                        <td>Header</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($userPermissions as $a) {
-                            echo "<tr>";
-                                echo "<td>". $a['id'] . "</td>";
-                                echo "<td>". $a['username'] . "</td>";
-                                echo "<td>". $a['siteName'] . "</td>";
-                                echo "<td>". $a['permissionName'] . "</td>";
-                                echo "<td>". $a['dateStart'] . "</td>";
-                                echo "<td>". $a['dateEnd'] . "</td>";
-                                if ($a['header'] == 1) {
-                                    echo "<td>Yes</td>";
-                                }
-                                else {
-                                    echo "<td></td>";
-                                }
-                    ?>
-                                <td class="actions">
-                                    <?php
-                                        if ($deleteUserPerm) {
-                                    ?>
-                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteUserPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                                    <?php
-                                        }
-                                    ?>
+                </select>
+                <button type="submit" name="selectSubmit" value="selectSubmit">Submit</button>
+            </form>
+        </div>
+        <?php
+            if ($_POST["selectGroup"] == "createNew") {
+                unset($_SESSION["select"]["selectGroup"]);
+                unset($_POST["selectGroup"]);
+                header("Location: index.php?page=adm/permissions/group");
+            }
+            if ($_SESSION["select"]["selectUser"]) {
+                ?>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Username</td>
+                            <td>Site</td>
+                            <td>Group name</td>
+                            <td>Start</td>
+                            <td>End</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($userGroup as $a) {
+                        ?>
+                                <tr>
+                                    <td><?= $a['id'] ?></td>
+                                    <td><?= $a['username'] ?></td>
+                                    <td><?= $a['siteName'] ?></td>
+                                    <td><?= $a['groupName'] ?></td>
+                                    <td><?= $a['dateStart'] ?></td>
+                                    <td><?= $a['dateEnd'] ?></td>
+                                    <td class="actions">
+                                        <?php
+                                            if ($deleteGroupUser) {
+                                        ?>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <?php
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        ?>
+                        <tr>
+                            <form action="" method="post">
+                                <td>Add new</td>
+                                <td>
+                                    <?= $_SESSION["select"]["selectUser"] ?>
+                                    <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
                                 </td>
-                    <?php
-                            echo "</tr>";
-                        }
-                    ?>
-                    <tr>
-                        <form action="" method="post">
-                            <td>Add new</td>
-                            <td>
-                                <?= $_SESSION["select"]["selectUser"] ?>
-                                <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
-                            </td>
-                            <td>
-                                <select name="site" id="">
-                                    <option value="" selected disabled hidden>Site</option>
-                                    <?php
-                                        foreach ($site as $s) {
-                                            echo "<option value=" . $s["id"] . ">" . $s["siteName"] . "</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="permission" id="">
-                                    <option value="" selected disabled hidden>Permission</option>
-                                    <?php
-                                        foreach ($permission as $p) {
-                                            echo "<option value=" . $p["id"] . ">" . $p["permissionName"] . "</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="datetime-local" name="start" id="start" value="<?= $date ?>">
-                            </td>
-                            <td>
-                                <input type="datetime-local" name="end" id="start">
-                            </td>
-                            <td>
-                                <div>
-                                    <label class="switch">
-                                    <input type="checkbox" name="header">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="submit" name="userSubmit">Submit</button>
-                            </td>
-                        </form>
-                    </tr>
-                </tbody>
-            </table>
+                                <td>
+                                </td>
+                                <td>
+                                    <select name="group" id="">
+                                        <option value="" selected disabled hidden>Group</option>
+                                        <?php
+                                            foreach ($group as $g) {
+                                                echo "<option value=" . $g["id"] . ">" . $g["siteName"]. ", " . $g["groupName"] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="datetime-local" name="start" id="start" value="<?= $date ?>">
+                                </td>
+                                <td>
+                                    <input type="datetime-local" name="end" id="start">
+                                </td>
+                                <td>
+                                    <button type="submit" name="usergroupSubmit">Submit</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <?php
-        }
-
-        if ($_SESSION["select"]["selectGroup"]) {
-            ?>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Site</td>
-                        <td>Group</td>
-                        <td>Permission</td>
-                        <td>Header</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($groupPermissions as $a) {
-                    ?>
-                            <tr>
-                                <td><?= $a['id'] ?></td>
-                                <td><?= $a['siteName'] ?></td>
-                                <td><?= $a['groupName'] ?></td>
-                                <td><?= $a['permissionName'] ?></td>
-                                <?php
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Username</td>
+                            <td>Site</td>
+                            <td>Permission</td>
+                            <td>Start</td>
+                            <td>End</td>
+                            <td>Header</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($userPermissions as $a) {
+                                echo "<tr>";
+                                    echo "<td>". $a['id'] . "</td>";
+                                    echo "<td>". $a['username'] . "</td>";
+                                    echo "<td>". $a['siteName'] . "</td>";
+                                    echo "<td>". $a['permissionName'] . "</td>";
+                                    echo "<td>". $a['dateStart'] . "</td>";
+                                    echo "<td>". $a['dateEnd'] . "</td>";
                                     if ($a['header'] == 1) {
-                                ?>
-                                    <td>Yes</td>
-                                <?php
+                                        echo "<td>Yes</td>";
                                     }
                                     else {
-                                ?>
-                                        <td></td>
-                                <?php
+                                        echo "<td></td>";
                                     }
-                                ?>
-                                <td class="actions">
-                                    <?php
-                                        if ($deleteGroupUser) {
-                                    ?>
-                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                                    <?php
-                                        }
-                                    ?>
+                        ?>
+                                    <td class="actions">
+                                        <?php
+                                            if ($deleteUserPerm) {
+                                        ?>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteUserPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <?php
+                                            }
+                                        ?>
+                                    </td>
+                        <?php
+                                echo "</tr>";
+                            }
+                        ?>
+                        <tr>
+                            <form action="" method="post">
+                                <td>Add new</td>
+                                <td>
+                                    <?= $_SESSION["select"]["selectUser"] ?>
+                                    <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
                                 </td>
-                            </tr>
-                    <?php
-                        }
-                    ?>
-                    <tr>
-                        <form action="" method="post">
-                            <td>Add new</td>
+                                <td>
+                                    <select name="site" id="">
+                                        <option value="" selected disabled hidden>Site</option>
+                                        <?php
+                                            foreach ($site as $s) {
+                                                echo "<option value=" . $s["id"] . ">" . $s["siteName"] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="permission" id="">
+                                        <option value="" selected disabled hidden>Permission</option>
+                                        <?php
+                                            foreach ($permission as $p) {
+                                                echo "<option value=" . $p["id"] . ">" . $p["permissionName"] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="datetime-local" name="start" id="start" value="<?= $date ?>">
+                                </td>
+                                <td>
+                                    <input type="datetime-local" name="end" id="start">
+                                </td>
+                                <td>
+                                    <div>
+                                        <label class="switch">
+                                        <input type="checkbox" name="header">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="submit" name="userSubmit">Submit</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <?php
+            }
+
+            if ($_SESSION["select"]["selectGroup"]) {
+                ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Site</td>
+                            <td>Group</td>
+                            <td>Permission</td>
+                            <td>Header</td>
                             <td></td>
-                            <td>
-                                <?= $_SESSION["select"]["selectGroup"] ?>
-                                <input type="hidden" name="group" value="<?= $_SESSION["select"]["selectGroup"] ?>">
-                            </td>
-                            <td>
-                                <select name="permission" id="">
-                                    <option value="" selected disabled hidden>Permission</option>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($groupPermissions as $a) {
+                        ?>
+                                <tr>
+                                    <td><?= $a['id'] ?></td>
+                                    <td><?= $a['siteName'] ?></td>
+                                    <td><?= $a['groupName'] ?></td>
+                                    <td><?= $a['permissionName'] ?></td>
                                     <?php
-                                        foreach ($permission as $p) {
-                                            echo "<option value=" . $p["id"] . ">" . $p["permissionName"] . "</option>";
+                                        if ($a['header'] == 1) {
+                                    ?>
+                                        <td>Yes</td>
+                                    <?php
                                         }
+                                        else {
                                     ?>
-                                </select>
-                            </td>
-                            <td>
-                                <div>
-                                    <label class="switch">
-                                    <input type="checkbox" name="header">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="submit" name="groupPermission">Submit</button>
-                            </td>
-                        </form>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table>
-                <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>group</td>
-                        <td>Site</td>
-                        <td>Username</td>
-                        <td>Start</td>
-                        <td>End</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($groupUsers as $a) {
-                    ?>
-                            <tr>
-                                <td><?= $a['id'] ?></td>
-                                <td><?= $a['groupName'] ?></td>
-                                <td><?= $a['siteName'] ?></td>
-                                <td><?= $a['username'] ?></td>
-                                <td><?= $a['dateStart'] ?></td>
-                                <td><?= $a['dateEnd'] ?></td>
-                                <td class="actions">
-                                    <?php
-                                        if ($deleteGroupUser) {
-                                    ?>
-                                    <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                            <td></td>
                                     <?php
                                         }
                                     ?>
+                                    <td class="actions">
+                                        <?php
+                                            if ($deleteGroupUser) {
+                                        ?>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <?php
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        ?>
+                        <tr>
+                            <form action="" method="post">
+                                <td>Add new</td>
+                                <td></td>
+                                <td>
+                                    <?= $_SESSION["select"]["selectGroup"] ?>
+                                    <input type="hidden" name="group" value="<?= $_SESSION["select"]["selectGroup"] ?>">
                                 </td>
-                            </tr>
-                    <?php
-                        }
-                    ?>
-                    <tr>
-                        <form action="" method="post">
-                            <td>Add new</td>
-                            <td>
-                                <?= $_SESSION["select"]["selectGroup"] ?>
-                                <input type="hidden" name="group" value="<?= $_SESSION["select"]["selectGroup"] ?>">
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <select name="user" id="">
-                                    <option value="" selected disabled hidden>Username</option>
-                                    <?php
-                                        foreach ($user as $u) {
-                                            echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="datetime-local" name="start" id="start" value="<?= $date ?>">
-                            </td>
-                            <td>
-                                <input type="datetime-local" name="end" id="start">
-                            </td>
-                            <td>
-                                <button type="submit" name="usergroupSubmit">Submit</button>
-                            </td>
-                        </form>
-                    </tr>
-                </tbody>
-            </table>
+                                <td>
+                                    <select name="permission" id="">
+                                        <option value="" selected disabled hidden>Permission</option>
+                                        <?php
+                                            foreach ($permission as $p) {
+                                                echo "<option value=" . $p["id"] . ">" . $p["permissionName"] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label class="switch">
+                                        <input type="checkbox" name="header">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="submit" name="groupPermission">Submit</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <?php
-        }
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>group</td>
+                            <td>Site</td>
+                            <td>Username</td>
+                            <td>Start</td>
+                            <td>End</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($groupUsers as $a) {
+                        ?>
+                                <tr>
+                                    <td><?= $a['id'] ?></td>
+                                    <td><?= $a['groupName'] ?></td>
+                                    <td><?= $a['siteName'] ?></td>
+                                    <td><?= $a['username'] ?></td>
+                                    <td><?= $a['dateStart'] ?></td>
+                                    <td><?= $a['dateEnd'] ?></td>
+                                    <td class="actions">
+                                        <?php
+                                            if ($deleteGroupUser) {
+                                        ?>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <?php
+                                            }
+                                        ?>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        ?>
+                        <tr>
+                            <form action="" method="post">
+                                <td>Add new</td>
+                                <td>
+                                    <?= $_SESSION["select"]["selectGroup"] ?>
+                                    <input type="hidden" name="group" value="<?= $_SESSION["select"]["selectGroup"] ?>">
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <select name="user" id="">
+                                        <option value="" selected disabled hidden>Username</option>
+                                        <?php
+                                            foreach ($user as $u) {
+                                                echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="datetime-local" name="start" id="start" value="<?= $date ?>">
+                                </td>
+                                <td>
+                                    <input type="datetime-local" name="end" id="start">
+                                </td>
+                                <td>
+                                    <button type="submit" name="usergroupSubmit">Submit</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
 
-        if (isset($_POST["usergroupSubmit"])) {
-            if (!isset($_POST["end"]) || $_POST["end"] == "") {
-                $end = null;
+                <?php
             }
-            else {
-                $end = $_POST["end"];
-            }
-        
-            $stmt = $pdo->prepare("INSERT INTO `group_userGroup`(`userId`, `groupId`, `dateStart`, `dateEnd`) VALUES (:userId, :groupId, :dateStart, :dateEnd)");
-        
-                $stmt->bindValue(':userId', $_POST["user"]);
-                $stmt->bindValue(':groupId', $_POST["group"]);
-                $stmt->bindValue(':dateStart', $_POST["start"]);
-                $stmt->bindValue(':dateEnd', $end);
-        
-                if($stmt->execute()){
-                    echo '<script>alert("Group added")</script>';
-                    echo "<meta http-equiv='refresh' content='0'>";
+
+            if (isset($_POST["usergroupSubmit"])) {
+                if (!isset($_POST["end"]) || $_POST["end"] == "") {
+                    $end = null;
                 }
-        }
-
-        if (isset($_POST["userSubmit"])) {
-            if (!isset($_POST["end"]) || $_POST["end"] == "") {
-                $end = null;
-            }
-            else {
-                $end = $_POST["end"];
-            }
+                else {
+                    $end = $_POST["end"];
+                }
             
-            if (!isset($_POST["header"]) || $_POST["header"] == "") {
-                $header = 0;
-            }
-            else {
-                $header = 1;
-            }
-        
-            $stmt = $pdo->prepare("INSERT INTO `userPermission`(`userId`, `permissionId`, `siteId`, `header`, `dateStart`, `dateEnd`) VALUES (:userId, :permissionId, :siteId, :header, :dateStart, :dateEnd)");
-        
-                $stmt->bindValue(':userId', $_POST["user"]);
-                $stmt->bindValue(':permissionId', $_POST["permission"]);
-                $stmt->bindValue(':siteId', $_POST["site"]);
-                $stmt->bindValue(':header', $header);
-                $stmt->bindValue(':dateStart', $_POST["start"]);
-                $stmt->bindValue(':dateEnd', $end);
-     
-                if($stmt->execute()){
-                    echo '<script>alert("Permission added")</script>';
-                    echo "<meta http-equiv='refresh' content='0'>";
-                }
-        }
-
-        if (isset($_POST["groupPermission"])) {
-            if (!isset($_POST["end"]) || $_POST["end"] == "") {
-                $end = null;
-            }
-            else {
-                $end = $_POST["end"];
-            }
+                $stmt = $pdo->prepare("INSERT INTO `group_userGroup`(`userId`, `groupId`, `dateStart`, `dateEnd`) VALUES (:userId, :groupId, :dateStart, :dateEnd)");
             
-            if (!isset($_POST["header"]) || $_POST["header"] == "") {
-                $header = 0;
+                    $stmt->bindValue(':userId', $_POST["user"]);
+                    $stmt->bindValue(':groupId', $_POST["group"]);
+                    $stmt->bindValue(':dateStart', $_POST["start"]);
+                    $stmt->bindValue(':dateEnd', $end);
+            
+                    if($stmt->execute()){
+                        echo '<script>alert("Group added")</script>';
+                        echo "<meta http-equiv='refresh' content='0'>";
+                    }
             }
-            else {
-                $header = 1;
-            }
-        
-            $stmt = $pdo->prepare("INSERT INTO `group_permissions`(`groupId`, `permissionId`, `header`) VALUES (:groupId, :permissionId, :header)");
-        
-                $stmt->bindValue(':groupId', $_POST["group"]);
-                $stmt->bindValue(':permissionId', $_POST["permission"]);
-                $stmt->bindValue(':header', $header);
-     
-                if($stmt->execute()){
-                    echo '<script>alert("Permission added")</script>';
-                    echo "<meta http-equiv='refresh' content='0'>";
+
+            if (isset($_POST["userSubmit"])) {
+                if (!isset($_POST["end"]) || $_POST["end"] == "") {
+                    $end = null;
                 }
-        }
-    ?>
+                else {
+                    $end = $_POST["end"];
+                }
+                
+                if (!isset($_POST["header"]) || $_POST["header"] == "") {
+                    $header = 0;
+                }
+                else {
+                    $header = 1;
+                }
+            
+                $stmt = $pdo->prepare("INSERT INTO `userPermission`(`userId`, `permissionId`, `siteId`, `header`, `dateStart`, `dateEnd`) VALUES (:userId, :permissionId, :siteId, :header, :dateStart, :dateEnd)");
+            
+                    $stmt->bindValue(':userId', $_POST["user"]);
+                    $stmt->bindValue(':permissionId', $_POST["permission"]);
+                    $stmt->bindValue(':siteId', $_POST["site"]);
+                    $stmt->bindValue(':header', $header);
+                    $stmt->bindValue(':dateStart', $_POST["start"]);
+                    $stmt->bindValue(':dateEnd', $end);
+        
+                    if($stmt->execute()){
+                        echo '<script>alert("Permission added")</script>';
+                        echo "<meta http-equiv='refresh' content='0'>";
+                    }
+            }
+
+            if (isset($_POST["groupPermission"])) {
+                if (!isset($_POST["end"]) || $_POST["end"] == "") {
+                    $end = null;
+                }
+                else {
+                    $end = $_POST["end"];
+                }
+                
+                if (!isset($_POST["header"]) || $_POST["header"] == "") {
+                    $header = 0;
+                }
+                else {
+                    $header = 1;
+                }
+            
+                $stmt = $pdo->prepare("INSERT INTO `group_permissions`(`groupId`, `permissionId`, `header`) VALUES (:groupId, :permissionId, :header)");
+            
+                    $stmt->bindValue(':groupId', $_POST["group"]);
+                    $stmt->bindValue(':permissionId', $_POST["permission"]);
+                    $stmt->bindValue(':header', $header);
+        
+                    if($stmt->execute()){
+                        echo '<script>alert("Permission added")</script>';
+                        echo "<meta http-equiv='refresh' content='0'>";
+                    }
+            }
+        ?>
+    </div>
 </div>
 
 <?= template_footer() ?>

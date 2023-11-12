@@ -1,4 +1,4 @@
-* {
+:root {
     /* color site */
     --color_bg_background:                          #0077B6;
 
@@ -241,4 +241,8 @@
     /* register codes used table border radius */
     --borderR_thead_used:                          var(--borderR_thead_codes);
     --borderR_tbody_used:                          var(--borderR_tbody_codes);
+
+    /* permission index */
+
+
 }
