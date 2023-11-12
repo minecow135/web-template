@@ -24,39 +24,39 @@
 /* table head */
 .used thead td {
     font-weight: bold;
-    color: var(--color_h_table_codes);
+    color: var(--color_h_table_used);
     padding: 10px;
-    background-color: var(--color_bg_thead_codes);
+    background-color: var(--color_bg_thead_used);
 }
 
 .used td:first-child {
-    border-top-left-radius: var(--borderR_thead_codes); 
-    border-bottom-left-radius: var(--borderR_thead_codes);
+    border-top-left-radius: var(--borderR_thead_used); 
+    border-bottom-left-radius: var(--borderR_thead_used);
 }
 
 .used thead td:last-child {
-    border-bottom-right-radius: var(--borderR_thead_codes); 
-    border-top-right-radius: var(--borderR_thead_codes); 
+    border-bottom-right-radius: var(--borderR_thead_used); 
+    border-top-right-radius: var(--borderR_thead_used); 
 }
 
 /* table body */
 .used tbody td {
     padding: 10px;
-    color: var(--color_p_table_codes);
-    background-color: var(--color_bg_tbody_codes);
+    color: var(--color_p_table_used);
+    background-color: var(--color_bg_tbody_used);
 }
 
 .used tbody tr:hover td {
-    color: var(--color_p_table_codes_hover);
-    background-color: var(--color_bg_tbody_codes_hover);
+    color: var(--color_p_table_used_hover);
+    background-color: var(--color_bg_tbody_used_hover);
 }
 
 .used tbody td:first-child {
-    border-top-left-radius: var(--borderR_tbody_codes); 
-    border-bottom-left-radius: var(--borderR_tbody_codes);
+    border-top-left-radius: var(--borderR_tbody_used); 
+    border-bottom-left-radius: var(--borderR_tbody_used);
 }
 
 .used tbody td:last-child {
-    border-bottom-right-radius: var(--borderR_tbody_codes); 
-    border-top-right-radius: var(--borderR_tbody_codes); 
+    border-bottom-right-radius: var(--borderR_tbody_used); 
+    border-top-right-radius: var(--borderR_tbody_used); 
 }

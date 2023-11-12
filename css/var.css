@@ -228,23 +228,17 @@
     
 
     /* register codes used */
-    /* register codes used text color */
-    --color_txt_h_used:                           var(--color_txt_h_borrow);
-    --color_txt_p_used:                           var(--color_txt_p_borrow);
-    --color_txt_used_input:                       var(--color_txt_borrow_input);
-    --color_txt_button_used:                      var(--color_txt_button_borrow);
-    
-    /* register codes used text size */
-    --size_txt_h_used:                            var(--size_txt_h_borrow);
-    --size_txt_p_used:                            var(--size_txt_p_borrow);
-    --size_txt_button_used:                       var(--size_txt_button_borrow);
-
     /* register codes used color */
-    --color_bg_used:                              var(--color_bg_borrow);
-    --color_border_used:                          var(--color_border_borrow);
-    --color_border_input_used:                    var(--color_border_input_borrow);
+    --color_bg_thead_used:                         var(--color_bg_thead_codes);
+    --color_bg_tbody_used:                         var(--color_bg_tbody_codes);
+    --color_bg_tbody_used_hover:                   var(--color_bg_tbody_codes_hover);
 
-    --color_bg_used_input:                        var(--color_bg_borrow_input);
-    --color_bg_used_submit:                       var(--color_bg_borrow_submit);
-
+    /* register codes used text color */
+    --color_h_table_used:                          var(--color_h_table_codes);
+    --color_p_table_used:                          var(--color_p_table_codes);
+    --color_p_table_used_hover:                    var(--color_p_table_codes_hover);
+    
+    /* register codes used table border radius */
+    --borderR_thead_used:                          var(--borderR_thead_codes);
+    --borderR_tbody_used:                          var(--borderR_tbody_codes);
 }
