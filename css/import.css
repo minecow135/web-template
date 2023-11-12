@@ -11,6 +11,8 @@
 @import 'import/asset/borrow.css';
 @import 'import/asset/import.css';
 
+@import 'import/registerCodes/list.css';
+
 @import 'import/content.css';
 
 @import 'https://use.fontawesome.com/releases/v5.7.1/css/all.css';
