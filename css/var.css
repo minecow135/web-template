@@ -49,6 +49,9 @@
     --color_txt_p_login:                var(--color_txt_p_1);
     --color_txt_login_input:            var(--color_txt_p_2);
     --color_txt_button_login:           var(--color_txt_p_1);
+    --color_txt_button_login_hover:     var(--color_txt_p_2);
+    --color_txt_discord_login:          var(--color_txt_p_1);
+    --color_txt_discord_login_hover:    var(--color_txt_p_2);
 
     /* login color */
     --color_bg_login:                   #01518E;

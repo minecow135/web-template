@@ -51,7 +51,8 @@
 }
 
 .loginBox form button:hover {
-  background-color: var(--color_bg_login_submit_hover);
+    background-color: var(--color_bg_login_submit_hover);
+    color: var(--color_txt_button_login_hover);
     transition: background-color 0.2s;
     transition: color 0.2s;
 }
@@ -66,7 +67,7 @@
     border: 0;
     cursor: pointer;
     font-weight: bold;
-    color: var(--color_txt_p_login);
+    color: var(--color_txt_discord_login);
     transition: background-color 0.2s;
     transition: color 0.2s;
     border-radius: 25px;
@@ -78,6 +79,7 @@
 
 .discordLogin:hover {
     background-color: var(--color_bg_login_submit_hover);
+    color: var(--color_txt_discord_login_hover);
     transition: background-color 0.2s;
     transition: color 0.2s;
 }
