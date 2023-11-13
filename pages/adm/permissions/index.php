@@ -198,27 +198,29 @@ headerr('Permissions', "permissions");
         <div class="permissionbox">
             <h2>Select user or group</h2>
             <form action="" method="post">
-                <select name="selectUser" id="">
-                    <option value="" selected>Select user</option>
-                    <?php
-                        foreach ($user as $u) {
-                            echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
-                        }
-                    ?>
-                </select>
-                <select name="selectGroup" id="">
-                    <option value="" selected>Select group</option>
-                    <?php
-                        foreach ($group as $g) {
-                            echo "<option value=" . $g["id"] . ">" . $g["siteName"] . ", " . $g["groupName"] . "</option>";
-                        }
-                        if ($addGroup) {
-                    ?>
-                            <option class="createnew" value="createNew">Create new</option>
-                    <?php
-                        }
-                    ?>
-                </select>
+                <div>
+                    <select name="selectUser" id="">
+                        <option value="" selected>Select user</option>
+                        <?php
+                            foreach ($user as $u) {
+                                echo "<option value=" . $u["id"] . ">" . $u["username"] . "</option>";
+                            }
+                        ?>
+                    </select>
+                    <select name="selectGroup" id="">
+                        <option value="" selected>Select group</option>
+                        <?php
+                            foreach ($group as $g) {
+                                echo "<option value=" . $g["id"] . ">" . $g["siteName"] . ", " . $g["groupName"] . "</option>";
+                            }
+                            if ($addGroup) {
+                        ?>
+                                <option class="createnew" value="createNew">Create new</option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                </div>
                 <button type="submit" name="selectSubmit" value="selectSubmit">Submit</button>
             </form>
         </div>
@@ -231,7 +233,7 @@ headerr('Permissions', "permissions");
             if ($_SESSION["select"]["selectUser"]) {
                 ?>
                 
-                <table>
+                <table class="permissionTable">
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -258,7 +260,7 @@ headerr('Permissions', "permissions");
                                         <?php
                                             if ($deleteGroupUser) {
                                         ?>
-                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i>Delete</a>
                                         <?php
                                             }
                                         ?>
@@ -267,16 +269,14 @@ headerr('Permissions', "permissions");
                         <?php
                             }
                         ?>
-                        <tr>
-                            <form action="" method="post">
+                        <form action="" method="post">
+                            <tr>
                                 <td>Add new</td>
                                 <td>
                                     <?= $_SESSION["select"]["selectUser"] ?>
                                     <input type="hidden" name="user" value="<?= $_SESSION["select"]["selectUser"] ?>">
                                 </td>
-                                <td>
-                                </td>
-                                <td>
+                                <td colspan="2">
                                     <select name="group" id="">
                                         <option value="" selected disabled hidden>Group</option>
                                         <?php
@@ -295,12 +295,12 @@ headerr('Permissions', "permissions");
                                 <td>
                                     <button type="submit" name="usergroupSubmit">Submit</button>
                                 </td>
-                            </form>
-                        </tr>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
 
-                <table>
+                <table class="permissionTable">
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -334,7 +334,7 @@ headerr('Permissions', "permissions");
                                         <?php
                                             if ($deleteUserPerm) {
                                         ?>
-                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteUserPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteUserPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i>Delete</a>
                                         <?php
                                             }
                                         ?>
@@ -343,8 +343,9 @@ headerr('Permissions', "permissions");
                                 echo "</tr>";
                             }
                         ?>
-                        <tr>
                             <form action="" method="post">
+                        <tr>
+                                
                                 <td>Add new</td>
                                 <td>
                                     <?= $_SESSION["select"]["selectUser"] ?>
@@ -387,8 +388,8 @@ headerr('Permissions', "permissions");
                                 <td>
                                     <button type="submit" name="userSubmit">Submit</button>
                                 </td>
-                            </form>
-                        </tr>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
 
@@ -397,7 +398,7 @@ headerr('Permissions', "permissions");
 
             if ($_SESSION["select"]["selectGroup"]) {
                 ?>
-                <table>
+                <table class="permissionTable">
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -433,7 +434,7 @@ headerr('Permissions', "permissions");
                                         <?php
                                             if ($deleteGroupUser) {
                                         ?>
-                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupPerm&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i>Delete</a>
                                         <?php
                                             }
                                         ?>
@@ -442,8 +443,8 @@ headerr('Permissions', "permissions");
                         <?php
                             }
                         ?>
-                        <tr>
-                            <form action="" method="post">
+                        <form action="" method="post">
+                            <tr>
                                 <td>Add new</td>
                                 <td></td>
                                 <td>
@@ -471,12 +472,12 @@ headerr('Permissions', "permissions");
                                 <td>
                                     <button type="submit" name="groupPermission">Submit</button>
                                 </td>
-                            </form>
-                        </tr>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
 
-                <table>
+                <table class="permissionTable">
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -503,7 +504,7 @@ headerr('Permissions', "permissions");
                                         <?php
                                             if ($deleteGroupUser) {
                                         ?>
-                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                                        <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroupUser&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i>Delete</a>
                                         <?php
                                             }
                                         ?>
@@ -512,8 +513,8 @@ headerr('Permissions', "permissions");
                         <?php
                             }
                         ?>
-                        <tr>
-                            <form action="" method="post">
+                        <form action="" method="post">
+                            <tr>
                                 <td>Add new</td>
                                 <td>
                                     <?= $_SESSION["select"]["selectGroup"] ?>
@@ -540,8 +541,8 @@ headerr('Permissions', "permissions");
                                 <td>
                                     <button type="submit" name="usergroupSubmit">Submit</button>
                                 </td>
-                            </form>
-                        </tr>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
 

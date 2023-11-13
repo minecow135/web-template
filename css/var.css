@@ -93,7 +93,7 @@
     --color_bg_tbody_assetList:                     var(--color_bg_login);
     --color_bg_tbody_assetList_hover:               var(--color_bg_login_submit_hover);
 
-    --color_bg_assetList_delete:                    var(--color_bg_thead_assetList);
+    --color_bg_assetList_delete:                    rgb(190, 30, 30);
     --color_bg_assetList_delete_hover:              var(--color_bg_background);
 
     /* asset text color */
@@ -101,7 +101,7 @@
     --color_p_table_assetList:                      var(--color_txt_p_2);
     --color_p_table_assetList_hover:                var(--color_txt_p_1);
 
-    --color_txt_assetList_delete:                   var(--color_txt_p_1);
+    --color_txt_assetList_delete:                   var(--color_txt_p_2);
     --color_txt_assetList_delete_hover:             var(--color_txt_p_2);
 
     /* asset table border radius */
@@ -243,6 +243,73 @@
     --borderR_tbody_used:                          var(--borderR_tbody_codes);
 
     /* permission index */
+    /* permission index text size */
+    --size_txt_h_permission:                       var(--size_txt_h_login);
+    --size_txt_p_permission:                       var(--size_txt_p_login);
+    --size_txt_button_permission:                  var(--size_txt_button_login);
+
+    /* permission index text color */
+    --color_txt_h_permission:                      var(--color_txt_h_login);
+    --color_txt_permission_input:                  var(--color_txt_login_input);
+    --color_txt_button_permission:                 var(--color_txt_button_login);
+    --color_txt_button_permission_hover:           var(--color_txt_button_login_hover);
+
+    /* permission index color */
+    --color_bg_permission:                         var(--color_bg_login);
+    --color_border_permission:                     var(--color_border_login);
+    --color_border_input_permission:               var(--color_border_input_login);
+
+    --color_bg_permission_input:                   var(--color_bg_login_input);
+
+    --color_bg_permission_submit:                  var(--color_bg_login_submit);
+    --color_bg_permission_submit_hover:            var(--color_bg_login_submit_hover);
+
+    /* permission table text size */
+    --size_txt_p_permission:                       var(--size_txt_p_assetList);
+
+    /* asset color */
+    --color_bg_thead_permission:                   var(--color_bg_thead_assetList);
+    --color_bg_tbody_permission:                   var(--color_bg_tbody_assetList);
+    --color_bg_tbody_permission_hover:             var(--color_bg_tbody_assetList_hover);
+
+    --color_bg_permission_delete:                  var(--color_bg_assetList_delete);
+    --color_bg_permission_delete_hover:            var(--color_bg_assetList_delete_hover);
+
+
+    /* asset text color */
+    --color_h_table_permission:                    var(--color_h_table_assetList);
+    --color_p_table_permission:                    var(--color_p_table_assetList);
+    --color_p_table_permission_hover:              var(--color_p_table_assetList_hover);
+
+    --color_txt_permission_delete:                 var(--color_txt_assetList_delete);
+    --color_txt_permission_delete_hover:           var(--color_txt_assetList_delete_hover);
+
+    /* asset table border radius */
+    --borderR_thead_permission:                    var(--borderR_thead_assetList);
+    --borderR_tbody_permission:                    var(--borderR_tbody_assetList);
+
+
+    /* permission table form text size */
+    --size_txt_h_permissionTable:                       var(--size_txt_h_permission);
+    --size_txt_p_permissionTable:                       var(--size_txt_p_permission);
+    --size_txt_button_permissionTable:                  var(--size_txt_button_permission);
+    
+    /* permission table form text color */
+    --color_txt_h_permissionTable:                      var(--color_txt_h_permission);
+    --color_txt_permissionTable_input:                  var(--color_txt_permission_input);
+    --color_txt_button_permissionTable:                 var(--color_txt_button_permission);
+    --color_txt_button_permissionTable_hover:           var(--color_txt_button_permission_hover);
+    
+    /* permission table form color */
+    --color_bg_permissionTable:                         var(--color_bg_permission);
+    --color_border_permissionTable:                     var(--color_border_permission);
+    --color_border_input_permissionTable:               var(--color_border_input_permission);
+    
+    --color_bg_permissionTable_input:                   var(--color_bg_permission_input);
+    
+    --color_bg_permissionTable_submit:                  var(--color_bg_permission_submit);
+    --color_bg_permissionTable_submit_hover:            var(--color_bg_permission_submit_hover);
+
 
 
 }
