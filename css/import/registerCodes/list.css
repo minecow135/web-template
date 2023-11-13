@@ -1,0 +1,218 @@
+/* new code */
+/* register code table */
+.registerCode_new {
+    width: 100%;
+    border-spacing: 0;
+}
+
+/* table head */
+.registerCode_new thead td {
+    font-weight: bold;
+    color: var(--color_h_table_newCode);
+    padding: 10px;
+    background-color: var(--color_bg_thead_newCode);
+}
+
+.registerCode_new input[type="number"], .registerCode_new input[type="datetime-local"] {
+    width: 100%;
+    border: 1px solid var(--color_border_input_newcode);
+    padding: 15px;
+    font-size: var(--size_txt_p_borrow);
+    border-radius: 25px;
+    background-color: var(--color_bg_borrow_input);
+    color: var(--color_txt_borrow_input);
+}
+
+.registerCode_new thead td:first-child {
+    border-top-left-radius: var(--borderR_table_newCode);
+}
+
+.registerCode_new thead td:last-child {
+    border-top-right-radius: var(--borderR_table_newCode);
+}
+
+/* table body */
+.registerCode_new tbody td {
+    padding: 10px;
+    color: var(--color_p_table_newCode);
+    background-color: var(--color_bg_tbody_newCode);
+}
+
+.registerCode_new tbody td button {
+    color: var(--color_txt_newCode_create);
+    padding: 5px 10px;
+    margin: auto;
+    background-color: var(--color_bg_newCode_create);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_p_newCode);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.registerCode_new tbody td button:hover {
+    background-color: var(--color_bg_newCode_create_hover);
+    color: var(--color_txt_newCode_create_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+
+.registerCode_new tbody td:first-child {
+    border-bottom-left-radius: var(--borderR_table_newCode);
+}
+
+.registerCode_new tbody td:last-child {
+    border-bottom-right-radius: var(--borderR_table_newCode); 
+}
+
+/* active and outdated codes */
+/* register code table */
+.registerCode {
+    width: 100%;
+    border-spacing: 0 3px;
+}
+
+/* table head */
+.registerCode thead td {
+    font-weight: bold;
+    color: var(--color_h_table_codes);
+    padding: 10px;
+    background-color: var(--color_bg_thead_codes);
+}
+
+.registerCode td:first-child {
+    border-top-left-radius: var(--borderR_thead_codes); 
+    border-bottom-left-radius: var(--borderR_thead_codes);
+}
+
+.registerCode thead td:last-child {
+    border-bottom-right-radius: var(--borderR_thead_codes); 
+    border-top-right-radius: var(--borderR_thead_codes); 
+}
+
+/* table body */
+.registerCode tbody td {
+    padding: 10px;
+    color: var(--color_p_table_codes);
+    background-color: var(--color_bg_tbody_codes);
+}
+
+.registerCode tbody td a {
+    color: var(--color_txt_codes_info);
+    padding: 5px 10px;
+    background-color: var(--color_bg_codes_info);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_p_codes);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.registerCode tbody td a:hover {
+    background-color: var(--color_bg_codes_info_hover);
+    color: var(--color_txt_codes_info_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+
+.registerCode tbody td button {
+    color: var(--color_txt_codes_delete);
+    padding: 5px 10px;
+    background-color: var(--color_bg_codes_delete);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_p_codes);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.registerCode tbody td button:hover {
+    background-color: var(--color_bg_codes_delete_hover);
+    color: var(--color_txt_codes_delete_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+
+.registerCode tbody tr:hover td {
+    color: var(--color_p_table_codes_hover);
+    background-color: var(--color_bg_tbody_codes_hover);
+}
+
+.registerCode tbody td:first-child {
+    border-top-left-radius: var(--borderR_tbody_codes); 
+    border-bottom-left-radius: var(--borderR_tbody_codes);
+}
+
+.registerCode tbody td:last-child {
+    border-bottom-right-radius: var(--borderR_tbody_codes); 
+    border-top-right-radius: var(--borderR_tbody_codes); 
+}
+
+/* no codes */
+.noCode {
+    color: var(--color_txt_nocode);
+    font-size: var(--size_txt_nocode);
+}
+
+
+/* code pages */
+.codePage {
+	list-style-type: none;
+	padding: 10px 0;
+	display: inline-flex;
+	justify-content: space-between;
+	box-sizing: border-box;
+}
+.codePage li {
+	box-sizing: border-box;
+	padding-right: 10px;
+}
+.codePage li a {
+	box-sizing: border-box;
+	background-color: var(--color_bg_page_button);
+	padding: 8px;
+	text-decoration: none;
+	font-size: var(--size_txt_codepage);
+	font-weight: bold;
+	color: var(--color_txt_page_button);
+	border-radius: var(--borderR_button_codepage);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+.codePage li a:hover {
+    color: var(--color_txt_page_button_hover);
+	background-color: var(--color_bg_page_button_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+.codePage .next a, .codePage .prev a {
+	text-transform: uppercase;
+	font-size: var(--size_txt_codepage);
+}
+.codePage .currentpage a {
+    color: var(--color_txt_currentpage_button);
+	background-color: var(--color_bg_currentpage_button);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+.codePage .currentpage a:hover {
+    color: var(--color_txt_currentpage_button_hover);
+	background-color: var(--color_bg_currentpage_button_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}

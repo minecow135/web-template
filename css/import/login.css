@@ -1,0 +1,159 @@
+.loginBox {
+    min-width: 200px;
+    width: 50vw;
+    height: fit-content;
+  	background-color: var(--color_bg_login);
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+
+}
+
+.loginBox h1 {
+    text-align: center;
+  	color: var(--color_txt_h_login);
+  	font-size: var(--size_txt_h_login);
+  	padding: 20px 0;
+  	border-bottom: 1px solid var(--color_border_login);
+}
+
+.loginBox form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.loginBox form input[type="text"], .loginBox form input[type="email"], .loginBox form input[type="password"] {
+    width: 90%;
+    border: 1px solid var(--color_border_input_login);
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: var(--size_txt_p_login);
+    border-radius: 25px;
+    background-color: var(--color_bg_login_input);
+    color: var(--color_txt_login_input);
+}
+
+.loginBox form button {
+    width: 90%;
+    margin: 5%;
+    margin-bottom: 0;
+    padding: 15px;
+    background-color: var(--color_bg_login_submit);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color_txt_button_login);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    font-size: var(--size_txt_button_login);
+    border-radius: 25px;
+}
+
+.loginBox form button:hover {
+    background-color: var(--color_bg_login_submit_hover);
+    color: var(--color_txt_button_login_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+
+/* discord link */
+
+.discordLogin {
+    width: 90%;
+    padding: 15px;
+    margin: 5%;
+    background-color: var(--color_bg_login_discord);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color_txt_discord_login);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_p_login);
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.discordLogin:hover {
+    background-color: var(--color_bg_login_submit_hover);
+    color: var(--color_txt_discord_login_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+
+/* remember me slider */
+
+.rememberLogin {
+    display: flex;
+    align-items: center;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    margin-right: 20px;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+/* Hide default HTML checkbox */
+.switch input {
+    display: none;
+}
+
+/* The slider */
+.rememberLogin .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.rememberLogin .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--color_slider_dot_login);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.rememberLogin input:checked + .slider {
+    background-color: var(--color_slider_on_login);
+}
+  
+.rememberLogin input:focus + .slider {
+    box-shadow: 0 0 1px #dd0000;
+}
+  
+.rememberLogin input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.rememberLogin .slider.round {
+    border-radius: 34px;
+}
+  
+.rememberLogin .slider.round:before {
+    border-radius: 50%;
+}
+
+.rememberLabel {
+    color: var(--color_txt_p_login);
+    font-size: var(--size_txt_p_login);
+}

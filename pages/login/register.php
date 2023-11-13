@@ -152,27 +152,35 @@ if(isset($_POST['submit'])) {
 $auth_url = url($client_id, $redirect_url, $scopes);
 
 ?>
-<div class="content-wrapper-center">
-    <div class="box">
-        <h1>Register</h1>
-        <form action="" method="post">
-            <input required="required" type="text" name="username" placeholder="Username">
-            <input required="required" type="email" name="email" placeholder="Email">
-            <input required="required" type="password" name="password" placeholder="Password">
-            <?php if ($useCode) { ?>
-                <input required="required" type="text" name="code" placeholder="Code from admin">
+<div class="content-wrapper vCenter">
+    <div class="center">
+        <div class="loginBox">
+            <h1>Register</h1>
+            <form action="" method="post">
+                <input required="required" type="text" name="username" placeholder="Username">
+                <input required="required" type="email" name="email" placeholder="Email">
+                <input required="required" type="password" name="password" placeholder="Password">
+                <?php if ($useCode) { ?>
+                    <input required="required" type="text" name="code" placeholder="Code from admin">
+                <?php
+                    }
+                ?>
+                
+                <button name="submit" type="submit">register</button>
+            </form>
             <?php
+                if ($discord) {
+                    ?>
+                        <a class=discordLogin href='<?= $auth_url ?>'>
+                            <div >
+                                <i class='fab fa-discord'></i> Continue with Discord
+                            </div>
+                        </a>
+                        <?php
                 }
             ?>
-            
-            <button name="submit" type="submit">register</button>
-        </form>
-        <?php
-            if ($discord) {
-                echo "<a href='$auth_url'><button name='submit'>Continue with Discord</button></a>";
-                }
-            ?>
-      </div>
+        </div>
+    </div>
 </div>
 
 <?= template_footer() ?>

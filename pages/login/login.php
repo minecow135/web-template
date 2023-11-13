@@ -95,26 +95,34 @@ if(isset($_POST['submit'])){
 $auth_url = url($client_id, $redirect_url, $scopes);
 
 ?>
-<div class="content-wrapper-center">
-    <div class="box">
-        <h1>Log in</h1>
-        <form action="" method="post">                          
-            <input type="text" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <div>
-                <label class="switch">
-                    <input type="checkbox" name="remember">
-                    <span class="slider round"></span>
-                </label>
-                <label for="remember">Remember me</label>
-            </div>
-            <button name="submit" type="submit">sign in</button>
-        </form>
-        <?php
-            if ($discord) {
-                echo "<a href='$auth_url'><button name='submit'>Continue with Discord</button></a>";
-            }
-        ?>
+<div class="content-wrapper vCenter">
+    <div class="center">
+        <div class="loginBox">
+            <h1>Log in</h1>
+            <form action="" method="post">                          
+                <input type="text" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <div class=rememberLogin>
+                    <label class="switch">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span class="slider round"></span>
+                    </label>
+                    <label class="rememberLabel" for="remember">Remember me</label>
+                </div>
+                <button name="submit" type="submit">Sign in</button>
+                <?php
+                if ($discord) {
+                ?>
+                    <a class=discordLogin href='<?= $auth_url ?>'>
+                        <div >
+                            <i class='fab fa-discord'></i> Continue with Discord
+                        </div>
+                    </a>
+                    <?php
+                }
+            ?>
+            </form>
+        </div>
     </div>
 </div>
 

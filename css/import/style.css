@@ -1,0 +1,55 @@
+* {
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	min-height: 100vh;
+	min-width: 100vw;
+	margin: 0;
+	background-color: var(--color_bg_background);
+	display: flex;
+    flex-direction: column;
+	position: relative;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5 {
+	color: var(--color_txt_h_2);
+	margin: 0;
+}
+
+h1 {
+	font-size: var(--size_txt_h1);
+	padding: 30px;
+}
+
+h2 {
+	font-size: var(--size_txt_h2);
+}
+
+h3 {
+	font-size: var(--size_txt_h3);
+}
+
+h4 {
+	font-size: var(--size_txt_h4);
+}
+
+h5 {
+	font-size: var(--size_txt_h5);
+}
+
+h6 {
+	font-size: var(--size_txt_h6);
+}
+
+main {
+	flex-grow: 1;
+}
+
+.filler {
+    flex-grow: 1;
+}

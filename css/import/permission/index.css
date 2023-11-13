@@ -1,0 +1,161 @@
+.permissionbox {
+    min-width: 200px;
+    width: 50vw;
+    height: fit-content;
+  	background-color: var(--color_bg_permission);
+  	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+}
+
+.permissionbox h2 {
+    text-align: center;
+  	color: var(--color_txt_h_permission);
+  	font-size: var(--size_txt_h_permission);
+  	padding: 20px 0;
+  	border-bottom: 1px solid var(--color_border_permission);
+}
+
+.permissionbox form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.permissionbox form div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.permissionbox form select {
+    width: 40%;
+    min-width: 200px;
+    border: 1px solid var(--color_border_input_permission);
+    margin: 10px;
+    padding: 15px;
+    font-size: var(--size_txt_p_permission);
+    border-radius: 25px;
+    background-color: var(--color_bg_permission_input);
+    color: var(--color_txt_permission_input);
+}
+
+.permissionbox form button {
+    width: 90%;
+    margin: 5%;
+    padding: 15px;
+    background-color: var(--color_bg_permission_submit);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color_txt_button_permission);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    font-size: var(--size_txt_button_permission);
+    border-radius: 25px;
+}
+
+.createnew {
+    background-color: var(--color_bg_permission);
+    color: var(--color_txt_button_permission);
+}
+
+/* permission table */
+.permissionTable {
+    width: 100%;
+    border-spacing: 0 3px;
+    padding-top: 20px;
+}
+
+/* table head */
+.permissionTable thead td {
+    font-weight: bold;
+    color: var(--color_h_table_permission);
+    padding: 10px;
+    background-color: var(--color_bg_thead_permission);
+}
+
+.permissionTable td:first-child {
+    border-top-left-radius: var(--borderR_thead_permission); 
+    border-bottom-left-radius: var(--borderR_thead_permission);
+}
+
+.permissionTable thead td:last-child {
+    border-bottom-right-radius: var(--borderR_thead_permission); 
+    border-top-right-radius: var(--borderR_thead_permission);
+}
+
+/* table body */
+.permissionTable tbody td {
+    padding: 10px;
+    color: var(--color_p_table_permission);
+    background-color: var(--color_bg_tbody_permission);
+}
+
+.permissionTable tbody td a {
+    color: var(--color_txt_permission_delete);
+    padding: 5px 10px;
+    background-color: var(--color_bg_permission_delete);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    border-radius: 25px;
+    font-size: var(--size_txt_p_permission);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.permissionTable tbody td a i {
+    margin-right: 5px;
+}
+
+.permissionTable tbody td a:hover {
+    background-color: var(--color_bg_permission_delete_hover);
+    color: var(--color_txt_permission_delete_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}
+
+.permissionTable tbody tr:hover td {
+    color: var(--color_p_table_permission_hover);
+    background-color: var(--color_bg_tbody_permission_hover);
+}
+
+.permissionTable tbody td:first-child {
+    border-top-left-radius: var(--borderR_tbody_permission); 
+    border-bottom-left-radius: var(--borderR_tbody_permission);
+}
+
+.permissionTable tbody td:last-child {
+    border-bottom-right-radius: var(--borderR_tbody_permission); 
+    border-top-right-radius: var(--borderR_tbody_permission); 
+}
+
+.permissionTable select, .permissionTable input[type="datetime-local"] {
+    border: 1px solid var(--color_border_input_permissionTable);
+    margin: 10px;
+    padding: 5px;
+    font-size: var(--size_txt_p_permissionTable);
+    border-radius: 25px;
+    background-color: var(--color_bg_permissionTable_input);
+    color: var(--color_txt_permissionTable_input);
+}
+
+.permissionTable button {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: var(--color_bg_permissionTable_submit);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color_txt_button_permissionTable);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+    font-size: var(--size_txt_button_permissionTable);
+    border-radius: 25px;
+}

@@ -122,24 +122,24 @@
             </head>
             <body>
                 <header>
-                    <div class="content-wrapper">
-                            <a href="index.php">
-                                <img src="img/logo.png" height="70px" alt="">
-                                <h1>' . $name . '</h1>
-                            </a>
-                            <nav>
+                    <div class="head-wrapper">
+                        <a href="index.php">
+                            <img src="img/logo.png" height="70px" alt="">
+                            <h1>' . $name . '</h1>
+                        </a>
+                        <nav>
                         ';
-                        foreach ($permissions as $i) {
-                            if ($i["header"] == true) {
-                                ?>
-                                <a href="index.php?page=<?=$i['page']?>"><?=$i['permissionName']?></a>
-                                <?php
+                            foreach ($permissions as $i) {
+                                if ($i["header"] == true) {
+                                    ?>
+                                    <a href="index.php?page=<?=$i['page']?>"><?=$i['permissionName']?></a>
+                                    <?php
+                                }
                             }
-                        }
         echo '
-                    </nav>
-                </div>
-            </header>
+                        </nav>
+                    </div>
+                </header>
             <main>
     ';
     }
@@ -149,7 +149,7 @@
         echo '
                 </main>
                 <footer>
-                    <div class="content-wrapper">
+                    <div class="footer-wrapper">
                         <!-- Footer -->
 
                         <a href="https://github.com/minecow135">mine_cow135</a>

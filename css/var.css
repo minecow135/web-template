@@ -1,61 +1,350 @@
-* {
-    /* color */
-    --color_bg_background:      #838383;
-    --color_border:             #dee0e4;
-    --color_confirm:            #38b673;
-    --color_confirm_hover:      #32a367;
+:root {
+    /* color site */
+    --color_bg_background:                          #0077B6;
 
-    --color_txt_h_1:            #adadad;
-    --color_txt_h_2:            #555555;
-
-    --color_txt_p_1:            #adadad;
-    --color_txt_p_2:            #555555;
-    --color_txt_p_1:            #cacaca;
-
-    /* size */
+    /* content text size */
     
-    --size_tx_h1_1:             50px;
-    --size_tx_h1_2:             ;
-    --size_tx_h1_3:             25px;
+    --size_txt_h1:                                  50px;
+    --size_txt_h2:                                  40px;
+    --size_txt_h3:                                  35px;
+    --size_txt_h4:                                  30px;
+    --size_txt_h5:                                  25px;
+    --size_txt_h6:                                  20px;
 
-    --size_tx_h2_1:             40px;
-    --size_tx_h2_2:             30px;
-    --size_tx_h2_3:             ;
+    --size_txt_p:                                   17px;
+    --size_txt_p_large:                             25px;
+    --size_txt_p_small:                             12px;
 
-    --size_tx_h3_1:             35px;
-    --size_tx_h3_2:             ;
-    --size_tx_h3_3:             ;
+    /* content text color */
 
-    --size_tx_h4_1:             30px;
-    --size_tx_h4_2:             ;
-    --size_tx_h4_3:             ;
+    --color_txt_h_1:                                #00B4D8;
+    --color_txt_h_2:                                #03045E;
 
-    --size_tx_h5_1:             25px;
-    --size_tx_h5_2:             ;
-    --size_tx_h5_3:             ;
+    --color_txt_p_1:                                var(--color_txt_h_1);
+    --color_txt_p_2:                                var(--color_txt_h_2);
 
-    --size_tx_h6_1:             20px;
-    --size_tx_h6_2:             ;
-    --size_tx_h6_3:             ;
+    /* header text size */
+    --size_txt_header_h1:                           25px;
+    --size_txt_header:                              var(--size_txt_p);
 
-    /* Header */
-    --size_text_header_h1:      25px;
-    --size_text_header:         17px;
-    --size_text_header_span:    12px;
+    /* header color */
+    --color_bg_header:                              #03045E;
+    --color_txt_header:                             #0096C7;
+
+
+    /* footer color */
+    --color_bg_footer:                              #023e8a;
+    --color_txt-footer:                             #00b3d6;
     
-    --size_item_span:           16px;
+    /* footer text size */
+    --padding_footer_top:                           20px;
+    --padding_footer_bottom:                        var(--padding_footer_top);     
 
-    --place_item_span_top:      22px;
-    --place_item_span_right:    0px;
+
+    /* login text size */
+    --size_txt_h_login:                             var(--size_txt_h1);
+    --size_txt_p_login:                             var(--size_txt_p);
+    --size_txt_button_login:                        var(--size_txt_p_login);
+
+    /* login text color */
+    --color_txt_h_login:                            var(--color_txt_h_2);
+    --color_txt_p_login:                            var(--color_txt_p_1);
+    --color_txt_login_input:                        var(--color_txt_p_2);
+    --color_txt_button_login:                       var(--color_txt_p_1);
+    --color_txt_button_login_hover:                 var(--color_txt_p_2);
+    --color_txt_discord_login:                      var(--color_txt_p_1);
+    --color_txt_discord_login_hover:                var(--color_txt_p_2);
+
+    /* login color */
+    --color_bg_login:                               #01518E;
+    --color_border_login:                           #0077B6;
+    --color_border_input_login:                     #0096C7;
+
+    --color_bg_login_input:                         var(--color_bg_background);
+
+    --color_bg_login_submit:                        #03045E;
+    --color_bg_login_submit_hover:                  #023E8A;
+
+    --color_bg_login_discord:                       #424549;
+    --color_bg_login_discord_hover:                 #424549;
+
+    --color_slider_on_login:                        #0099CC;
+    --color_slider_dot_login:                       #03045E;
+
+
+    /* asset link button text size */
+    --size_txt_button_assetList:                    var(--size_txt_h3);
+
+    /* asset link button text color */
+    --color_txt_assetList_link:                     var(--color_txt_p_2);
+    --color_txt_assetList_link_hover:               var(--color_txt_p_1);
+
+
+    /* asset link button color */
+    --color_bg_assetList_link:                      var(--color_bg_login);
+    --color_bg_assetList_link_hover:                var(--color_bg_login_submit_hover);
+
+
+    /* asset table text size */
+    --size_txt_p_assetList:                         var(--size_txt_p);
+
+    /* asset color */
+    --color_bg_thead_assetList:                     var(--color_bg_header);
+    --color_bg_tbody_assetList:                     var(--color_bg_login);
+    --color_bg_tbody_assetList_hover:               var(--color_bg_login_submit_hover);
+
+    --color_bg_assetList_delete:                    rgb(190, 30, 30);
+    --color_bg_assetList_delete_hover:              var(--color_bg_background);
+
+    /* asset text color */
+    --color_h_table_assetList:                      var(--color_txt_p_1);
+    --color_p_table_assetList:                      var(--color_txt_p_2);
+    --color_p_table_assetList_hover:                var(--color_txt_p_1);
+
+    --color_txt_assetList_delete:                   var(--color_txt_p_2);
+    --color_txt_assetList_delete_hover:             var(--color_txt_p_2);
+
+    /* asset table border radius */
+    --borderR_thead_assetList:                      3px;
+    --borderR_tbody_assetList:                      20px;
+
+
+    /* asset borrow text color */
+    --color_txt_h_borrow:                           var(--color_txt_h_login);
+    --color_txt_p_borrow:                           var(--color_txt_p_login);
+    --color_txt_borrow_input:                       var(--color_txt_login_input);
+    --color_txt_button_borrow:                      var(--color_txt_p_1);
     
-    --color_bg_header:          #353535;
-    --color_h_table:            #b6b6b6;
+    /* asset borrow text size */
+    --size_txt_h_borrow:                            var(--size_txt_h_login);
+    --size_txt_p_borrow:                            var(--size_txt_p_login);
+    --size_txt_button_borrow:                       var(--size_txt_p_login);
 
-    /* Header */
-    --color_bg_footer:          #686868;
+    /* asset borrow color */
+    --color_bg_borrow:                              var(--color_bg_login);
+    --color_border_borrow:                          var(--color_border_login);
+    --color_border_input_borrow:                    var(--color_border_input_login);
 
-    /* box */
-    --color_bg_box:             #5e5d5d;
-    --color_bg_box_submit:      #4e4e4e;
-    --color_bg_box_submit_hover:#3b3b3b;
+    --color_bg_borrow_input:                        var(--color_bg_login_input);
+    --color_bg_borrow_submit:                       var(--color_bg_login_submit);
+
+
+    /* asset import text color */
+    --color_txt_h_import:                           var(--color_txt_h_login);
+    --color_txt_p_import:                           var(--color_txt_p_login);
+    --color_txt_import_input:                       var(--color_txt_login_input);
+    --color_txt_button_import:                      var(--color_txt_p_1);
+    
+
+    /* asset import text color */
+    --size_txt_h_import:                            var(--size_txt_h_login);
+    --size_txt_p_import:                            var(--size_txt_p_login);
+    --size_txt_button_import:                       var(--size_txt_p_login);
+    
+    /* asset import text color */
+    --color_bg_import:                              var(--color_bg_login);
+    --color_border_input_import:                    var(--color_border_input_login);
+
+    --color_bg_import_input:                        var(--color_bg_login_input);
+    --color_bg_import_submit:                       var(--color_bg_login_submit);
+
+
+    /* register codes */
+    /* register codes new code text size */
+    --size_txt_p_newCode:                           var(--size_txt_p);
+
+    /* register codes new code color */
+    --color_bg_thead_newCode:                       var(--color_bg_header);
+    --color_bg_tbody_newCode:                       var(--color_bg_login);
+    --color_bg_tbody_newCode_hover:                 var(--color_bg_login_submit_hover);
+
+    --color_bg_newCode_create:                      var(--color_bg_thead_newCode);
+    --color_bg_newCode_create_hover:                var(--color_bg_background);
+    --color_border_input_newcode:                   var(--color_border_input_login);
+
+    /* register codes new code color */
+    --color_h_table_newCode:                        var(--color_txt_p_1);
+    --color_p_table_newCode:                        var(--color_txt_p_2);
+    --color_p_table_newCode_hover:                  var(--color_txt_p_1);
+
+    --color_txt_newCode_create:                     var(--color_txt_p_1);
+    --color_txt_newCode_create_hover:               var(--color_txt_p_2);
+
+    /* register codes new code border radius */
+    --borderR_table_newCode:            25px;
+
+    /* no code text color */
+    --color_txt_nocode:                             var(--color_txt_p_2);
+
+
+    /* register codes table text size */
+    --size_txt_p_codes:                             var(--size_txt_p);
+
+    /* register codes color */
+    --color_bg_thead_codes:                         var(--color_bg_header);
+    --color_bg_tbody_codes:                         var(--color_bg_login);
+    --color_bg_tbody_codes_hover:                   var(--color_bg_login_submit_hover);
+
+    --color_bg_codes_info:                          var(--color_bg_thead_codes);
+    --color_bg_codes_info_hover:                    var(--color_bg_background);
+
+    --color_bg_codes_delete:                        var(--color_bg_assetList_delete);
+    --color_bg_codes_delete_hover:                  var(--color_bg_assetList_delete_hover);
+
+    /* register codes text color */
+    --color_h_table_codes:                          var(--color_txt_p_1);
+    --color_p_table_codes:                          var(--color_txt_p_2);
+    --color_p_table_codes_hover:                    var(--color_txt_p_1);
+
+    --color_txt_codes_info:                         var(--color_txt_p_1);
+    --color_txt_codes_info_hover:                   var(--color_txt_p_2);
+
+    --color_txt_codes_delete:                       var(--color_txt_assetList_delete);
+    --color_txt_codes_delete_hover:                 var(--color_txt_assetList_delete_hover);
+
+    /* register codes table border radius */
+    --borderR_thead_codes:                          3px;
+    --borderR_tbody_codes:                          20px;
+
+
+    /* register codes page buttons text color */
+    --color_txt_page_button:                        var(--color_txt_p_2);
+    --color_txt_page_button_hover:                  var(--color_txt_p_2);
+    --color_txt_currentpage_button:                 var(--color_txt_p_1);
+    --color_txt_currentpage_button_hover:           var(--color_txt_p_1);
+    
+    /* register codes page buttons text size */
+    --size_txt_codepage:                            var(--size_txt_p_small);
+    
+    /* register codes page buttons color */
+    --color_bg_page_button:                         #90E0EF;
+    --color_bg_page_button_hover:                   #48CAE4;
+
+    --color_bg_currentpage_button:                  var(--color_bg_codes_info);
+    --color_bg_currentpage_button_hover:            var(--color_bg_tbody_codes);
+
+    /* register codes page buttons size */
+    --borderR_button_codepage:                      25px;
+    
+
+    /* register codes used */
+    /* register codes used color */
+    --color_bg_thead_used:                          var(--color_bg_thead_codes);
+    --color_bg_tbody_used:                          var(--color_bg_tbody_codes);
+    --color_bg_tbody_used_hover:                    var(--color_bg_tbody_codes_hover);
+
+    /* register codes used text color */
+    --color_h_table_used:                           var(--color_h_table_codes);
+    --color_p_table_used:                           var(--color_p_table_codes);
+    --color_p_table_used_hover:                     var(--color_p_table_codes_hover);
+    
+    /* register codes used table border radius */
+    --borderR_thead_used:                           var(--borderR_thead_codes);
+    --borderR_tbody_used:                           var(--borderR_tbody_codes);
+
+
+    /* permission index */
+    /* permission index text size */
+    --size_txt_h_permission:                        var(--size_txt_h_login);
+    --size_txt_p_permission:                        var(--size_txt_p_login);
+    --size_txt_button_permission:                   var(--size_txt_button_login);
+
+    /* permission index text color */
+    --color_txt_h_permission:                       var(--color_txt_h_login);
+    --color_txt_permission_input:                   var(--color_txt_login_input);
+    --color_txt_button_permission:                  var(--color_txt_button_login);
+    --color_txt_button_permission_hover:            var(--color_txt_button_login_hover);
+
+    /* permission index color */
+    --color_bg_permission:                          var(--color_bg_login);
+    --color_border_permission:                      var(--color_border_login);
+    --color_border_input_permission:                var(--color_border_input_login);
+
+    --color_bg_permission_input:                    var(--color_bg_login_input);
+
+    --color_bg_permission_submit:                   var(--color_bg_login_submit);
+    --color_bg_permission_submit_hover:             var(--color_bg_login_submit_hover);
+
+    /* permission table text size */
+    --size_txt_p_permission:                        var(--size_txt_p_assetList);
+
+    /* permission color */
+    --color_bg_thead_permission:                    var(--color_bg_thead_assetList);
+    --color_bg_tbody_permission:                    var(--color_bg_tbody_assetList);
+    --color_bg_tbody_permission_hover:              var(--color_bg_tbody_assetList_hover);
+
+    --color_bg_permission_delete:                   var(--color_bg_assetList_delete);
+    --color_bg_permission_delete_hover:             var(--color_bg_assetList_delete_hover);
+
+
+    /* permission text color */
+    --color_h_table_permission:                     var(--color_h_table_assetList);
+    --color_p_table_permission:                     var(--color_p_table_assetList);
+    --color_p_table_permission_hover:               var(--color_p_table_assetList_hover);
+
+    --color_txt_permission_delete:                  var(--color_txt_assetList_delete);
+    --color_txt_permission_delete_hover:            var(--color_txt_assetList_delete_hover);
+
+    /* permission table border radius */
+    --borderR_thead_permission:                     var(--borderR_thead_assetList);
+    --borderR_tbody_permission:                     var(--borderR_tbody_assetList);
+
+
+    /* permission table form text size */
+    --size_txt_h_permissionTable:                   var(--size_txt_h_permission);
+    --size_txt_p_permissionTable:                   var(--size_txt_p_permission);
+    --size_txt_button_permissionTable:              var(--size_txt_button_permission);
+    
+    /* permission table form text color */
+    --color_txt_h_permissionTable:                  var(--color_txt_h_permission);
+    --color_txt_permissionTable_input:              var(--color_txt_permission_input);
+    --color_txt_button_permissionTable:             var(--color_txt_button_permission);
+    --color_txt_button_permissionTable_hover:       var(--color_txt_button_permission_hover);
+    
+    /* permission table form color */
+    --color_bg_permissionTable:                     var(--color_bg_permission);
+    --color_border_permissionTable:                 var(--color_border_permission);
+    --color_border_input_permissionTable:           var(--color_border_input_permission);
+    
+    --color_bg_permissionTable_input:               var(--color_bg_permission_input);
+    
+    --color_bg_permissionTable_submit:              var(--color_bg_permission_submit);
+    --color_bg_permissionTable_submit_hover:        var(--color_bg_permission_submit_hover);
+
+
+    /* permission delete */
+    /* permission delete text size */
+    --size_txt_h_permission_delete:                 var(--size_txt_h_login);
+    --size_txt_p_permission_delete:                 var(--size_txt_p_login);
+    --size_txt_button_permission_delete:            var(--size_txt_button_login);
+
+    /* permission delete text color */
+    --color_txt_h_permission_delete:                var(--color_txt_h_login);
+    --color_txt_p_permission_delete:                var(--color_txt_p_login);
+    --color_txt_permission_delete_yes:              var(--color_txt_button_login);
+    --color_txt_permission_delete_yes_hover:        var(--color_txt_button_login_hover);
+    --color_txt_permission_delete_no:               var(--color_txt_button_login);
+    --color_txt_permission_delete_no_hover:         var(--color_txt_button_login_hover);
+
+    /* permission delete color */
+    --color_bg_permission_deletebox:                   var(--color_bg_login);
+    --color_border_permission_delete:               var(--color_border_login);
+    --color_border_input_permission_delete:         var(--color_border_input_login);
+
+    --color_bg_permission_delete_input:             var(--color_bg_login_input);
+
+    --color_bg_permission_delete_submit:            var(--color_bg_login_submit);
+    --color_bg_permission_delete_submit_hover:      var(--color_bg_login_submit_hover);
+
+    /* permission color */
+    --color_bg_thead_permission_delete:             var(--color_bg_thead_assetList);
+    --color_bg_tbody_permission_delete:             var(--color_bg_tbody_assetList);
+    --color_bg_tbody_permission_delete_hover:       var(--color_bg_tbody_assetList_hover);
+
+    --color_bg_permission_delete_yes:               var(--color_bg_assetList_delete);
+    --color_bg_permission_delete_yes_hover:         var(--color_bg_assetList_delete_hover);
+    --color_bg_permission_delete_no:                var(--color_bg_login_submit);
+    --color_bg_permission_delete_no_hover:          var(--color_bg_login_submit_hover);
+
+
 }

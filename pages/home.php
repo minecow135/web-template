@@ -1,8 +1,8 @@
 <?php
 headerr('Home', "default");
 ?>
-<div class="content-wrapper-center">
-    <h1 class="head">Template</h1>
+<div class="content-wrapper">
+    <h1 class="center">Template</h1>
 </div>
 
 <?= template_footer() ?>
