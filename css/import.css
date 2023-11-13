@@ -16,6 +16,7 @@
 
 @import 'import/permission/index.css';
 @import 'import/permission/deleteGroupUser.css';
+@import 'import/permission/group.css';
 
 @import 'import/content.css';
 

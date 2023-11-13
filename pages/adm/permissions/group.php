@@ -65,90 +65,91 @@ headerr('Permissions', "permissions.addGroup");
         $group = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<div class="content-wrapper-center">
-    <a href="index.php?page=adm/permissions/index">
-        <h1 class="head">Permissions</h1>
-    </a>
-</div>
-<div class="content-wrapper-center">
-    <table>
-        <thead>
-            <tr>
-                <td>Id</td>
-                <td>Group name</td>
-                <td>Site</td>
-                <td>Description</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                foreach ($group as $a) {
-            ?>
+<div class="content-wrapper">
+    <div class="center">
+        <a href="index.php?page=adm/permissions/index">
+            <h1 class="head">Permissions</h1>
+        </a>
+        <table class="group">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Group name</td>
+                    <td>Site</td>
+                    <td>Description</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach ($group as $a) {
+                ?>
+                        <tr>
+                            <td><?= $a['id'] ?></td>
+                            <td><?= $a['groupName'] ?></td>
+                            <td><?= $a['siteName'] ?></td>
+                            <td><?= $a['description'] ?></td>
+                            <td class="actions">
+                                <?php
+                                    if ($deleteGroupUser) {
+                                ?>
+                                <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i> Delete</a>
+                                <?php
+                                    }
+                                ?>
+                            </td>
+                        </tr>
+                <?php
+                    }
+                ?>
+                <form action="" method="POST">
                     <tr>
-                        <td><?= $a['id'] ?></td>
-                        <td><?= $a['groupName'] ?></td>
-                        <td><?= $a['siteName'] ?></td>
-                        <td><?= $a['description'] ?></td>
-                        <td class="actions">
-                            <?php
-                                if ($deleteGroupUser) {
-                            ?>
-                            <a href="index.php?page=adm/<?= basename(__DIR__) ?>/deleteGroup&id=<?= $a['id'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                            <?php
-                                }
-                            ?>
+                        <td>Add new</td>
+                        <td>
+                            <input type="text" name=groupName placeholder="Group name">
+                        </td>
+                        <td>
+                            <select name="site" id="">
+                                <option value="" selected disabled hidden>Site</option>
+                                <?php
+                                    foreach ($site as $s) {
+                                        echo "<option value=" . $s["id"] . ">" . $s["siteName"] . "</option>";
+                                    }
+                                ?>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="desc" placeholder="Description">
+                        <td>
+                            <button type="submit" name="newGroup" value="newGroup">Submit</button>
                         </td>
                     </tr>
-            <?php
-                }
-            ?>
-            <tr>
-                <form action="" method="POST">
-                <td>Add new</td>
-                <td>
-                    <input type="text" name=groupName placeholder="Group name">
-                </td>
-                <td>
-                    <select name="site" id="">
-                        <option value="" selected disabled hidden>Site</option>
-                        <?php
-                            foreach ($site as $s) {
-                                echo "<option value=" . $s["id"] . ">" . $s["siteName"] . "</option>";
-                            }
-                        ?>
-                    </select>
-                </td>
-                    <td>
-                        <input type="text" name="desc" placeholder="Description">
-                    <td>
-                        <button type="submit" name="newGroup" value="newGroup">Submit</button>
-                    </td>
                 </form>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <?php
-        if ($_POST["newGroup"]) {
-            if (isset($_POST["desc"]) && $_POST["desc"] != "") {
-                $desc = $_POST["desc"];
-            }
-            else {
-                $desc = null;
-            }
-
-            $stmt = $pdo->prepare("INSERT INTO `group_groups`(`groupName`, `siteId`, description) VALUES (:groupName, :siteId, :desc)");
-        
-                $stmt->bindValue(':groupName', $_POST["groupName"]);
-                $stmt->bindValue(':siteId', $_POST["site"]);
-                $stmt->bindValue(':desc', $desc);
-     
-                if($stmt->execute()){
-                    echo '<script>alert("group added")</script>';
-                    echo "<meta http-equiv='refresh' content='0'>";
+        <?php
+            if ($_POST["newGroup"]) {
+                if (isset($_POST["desc"]) && $_POST["desc"] != "") {
+                    $desc = $_POST["desc"];
                 }
-        }
-    ?>
+                else {
+                    $desc = null;
+                }
+
+                $stmt = $pdo->prepare("INSERT INTO `group_groups`(`groupName`, `siteId`, description) VALUES (:groupName, :siteId, :desc)");
+                
+                    $stmt->bindValue(':groupName', $_POST["groupName"]);
+                    $stmt->bindValue(':siteId', $_POST["site"]);
+                    $stmt->bindValue(':desc', $desc);
+        
+                    if($stmt->execute()){
+                        echo '<script>alert("group added")</script>';
+                        echo "<meta http-equiv='refresh' content='0'>";
+                    }
+            }
+        ?>
+    </div>
+</div>
 
 <?= template_footer() ?>
