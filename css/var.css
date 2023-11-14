@@ -327,7 +327,7 @@
     --color_txt_permission_delete_no_hover:         var(--color_txt_button_login_hover);
 
     /* permission delete color */
-    --color_bg_permission_deletebox:                   var(--color_bg_login);
+    --color_bg_permission_deletebox:                var(--color_bg_login);
     --color_border_permission_delete:               var(--color_border_login);
     --color_border_input_permission_delete:         var(--color_border_input_login);
 
@@ -349,21 +349,21 @@
 
     /* groups */
     /* permission color */
-    --color_bg_thead_groups:                    var(--color_bg_thead_permission);
-    --color_bg_tbody_groups:                    var(--color_bg_tbody_permission);
-    --color_bg_tbody_groups_hover:              var(--color_bg_tbody_permission_hover);
+    --color_bg_thead_groups:                        var(--color_bg_thead_permission);
+    --color_bg_tbody_groups:                        var(--color_bg_tbody_permission);
+    --color_bg_tbody_groups_hover:                  var(--color_bg_tbody_permission_hover);
 
     /* groups text color */
-    --color_h_table_groups:                     var(--color_h_table_permission);
-    --color_p_table_groups:                     var(--color_p_table_permission);
-    --color_p_table_groups_hover:               var(--color_p_table_permission_hover);
+    --color_h_table_groups:                         var(--color_h_table_permission);
+    --color_p_table_groups:                         var(--color_p_table_permission);
+    --color_p_table_groups_hover:                   var(--color_p_table_permission_hover);
 
-    --color_txt_groups_delete:                  var(--color_txt_permission_delete);
-    --color_txt_groups_delete_hover:            var(--color_txt_permission_delete_hover);
+    --color_txt_groups_delete:                      var(--color_txt_permission_delete);
+    --color_txt_groups_delete_hover:                var(--color_txt_permission_delete_hover);
 
     /* groups table border radius */
-    --borderR_thead_groups:                     var(--borderR_thead_permission);
-    --borderR_tbody_groups:                     var(--borderR_tbody_permission);
+    --borderR_thead_groups:                         var(--borderR_thead_permission);
+    --borderR_tbody_groups:                         var(--borderR_tbody_permission);
 
     /* groups table form text size */
     --size_txt_h_groups:                            var(--size_txt_h_permission);
@@ -376,8 +376,8 @@
     --color_txt_button_groups:                      var(--color_txt_button_permission);
     --color_txt_button_groups_hover:                var(--color_txt_button_permission_hover);
 
-    --color_txt_groups_delete:                  var(--color_txt_permission_delete);
-    --color_txt_groups_delete_hover:            var(--color_txt_permission_delete_hover);
+    --color_txt_groups_delete:                      var(--color_txt_permission_delete);
+    --color_txt_groups_delete_hover:                var(--color_txt_permission_delete_hover);
     
     /* groups table form color */
     --color_bg_groups:                              var(--color_bg_permission);
@@ -389,6 +389,6 @@
     --color_bg_groups_submit:                       var(--color_bg_permission_submit);
     --color_bg_groups_submit_hover:                 var(--color_bg_permission_submit_hover);
 
-    --color_bg_groups_delete:                   var(--color_bg_permission_delete);
-    --color_bg_groups_delete_hover:             var(--color_bg_permission_delete_hover);
+    --color_bg_groups_delete:                       var(--color_bg_permission_delete);
+    --color_bg_groups_delete_hover:                 var(--color_bg_permission_delete_hover);
 }
