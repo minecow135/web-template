@@ -7,40 +7,40 @@
 /* table head */
 .group thead td {
     font-weight: bold;
-    color: var(--color_h_table_permission);
+    color: var(--color_h_table_groups);
     padding: 10px;
-    background-color: var(--color_bg_thead_permission);
+    background-color: var(--color_bg_thead_groups);
 }
 
 .group td:first-child {
-    border-top-left-radius: var(--borderR_thead_permission); 
-    border-bottom-left-radius: var(--borderR_thead_permission);
+    border-top-left-radius: var(--borderR_thead_groups); 
+    border-bottom-left-radius: var(--borderR_thead_groups);
 }
 
 .group thead td:last-child {
-    border-bottom-right-radius: var(--borderR_thead_permission); 
-    border-top-right-radius: var(--borderR_thead_permission);
+    border-bottom-right-radius: var(--borderR_thead_groups); 
+    border-top-right-radius: var(--borderR_thead_groups);
 }
 
 
 /* table body */
 .group tbody td {
     padding: 10px;
-    color: var(--color_p_table_permission);
-    background-color: var(--color_bg_tbody_permission);
+    color: var(--color_p_table_groups);
+    background-color: var(--color_bg_tbody_groups);
 }
 
 .group tbody td a {
-    color: var(--color_txt_permission_delete);
+    color: var(--color_txt_groups_delete);
     padding: 5px 10px;
-    background-color: var(--color_bg_permission_delete);
+    background-color: var(--color_bg_groups_delete);
     border: 0;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s;
     transition: color 0.2s;
     border-radius: 25px;
-    font-size: var(--size_txt_p_permission);
+    font-size: var(--size_txt_p_groups);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,47 +52,54 @@
 }
 
 .group tbody td a:hover {
-    background-color: var(--color_bg_permission_delete_hover);
-    color: var(--color_txt_permission_delete_hover);
+    background-color: var(--color_bg_groups_delete_hover);
+    color: var(--color_txt_groups_delete_hover);
     transition: background-color 0.2s;
     transition: color 0.2s;
 }
 
 .group tbody tr:hover td {
-    color: var(--color_p_table_permission_hover);
-    background-color: var(--color_bg_tbody_permission_hover);
+    color: var(--color_p_table_groups_hover);
+    background-color: var(--color_bg_tbody_groups_hover);
 }
 
 .group tbody td:first-child {
-    border-top-left-radius: var(--borderR_tbody_permission); 
-    border-bottom-left-radius: var(--borderR_tbody_permission);
+    border-top-left-radius: var(--borderR_tbody_groups); 
+    border-bottom-left-radius: var(--borderR_tbody_groups);
 }
 
 .group tbody td:last-child {
-    border-bottom-right-radius: var(--borderR_tbody_permission); 
-    border-top-right-radius: var(--borderR_tbody_permission); 
+    border-bottom-right-radius: var(--borderR_tbody_groups); 
+    border-top-right-radius: var(--borderR_tbody_groups); 
 }
 
 .group select, .group input[type="text"] {
     width: 100%;
-    border: 1px solid var(--color_border_input_permissionTable);
+    border: 1px solid var(--color_border_input_groups);
     padding: 5px;
-    font-size: var(--size_txt_p_permissionTable);
+    font-size: var(--size_txt_p_groups);
     border-radius: 25px;
-    background-color: var(--color_bg_permissionTable_input);
-    color: var(--color_txt_permissionTable_input);
+    background-color: var(--color_bg_groups_input);
+    color: var(--color_txt_groups_input);
 }
 
 .group button {
     width: 100%;
     padding: 5px 10px;
-    background-color: var(--color_bg_permissionTable_submit);
+    background-color: var(--color_bg_groups_submit);
     border: 0;
     cursor: pointer;
     font-weight: bold;
-    color: var(--color_txt_button_permissionTable);
+    color: var(--color_txt_button_groups);
     transition: background-color 0.2s;
     transition: color 0.2s;
-    font-size: var(--size_txt_button_permissionTable);
+    font-size: var(--size_txt_button_groups);
     border-radius: 25px;
+}
+
+.group button:hover {
+    background-color: var(--color_bg_groups_submit_hover);
+    color: var(--color_txt_button_groups_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
 }

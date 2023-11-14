@@ -159,3 +159,10 @@
     font-size: var(--size_txt_button_permissionTable);
     border-radius: 25px;
 }
+
+.permissionTable button:hover {
+    background-color: var(--color_bg_permissionTable_submit_hover);
+    color: var(--color_txt_button_permissionTable_hover);
+    transition: background-color 0.2s;
+    transition: color 0.2s;
+}

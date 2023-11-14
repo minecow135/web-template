@@ -68,7 +68,7 @@ headerr('Permissions', "permissions.addGroup");
 <div class="content-wrapper">
     <div class="center">
         <a href="index.php?page=adm/permissions/index">
-            <h1 class="head">Permissions</h1>
+            <h1 class="head">Groups</h1>
         </a>
         <table class="group">
             <thead>
