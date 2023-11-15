@@ -1,0 +1,10 @@
+:root {
+    --col1:                     #2E86AB;                  /* background */
+    --col2:                     #224B6A;                  /* header */
+    --col3:                     #28698B;                  /* footer */
+    --col4:                     #0D2C54;                  /* box */
+
+    --col5:                     #42A942;                  /* light text */
+    --col6:                     #0D2112;                  /* dark text */
+    --warn:                     #ad200a;                  /* delete */
+}

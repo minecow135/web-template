@@ -1,6 +1,6 @@
 :root {
     /* color site */
-    --color_bg_background:                          #0077B6;
+    --color_bg_background:                          var(--col1);
 
     /* content text size */
     
@@ -17,8 +17,8 @@
 
     /* content text color */
 
-    --color_txt_h_1:                                #00B4D8;
-    --color_txt_h_2:                                #03045E;
+    --color_txt_h_1:                                var(--col5);
+    --color_txt_h_2:                                var(--col6);
 
     --color_txt_p_1:                                var(--color_txt_h_1);
     --color_txt_p_2:                                var(--color_txt_h_2);
@@ -28,13 +28,13 @@
     --size_txt_header:                              var(--size_txt_p);
 
     /* header color */
-    --color_bg_header:                              #03045E;
-    --color_txt_header:                             #0096C7;
+    --color_bg_header:                              var(--col2);
+    --color_txt_header:                             var(--col6);
 
 
     /* footer color */
-    --color_bg_footer:                              #023e8a;
-    --color_txt-footer:                             #00b3d6;
+    --color_bg_footer:                              var(--col3);
+    --color_txt-footer:                             var(--col6);
     
     /* footer text size */
     --padding_footer_top:                           20px;
@@ -47,7 +47,7 @@
     --size_txt_button_login:                        var(--size_txt_p_login);
 
     /* login text color */
-    --color_txt_h_login:                            var(--color_txt_h_2);
+    --color_txt_h_login:                            var(--color_txt_h_1);
     --color_txt_p_login:                            var(--color_txt_p_1);
     --color_txt_login_input:                        var(--color_txt_p_2);
     --color_txt_button_login:                       var(--color_txt_p_1);
@@ -56,7 +56,7 @@
     --color_txt_discord_login_hover:                var(--color_txt_p_2);
 
     /* login color */
-    --color_bg_login:                               #01518E;
+    --color_bg_login:                               var(--col4);
     --color_border_login:                           #0077B6;
     --color_border_input_login:                     #0096C7;
 
@@ -76,8 +76,8 @@
     --size_txt_button_assetList:                    var(--size_txt_h3);
 
     /* asset link button text color */
-    --color_txt_assetList_link:                     var(--color_txt_p_2);
-    --color_txt_assetList_link_hover:               var(--color_txt_p_1);
+    --color_txt_assetList_link:                     var(--color_txt_p_1);
+    --color_txt_assetList_link_hover:               var(--color_txt_p_2);
 
 
     /* asset link button color */
@@ -93,13 +93,13 @@
     --color_bg_tbody_assetList:                     var(--color_bg_login);
     --color_bg_tbody_assetList_hover:               var(--color_bg_login_submit_hover);
 
-    --color_bg_assetList_delete:                    rgb(190, 30, 30);
+    --color_bg_assetList_delete:                    var(--warn);
     --color_bg_assetList_delete_hover:              var(--color_bg_background);
 
     /* asset text color */
     --color_h_table_assetList:                      var(--color_txt_p_1);
-    --color_p_table_assetList:                      var(--color_txt_p_2);
-    --color_p_table_assetList_hover:                var(--color_txt_p_1);
+    --color_p_table_assetList:                      var(--color_txt_p_1);
+    --color_p_table_assetList_hover:                var(--color_txt_p_2);
 
     --color_txt_assetList_delete:                   var(--color_txt_p_2);
     --color_txt_assetList_delete_hover:             var(--color_txt_p_2);
@@ -151,21 +151,21 @@
 
     /* register codes */
     /* register codes new code text size */
-    --size_txt_p_newCode:                           var(--size_txt_p);
+    --size_txt_p_newCode:                           var(--size_txt_p_assetList);
 
     /* register codes new code color */
-    --color_bg_thead_newCode:                       var(--color_bg_header);
-    --color_bg_tbody_newCode:                       var(--color_bg_login);
-    --color_bg_tbody_newCode_hover:                 var(--color_bg_login_submit_hover);
+    --color_bg_thead_newCode:                       var(--color_bg_thead_assetList);
+    --color_bg_tbody_newCode:                       var(--color_bg_tbody_assetList);
+    --color_bg_tbody_newCode_hover:                 var(--color_bg_tbody_assetList_hover);
 
     --color_bg_newCode_create:                      var(--color_bg_thead_newCode);
     --color_bg_newCode_create_hover:                var(--color_bg_background);
     --color_border_input_newcode:                   var(--color_border_input_login);
 
     /* register codes new code color */
-    --color_h_table_newCode:                        var(--color_txt_p_1);
-    --color_p_table_newCode:                        var(--color_txt_p_2);
-    --color_p_table_newCode_hover:                  var(--color_txt_p_1);
+    --color_h_table_newCode:                        var(--color_h_table_assetList);
+    --color_p_table_newCode:                        var(--color_p_table_assetList);
+    --color_p_table_newCode_hover:                  var(--color_p_table_assetList_hover);
 
     --color_txt_newCode_create:                     var(--color_txt_p_1);
     --color_txt_newCode_create_hover:               var(--color_txt_p_2);
@@ -178,7 +178,7 @@
 
 
     /* register codes table text size */
-    --size_txt_p_codes:                             var(--size_txt_p);
+    --size_txt_p_codes:                             var(--size_txt_p_import);
 
     /* register codes color */
     --color_bg_thead_codes:                         var(--color_bg_header);
@@ -192,9 +192,9 @@
     --color_bg_codes_delete_hover:                  var(--color_bg_assetList_delete_hover);
 
     /* register codes text color */
-    --color_h_table_codes:                          var(--color_txt_p_1);
-    --color_p_table_codes:                          var(--color_txt_p_2);
-    --color_p_table_codes_hover:                    var(--color_txt_p_1);
+    --color_h_table_codes:                          var(--color_h_table_assetList);
+    --color_p_table_codes:                          var(--color_p_table_assetList);
+    --color_p_table_codes_hover:                    var(--color_p_table_assetList_hover);
 
     --color_txt_codes_info:                         var(--color_txt_p_1);
     --color_txt_codes_info_hover:                   var(--color_txt_p_2);
